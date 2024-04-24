@@ -1,0 +1,19 @@
+.scrollContainer {
+    -ms-overflow-style: none;
+    /* for Internet Explorer, Edge */
+    scrollbar-width: none;
+    /* for Firefox */
+    height: 100vh;
+    overflow-y: auto;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    border-radius: calc(var(--radius) - 2px);
+    padding-left: 6rem/* 96px */;
+    padding-right: 6rem/* 96px */;
+}
+
+.scrollContainer::-webkit-scrollbar {
+    display: none;
+    /* for Chrome, Safari, and Opera */
+}
