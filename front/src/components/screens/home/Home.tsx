@@ -6,6 +6,8 @@ import Hero from "@/components/ui/hero/Hero"
 import Header from "@/components/ui/layout/header/Header"
 import NewProducts from "@/components/ui/new-products/NewProducts"
 import Overview from "@/components/ui/overview/Overview"
+import { WobbleCard } from "@/components/ui/wobble-card"
+import { Wobble } from "@/components/ui/wobble/Wobble"
 import { IPaginationProducts, IProducts } from "@/types/product.interface"
 import { FC, useState } from "react"
 import { fallDown as Sidebar } from 'react-burger-menu'
@@ -36,8 +38,9 @@ export const Home: FC<IPaginationProducts> = ({ products, length }) => {
                 <RiMenu5Fill size={28} />
             </button>
             {/* <Catalog title="New products" products={products} isLoading={false}></Catalog> */}
-            <div className="overflow-y-scroll snap-y snap-mandatory h-screen">
+            <div className="overflow-y-scroll snap-y snap-mandatory h-screen bg-slate-950">
                 <Hero />
+                <Wobble />
                 <Overview />
             </div>
 
