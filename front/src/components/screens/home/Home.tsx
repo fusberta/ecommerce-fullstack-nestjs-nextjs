@@ -39,7 +39,6 @@ export const Home: FC<IPaginationProducts> = ({ products, length }) => {
             <div className="overflow-y-scroll snap-y snap-mandatory h-screen">
                 <Hero />
                 <Overview />
-                <NewProducts products={products}/>
             </div>
 
         </Meta>

@@ -18,37 +18,16 @@ const NewProducts: FC<ProductCarouselProps> = ({ products }) => {
         slidesToScroll: 1,
     };
     return (
-        <div className='px-12 snap-start h-screen flex justify-center items-center'>
+        <div className='px-12 snap-start h-screen flex justify-center items-center overflow-hidden'>
             <h2 className='text-4xl font-bold mb-8'>New Products</h2>
-            <div className="slider-container">
+            <div className="slider-container z-50 flex">
                 <Slider {...settings}>
-                    <div>
-                        <h3>1</h3>
-                    </div>
-                    <div>
-                        <h3>2</h3>
-                    </div>
-                    <div>
-                        <h3>3</h3>
-                    </div>
-                    <div>
-                        <h3>4</h3>
-                    </div>
-                    <div>
-                        <h3>5</h3>
-                    </div>
-                    <div>
-                        <h3>6</h3>
-                    </div>
-                    <div>
-                        <h3>7</h3>
-                    </div>
-                    <div>
-                        <h3>8</h3>
-                    </div>
-                    <div>
-                        <h3>9</h3>
-                    </div>
+                    {products.map((product, index) => (
+                        <div key={index}>
+                            <img src={product.images[0]} alt={product.name} className="h-48 w-full object-cover" />
+                            <h3 className="text-xl font-bold mt-4">{product.name}</h3>
+                        </div>
+                    ))}
                 </Slider>
             </div>
         </div>
