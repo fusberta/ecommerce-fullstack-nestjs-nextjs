@@ -9,7 +9,7 @@ import { useQuery } from "@tanstack/react-query"
 import ProductService from "@/services/product.service"
 
 interface ICatalog {
-    data: IPaginationProducts
+    data: IPaginationProducts | IProduct[]
     title?: string
     isPagination?: boolean
 }
@@ -19,7 +19,7 @@ const Catalog: FC<ICatalog> = ({ data, title, isPagination = false }) => {
     const [page, setPage] = useState(1)
     const [sortType, setSortType] = useState<EnumProductSort>(EnumProductSort.NEWEST)
 
-    const { data: response, isLoading } = useQuery(
+    const { data: response, isLoading } = useQuery<IPaginationProducts>(
         {
             queryKey: ['products', sortType, page],
             queryFn: () => ProductService.getAll({
@@ -27,15 +27,14 @@ const Catalog: FC<ICatalog> = ({ data, title, isPagination = false }) => {
                 perPage: 8,
                 sort: sortType
             }),
-            initialData: data,
-            keepPreviousData: true
+            initialData: data as IPaginationProducts
         }
-    ) 
+    )
 
     return (
         <section className="px-28 py-20 snap-start">
             {title && <Heading title={title}></Heading>}
-            {isPagination && <SortDropdown sortType={sortType} setSortType={setSortType}/>}
+            {isPagination && <SortDropdown sortType={sortType} setSortType={setSortType} />}
             {
                 response.length ? (
                     <>
@@ -43,11 +42,14 @@ const Catalog: FC<ICatalog> = ({ data, title, isPagination = false }) => {
                             {response.products?.map(product => <ProductItem key={product.id} product={product} />)}
                         </div>
                         <div className="text-center mt-4">
-                            {isPagination && 
-                                <Button variant={'outline'} className="text-lg font-thin" onClick={() => setPage(page + 1)}>
-                                    Load more
-                                </Button>
-                            }
+                            {isPagination && Array.from({ length: response.length / 4 }).map((_, index) => {
+                                const pageNumber = index + 1
+                                return (
+                                    <Button variant={'outline'} className="text-lg font-thin mx-2" onClick={() => setPage(pageNumber)} key={index}>
+                                        { pageNumber }
+                                    </Button>
+                                )
+                            })}
                         </div>
                     </>
                 ) : (
