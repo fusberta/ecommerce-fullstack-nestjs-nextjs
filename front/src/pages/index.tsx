@@ -10,9 +10,9 @@ const indexPage: NextPage<IPaginationProducts> = ({ length, products }) => {
 export default indexPage
 
 export const getStaticProps: GetStaticProps<IPaginationProducts> = async () => {
-    const { data } = await ProductService.getAll({
+    const data = await ProductService.getAll({
         page: 1,
-        perPage: 10
+        perPage: 8
     })
 
     return {

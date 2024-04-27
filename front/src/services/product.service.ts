@@ -5,11 +5,12 @@ const products = '/products'
 
 export const ProductService = {
     async getAll(queryData = {} as IProductFilters) {
-        return instance<IPaginationProducts>({
+        const { data } = await instance<IPaginationProducts>({
             url: products,
             method: 'GET',
             params: queryData
         })
+        return data
     },
     async getSimilar(id: number | string) {
         return instance<IProduct[]>({

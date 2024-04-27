@@ -4,8 +4,13 @@ import { IProduct } from "@/types/product.interface"
 import { FC } from "react"
 import { TbShoppingBagPlus, TbShoppingBagX } from "react-icons/tb"
 import { IoCartOutline, IoCart } from "react-icons/io5";
+import { useAuth } from "@/hooks/useAuth"
 
 const AddToCartBtn: FC< { product: IProduct }> = ({ product }) => {
+    const { user } = useAuth()
+
+    if (!user) return null
+
     const { addItem, removeItem } = useActions()
     const { items } = useCart()
 

@@ -1,12 +1,8 @@
 import Meta from "@/components/ui/Meta"
-import ProductCarousel from "@/components/ui/Product-carousel"
-import Build from "@/components/ui/build/Build"
 import Catalog from "@/components/ui/catalog/Catalog"
 import Hero from "@/components/ui/hero/Hero"
 import Header from "@/components/ui/layout/header/Header"
-import NewProducts from "@/components/ui/new-products/NewProducts"
 import Overview from "@/components/ui/overview/Overview"
-import { WobbleCard } from "@/components/ui/wobble-card"
 import { Wobble } from "@/components/ui/wobble/Wobble"
 import { IPaginationProducts, IProducts } from "@/types/product.interface"
 import { FC, useState } from "react"
@@ -39,6 +35,7 @@ export const Home: FC<IPaginationProducts> = ({ products, length }) => {
             </button>
             {/* <Catalog title="New products" products={products} isLoading={false}></Catalog> */}
             <div className="overflow-y-scroll snap-y snap-mandatory h-screen bg-slate-950">
+                <Catalog title="New" data={{products, length}} isPagination />
                 <Hero />
                 <Wobble />
                 <Overview />
