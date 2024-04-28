@@ -27,7 +27,7 @@ const Layout: React.FC<PropsWithChildren<unknown>> = ({ children }) => {
             <button className="text-white z-30 fixed top-[35px] left-10" onClick={toggleSidebar}>
                 <RiMenu5Fill size={28} />
             </button>
-            <main className='px-20 py-10'>
+            <main className='px-28'>
                 {children}
             </main>
         </div>

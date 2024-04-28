@@ -3,10 +3,8 @@ import Image from "next/image";
 import { FC } from "react";
 import AddToCartBtn from "./AddToCartBtn";
 import ProductRating from "./ProductRating";
-import dynamic from "next/dynamic";
 import Link from "next/link";
-
-const DynamicFavoriteBtn = dynamic(() => import("./FavoriteBtn"), { ssr: false });
+import FavoriteBtn from "./FavoriteBtn";
 
 const ProductItem: FC<{ product: IProduct }> = ({ product }) => {
     return (
@@ -17,7 +15,7 @@ const ProductItem: FC<{ product: IProduct }> = ({ product }) => {
                 </Link>
             </div>
             <div className="flex justify-between items-center w-full mb-3">
-                    <DynamicFavoriteBtn productId={product.id} />
+                    <FavoriteBtn productId={product.id} />
                     <AddToCartBtn product={product} />
             </div>
             <Link href={`/product/${product.slug}`}>

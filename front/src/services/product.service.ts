@@ -1,11 +1,11 @@
-import { instance } from '@/api/api.interceptor'
+import { axiosClassic, instance } from '@/api/api.interceptor'
 import { IPaginationProducts, IProduct, IProductFilters, IProductUpdate } from '@/types/product.interface'
 
 const products = '/products'
 
 export const ProductService = {
     async getAll(queryData = {} as IProductFilters) {
-        const { data } = await instance<IPaginationProducts>({
+        const { data } = await axiosClassic<IPaginationProducts>({
             url: products,
             method: 'GET',
             params: queryData
@@ -13,13 +13,13 @@ export const ProductService = {
         return data
     },
     async getSimilar(id: number | string) {
-        return instance<IProduct[]>({
+        return axiosClassic<IProduct[]>({
             url: `${products}/similar/${id}`,
             method: 'GET'
         })
     },
     async getBySlug(slug: string) {
-        return instance<IProduct>({
+        return axiosClassic<IProduct>({
             url: `${products}/by-slug/${slug}`,
             method: 'GET'
         })

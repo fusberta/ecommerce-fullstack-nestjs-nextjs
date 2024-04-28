@@ -2,7 +2,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useProfile } from "@/hooks/useProfile"
 import UserService from "@/services/user.service"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { FC } from "react"
+import { FC, useEffect, useState } from "react"
 import { GoHeartFill } from "react-icons/go";
 import { GoHeart } from "react-icons/go";
 
@@ -12,13 +12,13 @@ const FavoriteBtn: FC<{ productId: number }> = ({ productId }) => {
     if (!user) return null
 
     const profile = useProfile();
-    const { invalidateQueries } = useQueryClient()
+    const queryClient = useQueryClient()
 
     const { mutate } = useMutation({
         mutationKey: ['toggle favorite'],
         mutationFn: () => UserService.toggleFavorite(productId),
         onSuccess: () => {
-            invalidateQueries({ queryKey: ['profile'] })
+            queryClient.invalidateQueries({ queryKey: ['profile'] })
         }
     });
 

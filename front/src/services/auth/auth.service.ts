@@ -3,7 +3,7 @@ import { IAuthResponse, IAuth } from '../../store/user/user.interface'
 import axios from 'axios'
 import { getContentType } from '@/api/api.helper'
 import { saveToStorage } from './auth.helper'
-import { instance } from '@/api/api.interceptor'
+import { axiosClassic, instance } from '@/api/api.interceptor'
 
 /**
  * AuthService provides authentication API functions.
@@ -14,7 +14,7 @@ import { instance } from '@/api/api.interceptor'
  */
 export const AuthService = {
     async main(type: 'login' | 'register', data: IAuth) {
-        const response = await instance<IAuthResponse>({
+        const response = await axiosClassic<IAuthResponse>({
             url: `/auth/${type}`,
             method: 'POST',
             data,
@@ -28,8 +28,8 @@ export const AuthService = {
     async getNewTokens() {
         const refreshToken = Cookies.get('refreshToken')
 
-        const response = await axios.post<string, { data: IAuthResponse }>(
-            process.env.SERVER_URL + '/auth/login/access-token', { refreshToken }, { headers: getContentType() }
+        const response = await axiosClassic.post<string, { data: IAuthResponse }>(
+            '/auth/login/access-token', { refreshToken }
         )
 
         if (response.data.accessToken) saveToStorage(response.data)

@@ -1,5 +1,6 @@
 import Meta from "@/components/ui/Meta"
 import Catalog from "@/components/ui/catalog/Catalog"
+import PaginationCatalog from "@/components/ui/catalog/PaginationCatalog"
 import Hero from "@/components/ui/hero/Hero"
 import Header from "@/components/ui/layout/header/Header"
 import Overview from "@/components/ui/overview/Overview"
@@ -35,7 +36,7 @@ export const Home: FC<IPaginationProducts> = ({ products, length }) => {
             </button>
             {/* <Catalog title="New products" products={products} isLoading={false}></Catalog> */}
             <div className="overflow-y-scroll snap-y snap-mandatory h-screen bg-slate-950">
-                <Catalog title="New" data={{products, length}} isPagination />
+                <PaginationCatalog title="New" data={{products, length}} isPagination />
                 <Hero />
                 <Wobble />
                 <Overview />

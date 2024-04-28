@@ -10,7 +10,7 @@ const FavoritesPage: NextPageAuth = () => {
     return (
         <Meta title="Favorites">
             <Layout>
-                <Catalog data={profile?.favorites || []} title='Favorites' />
+                <Catalog data={profile?.favorites || []} title='Избранное' />
             </Layout>
         </Meta>
     )

@@ -1,11 +1,11 @@
-import { instance } from '@/api/api.interceptor'
+import { axiosClassic, instance } from '@/api/api.interceptor'
 import { ICategory } from '@/types/category.interface'
 
 const categories = '/categories'
 
 export const CategoryService = {
     async getAll() {
-        return instance<ICategory[]>({
+        return axiosClassic<ICategory[]>({
             url: categories,
             method: 'GET',
         })
