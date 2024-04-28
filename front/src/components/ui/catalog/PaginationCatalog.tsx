@@ -32,9 +32,11 @@ const PaginationCatalog: FC<IPaginationCatalog> = ({ data, title, isPagination =
     )
 
     return (
-        <section className="px-28 py-20 snap-start">
-            {title && <Heading title={title}></Heading>}
-            {isPagination && <SortDropdown sortType={sortType} setSortType={setSortType} />}
+        <section className="py-32 snap-start">
+            <div className="flex justify-between items-center mb-5">
+                {title && <Heading title={title}></Heading>}
+                {isPagination && <SortDropdown sortType={sortType} setSortType={setSortType} />}
+            </div>
             {
                 response.length ? (
                     <>
@@ -46,7 +48,7 @@ const PaginationCatalog: FC<IPaginationCatalog> = ({ data, title, isPagination =
                                 const pageNumber = index + 1
                                 return (
                                     <Button variant={'outline'} className="text-lg font-thin mx-2" onClick={() => setPage(pageNumber)} key={index}>
-                                        { pageNumber }
+                                        {pageNumber}
                                     </Button>
                                 )
                             })}

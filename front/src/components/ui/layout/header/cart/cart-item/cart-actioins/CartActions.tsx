@@ -9,16 +9,12 @@ import { useActions } from '@/hooks/useActions';
 const CartActions: FC<{ item: ICartItem }> = ({ item }) => {
     const { removeItem, changeQuantity } = useActions();
 
-    const { items } = useCart();
-
-    const quantity = items.find(item => item.id === item.id)?.quantity;
-
     return (
         <div className="mt-2">
             <div className="flex items-center gap-3">
                 <button
                     onClick={() => changeQuantity({ id: item.id, type: 'decrement' })}
-                    disabled={quantity === 1}
+                    disabled={item.quantity === 1}
                 >
                     <FiMinus fontSize={12} />
                 </button>
@@ -26,7 +22,7 @@ const CartActions: FC<{ item: ICartItem }> = ({ item }) => {
                 <input 
                     disabled
                     readOnly
-                    value={quantity}
+                    value={item.quantity}
                     className='w-10 bg-black text-center text-sm'
                 />
 

@@ -9,7 +9,6 @@ interface ISortDropdown {
 const SortDropdown: FC<ISortDropdown> = ({ sortType, setSortType }) => {
 
     return (
-        <div className='text-right mb-5'>
             <select value={sortType} onChange={(e) => setSortType(e.target.value as any)} className='appearance-none py-1 px-2 bg-white rounded-sm border-gray-500 text-black'>
                 {(
                     Object.keys(EnumProductSort) as Array<keyof typeof EnumProductSort>
@@ -25,7 +24,6 @@ const SortDropdown: FC<ISortDropdown> = ({ sortType, setSortType }) => {
                     )
                 })}
             </select>
-        </div>
     )
 }
 
