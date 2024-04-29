@@ -1,8 +1,5 @@
-import CButton from "@/components/ui/button/CButton";
-import SquareButton from "@/components/ui/button/SquareButton";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { useCart } from "@/hooks/useCart";
-import { useClickOutside } from "@/hooks/useClickOutside";
 import { useRouter } from "next/router";
 import { FC } from "react";
 import { LuShoppingCart } from "react-icons/lu";
@@ -12,7 +9,6 @@ import { MdOutlineCurrencyRuble } from "react-icons/md";
 import '@/utils/scroll.css'
 
 const HeaderCart: FC = () => {
-    const { isShow, setIsShow, ref } = useClickOutside(false);
 
     const { items, total } = useCart();
 

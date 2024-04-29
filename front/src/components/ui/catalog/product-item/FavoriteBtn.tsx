@@ -30,7 +30,7 @@ const FavoriteBtn: FC<{ productId: number }> = ({ productId }) => {
         <div className="w-1/2">
             <button
                 onClick={() => mutate()}
-                className="text-white text-xl bg-amber-400 px-4 py-2 w-full flex items-center justify-center rounded-bl-2xl"
+                className="text-white text-xl bg-amber-400 px-4 py-2 w-full flex items-center justify-center"
             >
                 {isExist ? <GoHeartFill /> : <GoHeart />}
             </button>

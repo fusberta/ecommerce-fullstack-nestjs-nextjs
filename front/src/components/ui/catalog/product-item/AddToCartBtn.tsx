@@ -24,7 +24,7 @@ const AddToCartBtn: FC< { product: IProduct }> = ({ product }) => {
                     quantity: 1,
                     price: product.price
                 })}
-                className="text-amber-400 text-xl bg-slate-800 px-4 py-2 w-full flex items-center justify-center rounded-br-2xl"
+                className="text-amber-400 text-xl bg-slate-800 px-4 py-2 w-full flex items-center justify-center"
             >
                 {cartElement ? <IoCart /> : <IoCartOutline />}
             </button>

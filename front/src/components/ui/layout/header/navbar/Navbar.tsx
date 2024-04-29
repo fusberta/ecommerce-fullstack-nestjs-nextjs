@@ -14,25 +14,25 @@ const Navbar = ({ className }: { className?: string }) => {
                     <div className="text-sm grid grid-cols-2 gap-10 p-4">
                         <ProductItem
                             title="Клавиши"
-                            href="/catalog"
+                            href="/category/keycaps"
                             src="/images/keycaps_banner.webp"
                             description="C русскими символами или вовсе без них — выберите свои идеальные."
                         />
                         <ProductItem
                             title="Переключатели"
-                            href="/catalog"
+                            href="/category/switches"
                             src="/images/switches_banner.webp"
                             description="Линейные, кликающие или тактильные — выберите под свои задачи."
                         />
                         <ProductItem
                             title="Базы"
-                            href="/catalog"
+                            href="/category/cases"
                             src="/images/base_banner.webp"
                             description="Полноразмерные, TKL или даже 65% — выберите самую удобную для себя."
                         />
                         <ProductItem
                             title="Готовые клавиатуры"
-                            href="/catalog"
+                            href="/category/ready-made"
                             src="/images/ready-made_banner.webp"
                             description="Varmilo, Akko, Leopold и другие зарекомендовавшие себя бренды."
                         />
