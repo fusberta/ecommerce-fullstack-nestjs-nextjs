@@ -1,3 +1,4 @@
+import { CategoriesMenu } from '@/components/ui/Categories-menu'
 import Meta from '@/components/ui/Meta'
 import PaginationCatalog from '@/components/ui/catalog/PaginationCatalog'
 import Layout from '@/components/ui/layout/Layout'

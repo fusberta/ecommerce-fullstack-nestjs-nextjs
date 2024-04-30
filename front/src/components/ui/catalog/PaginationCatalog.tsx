@@ -7,6 +7,7 @@ import SortDropdown from "./SortDropdown"
 import { Button } from "../button/button"
 import { useQuery } from "@tanstack/react-query"
 import ProductService from "@/services/product.service"
+import { CategoriesMenu } from "../Categories-menu"
 
 interface IPaginationCatalog {
     data: IPaginationProducts
@@ -33,8 +34,9 @@ const PaginationCatalog: FC<IPaginationCatalog> = ({ data, title, isPagination =
 
     return (
         <section className="py-32 snap-start">
-            <div className="flex justify-between items-center mb-5">
+            <div className="flex justify-between items-center mb-7">
                 {title && <Heading title={title}></Heading>}
+                {isPagination && <CategoriesMenu /> }
                 {isPagination && <SortDropdown sortType={sortType} setSortType={setSortType} />}
             </div>
             {
@@ -47,7 +49,12 @@ const PaginationCatalog: FC<IPaginationCatalog> = ({ data, title, isPagination =
                             {isPagination && Array.from({ length: response.length / 4 }).map((_, index) => {
                                 const pageNumber = index + 1
                                 return (
-                                    <Button variant={'outline'} className="text-lg font-thin mx-2" onClick={() => setPage(pageNumber)} key={index}>
+                                    <Button
+                                        variant={'outline'} 
+                                        className="text-lg font-thin mx-2" 
+                                        onClick={() => setPage(pageNumber)} 
+                                        key={index}
+                                    >
                                         {pageNumber}
                                     </Button>
                                 )
