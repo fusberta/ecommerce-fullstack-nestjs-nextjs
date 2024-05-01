@@ -1,4 +1,4 @@
-import Meta from "@/components/ui/Meta"
+
 import PaginationCatalog from "@/components/ui/catalog/PaginationCatalog"
 import Layout from "@/components/ui/layout/Layout"
 import CategoryService from "@/services/category.service"
@@ -13,11 +13,9 @@ const CategoryPage: NextPage<{
 }> = ({ products, category }) => {
     
     return (
-        <Meta title={category.name}>
             <Layout>
                 <PaginationCatalog title={category.name} data={{products, length}} isPagination />
             </Layout>
-        </Meta>
     )
 }
 

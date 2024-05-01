@@ -1,6 +1,5 @@
-import Meta from "@/components/ui/Meta"
-import Catalog from "@/components/ui/catalog/Catalog"
-import PaginationCatalog from "@/components/ui/catalog/PaginationCatalog"
+"use client"
+
 import Hero from "@/components/ui/hero/Hero"
 import Header from "@/components/ui/layout/header/Header"
 import Overview from "@/components/ui/overview/Overview"
@@ -16,7 +15,7 @@ export const Home: FC<IPaginationProducts> = ({ products, length }) => {
         setShowSidebar(!showSidebar);
     };
     return (
-        <Meta title="Home" description="Home page">
+        <>
             <Sidebar
                 isOpen={showSidebar}
                 customBurgerIcon={false}
@@ -40,6 +39,6 @@ export const Home: FC<IPaginationProducts> = ({ products, length }) => {
                 <Overview />
             </main>
 
-        </Meta>
+        </>
     )
 }
