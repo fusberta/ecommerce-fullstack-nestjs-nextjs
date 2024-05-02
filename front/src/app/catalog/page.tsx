@@ -1,4 +1,4 @@
-import { Home } from '@/app/Home'
+import Catalog from './Catalog'
 import ProductService from '@/services/product.service'
 import type { Metadata } from 'next'
 
@@ -21,5 +21,5 @@ async function getProducts() {
 export default async function HomePage() {
     const data = await getProducts()
 
-    return <Home products={data.products} length={data.length} />
+    return <Catalog products={data.products} length={data.length} />
 }

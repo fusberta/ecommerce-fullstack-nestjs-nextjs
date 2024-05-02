@@ -1,6 +1,5 @@
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { useCart } from "@/hooks/useCart";
-import { useRouter } from "next/router";
 import { FC } from "react";
 import { LuShoppingCart } from "react-icons/lu";
 import CartItem from "./cart-item/CartItem";
@@ -11,8 +10,6 @@ import '@/utils/scroll.css'
 const HeaderCart: FC = () => {
 
     const { items, total } = useCart();
-
-    const { push } = useRouter();
 
     return (
         <Popover>

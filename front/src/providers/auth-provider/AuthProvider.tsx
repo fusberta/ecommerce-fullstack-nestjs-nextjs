@@ -7,6 +7,9 @@ import { getAccessToken } from "@/services/auth/auth.helper";
 import Cookies from 'js-cookie';
 import { usePathname, useRouter } from "next/navigation";
 import { REFRESH_TOKEN } from "@/assets/constants";
+import { protectedRoutes } from "./protected-routes.data";
+import { ADMIN_PANEL_URL } from "@/config/url.config";
+import NotFound from "@/app/not-found";
 
 const AuthProvider: FC<PropsWithChildren<unknown>> = 
 ({ children }) => {
@@ -27,9 +30,20 @@ const AuthProvider: FC<PropsWithChildren<unknown>> =
         
     const router = useRouter()
 
-    return isOnlyUser ? <DynamicCheckRole Component={{ isOnlyUser }}>
-        {children}
-    </DynamicCheckRole> : <>{children}</>;
+    const isProtected = protectedRoutes.some(route => pathname?.startsWith(route))
+
+    const isAdmin = pathname?.startsWith(ADMIN_PANEL_URL)
+
+    if(!isProtected && !isAdmin) return <>{children}</>
+
+    if(user?.isAdmin) return <>{children}</>
+
+    if(user && isProtected) return <>{children}</>
+
+    if(user && isAdmin) return <NotFound />
+
+    pathname !== '/auth' && router.replace('/auth')
+    return null
 };
 
 export default AuthProvider;
