@@ -8,6 +8,14 @@ const nextConfig = {
     },
     images: {
         domains: ['loremflickr.com', 'istoreapple.ru', 'static.insales-cdn.com'],
+    },
+    async rewrites() {
+        return [
+        {
+          source: '/uploads/:path*',
+          destination: `http://localhost:4200/uploads/:path*`,
+        },
+      ]
     }
 }
 

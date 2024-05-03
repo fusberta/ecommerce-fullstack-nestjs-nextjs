@@ -1,3 +1,5 @@
+'use client'
+
 import { EnumProductSort, IPaginationProducts, IProduct, IProductUpdate } from "@/types/product.interface"
 import { FC, useState } from "react"
 import ProductItem from "./product-item/ProductItem"

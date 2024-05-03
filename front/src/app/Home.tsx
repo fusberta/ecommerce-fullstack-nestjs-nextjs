@@ -1,13 +1,11 @@
-"use client"
-
 import Hero from "@/components/ui/hero/Hero"
-import Header from "@/components/ui/layout/header/Header"
 import Overview from "@/components/ui/overview/Overview"
 import { Wobble } from "@/components/ui/wobble/Wobble"
 import { IPaginationProducts, IProducts } from "@/types/product.interface"
 import { FC, useState } from "react"
 import { fallDown as Sidebar } from 'react-burger-menu'
 import { RiMenu5Fill, RiCloseFill } from "react-icons/ri";
+import Header from "./layout/header/Header"
 
 export const Home: FC<IPaginationProducts> = ({ products, length }) => {
     const [showSidebar, setShowSidebar] = useState<boolean>(false);

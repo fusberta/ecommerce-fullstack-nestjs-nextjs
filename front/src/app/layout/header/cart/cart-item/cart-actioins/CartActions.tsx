@@ -1,9 +1,7 @@
-import Image from 'next/image';
 import { FC } from 'react';
 import { FiMinus, FiPlus, FiTrash } from "react-icons/fi";
 
 import { ICartItem } from '@/types/cart.interface';
-import { useCart } from '@/hooks/useCart';
 import { useActions } from '@/hooks/useActions';
 
 const CartActions: FC<{ item: ICartItem }> = ({ item }) => {

@@ -1,3 +1,5 @@
+'use client'
+
 import { FC } from "react";
 import { StickyScroll } from "../sticky-scroll-reveal"
 import { content } from './Content';

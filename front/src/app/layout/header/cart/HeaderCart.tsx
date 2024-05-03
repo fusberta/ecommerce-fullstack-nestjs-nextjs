@@ -1,3 +1,5 @@
+'use client'
+
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { useCart } from "@/hooks/useCart";
 import { FC } from "react";

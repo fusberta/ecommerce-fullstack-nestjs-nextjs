@@ -1,9 +1,8 @@
-import PaginationCatalog from '@/components/ui/catalog/PaginationCatalog'
-import Layout from '@/components/ui/layout/Layout'
+import Catalog from '@/components/ui/catalog/Catalog'
 import CategoryService from '@/services/category.service'
 import ProductService from '@/services/product.service'
 import { IPageSlugParam, TypeParamSlug } from '@/types/page-params'
-import type { Metadata } from 'next'
+import { Metadata } from 'next'
 
 export const revalidate = 60
 
@@ -21,6 +20,21 @@ export async function generateStaticParams() {
     return paths
 }
 
+export async function generateMetadata({
+    params
+}: IPageSlugParam): Promise<Metadata> {
+    const { products, category } = await getProducts(params)
+
+    return {
+        title: category.name,
+        description: `Viewing ${category.name} category.`,
+        openGraph: {
+            images: products[0].images,
+            description: `Viewing ${category.name} category.`
+        }
+    }
+}
+
 async function getProducts(params: TypeParamSlug) {
     const { data: products } = await ProductService.getByCategory(params?.slug as string)
 
@@ -35,9 +49,9 @@ async function getProducts(params: TypeParamSlug) {
 export default async function CategoryPage({ params }: IPageSlugParam) {
     const data = await getProducts(params)
     return (
-        <Layout>
-            <PaginationCatalog title={data.category.name} data={{products, length}} isPagination />
-        </Layout>
+        <>
+            <Catalog title={data.category.name} data={data.products} />
+        </>
     )
 
 }

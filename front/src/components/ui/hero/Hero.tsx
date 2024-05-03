@@ -1,3 +1,5 @@
+'use client'
+
 import { LampContainer } from "../lamp";
 import { TextGenerateEffect } from "../text-generate-effect"
 import { motion } from "framer-motion";

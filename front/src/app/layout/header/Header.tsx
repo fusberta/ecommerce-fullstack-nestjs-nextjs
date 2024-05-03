@@ -3,9 +3,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { AiOutlineHeart } from'react-icons/ai';
 import HeaderCart from './cart/HeaderCart';
-import { HoveredLink, Menu, MenuItem, ProductItem } from '../../navbar-menu';
 import HeaderProfile from './HeaderProfile';
 import Navbar from './navbar/Navbar';
+import { HoveredLink } from '@/components/ui/navbar-menu';
 
 const Header: FC = () => {    
     return (

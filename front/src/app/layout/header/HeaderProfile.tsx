@@ -1,3 +1,5 @@
+'use client'
+
 import { useProfile } from "@/hooks/useProfile";
 import Image from "next/image";
 import { FC } from "react";
