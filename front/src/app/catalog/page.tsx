@@ -18,7 +18,7 @@ async function getProducts() {
     return data
 }
 
-export default async function HomePage() {
+export default async function CatalogPage() {
     const data = await getProducts()
 
     return <Catalog products={data.products} length={data.length} />

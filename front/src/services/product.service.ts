@@ -19,7 +19,7 @@ export const ProductService = {
         })
     },
     async getBySlug(slug: string) {
-        return axiosClassic<IProduct>({
+        return instance<IProduct>({
             url: `${products}/by-slug/${slug}`,
             method: 'GET'
         })

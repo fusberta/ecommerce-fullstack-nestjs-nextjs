@@ -1,10 +1,5 @@
 import { Home } from '@/app/Home'
 import ProductService from '@/services/product.service'
-import type { Metadata } from 'next'
-
-export const metadata: Metadata = {
-    description: ''
-}
 
 export const revalidate = 60
 

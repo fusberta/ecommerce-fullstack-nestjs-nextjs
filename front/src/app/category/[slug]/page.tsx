@@ -47,11 +47,11 @@ async function getProducts(params: TypeParamSlug) {
 }
 
 export default async function CategoryPage({ params }: IPageSlugParam) {
-    const data = await getProducts(params)
+    const data = await getProducts(params);
+    console.log(data)
     return (
         <>
             <Catalog title={data.category.name} data={data.products} />
         </>
     )
-
 }

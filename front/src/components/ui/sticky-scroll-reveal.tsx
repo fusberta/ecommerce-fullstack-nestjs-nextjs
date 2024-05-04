@@ -3,6 +3,7 @@ import React, { useRef } from "react";
 import { useMotionValueEvent, useScroll } from "framer-motion";
 import { motion } from "framer-motion";
 import styles from './overview/styles.module.css'
+import { redirect, useRouter } from "next/navigation";
 
 export const StickyScroll = ({
     content, images
@@ -20,6 +21,8 @@ export const StickyScroll = ({
         offset: ["start start", "end start"],
     });
     const cardLength = content.length;
+
+    const router = useRouter()
 
     useMotionValueEvent(scrollYProgress, "change", (latest) => {
         const cardsBreakpoints = content.map((_, index) => index / cardLength);
@@ -81,6 +84,7 @@ export const StickyScroll = ({
                                 animate={{
                                     opacity: activeCard === index ? 1 : 0.3,
                                 }}
+                                onClick={() => router.replace('/catalog')}
                                 className="mt-10 px-5 py-2 text-slate-100 bg-slate-800 rounded-full duration-300"
                             >
                                 Перейти в каталог
