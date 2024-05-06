@@ -8,6 +8,7 @@ import CartItem from "./cart-item/CartItem";
 import { Button } from "@/components/ui/button/button";
 import { MdOutlineCurrencyRuble } from "react-icons/md";
 import '@/utils/scroll.css'
+import Link from "next/link";
 
 const HeaderCart: FC = () => {
 
@@ -32,11 +33,13 @@ const HeaderCart: FC = () => {
                 </div>
                 <div className="mt-5">
                     <div className="text-sm font-light">Итог:</div>
-                    <div className="flex items-center text-lg font-semibold">{total}<MdOutlineCurrencyRuble size={14}/></div>
+                    <div className="flex items-center text-lg font-semibold">{total}<MdOutlineCurrencyRuble size={14} /></div>
                 </div>
                 <div className="mt-2 w-full">
                     <Button variant={"outline"} size={"lg"} className="w-full">
-                        Оформить заказ
+                        <Link href="/checkout">
+                            Оформить заказ
+                        </Link>
                     </Button>
                 </div>
             </PopoverContent>

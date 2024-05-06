@@ -4,8 +4,13 @@ import { useQuery } from "@tanstack/react-query";
 import { FC, useState } from "react";
 import { Rating } from 'react-simple-star-rating'
 
-const ProductRating: FC<{ product: IProduct }> = ({ product }) => {
-    const [rating, setRating] = useState(
+interface IProductRating {
+    product: IProduct
+    isText?: boolean
+}
+
+const ProductRating: FC<IProductRating> = ({ product, isText = false }) => {
+    const [rating, setRating] = useState<number>(
         Math.round(
             product.reviews.reduce((acc, review) => acc + review.rating, 0) /
             product.reviews.length
@@ -29,7 +34,10 @@ const ProductRating: FC<{ product: IProduct }> = ({ product }) => {
                     {rating}
                 </span>
             </span>
-            <span className="pt-1">({product.reviews.length} reviews)</span>
+
+            {isText && (
+                <span className="pt-1">({product.reviews.length} reviews)</span>
+            )}
         </div>
     )
 }

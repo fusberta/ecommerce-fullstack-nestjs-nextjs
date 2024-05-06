@@ -11,7 +11,7 @@ const Navbar = ({ className }: { className?: string }) => {
                 <HoveredLink href="/">
                     Главная
                 </HoveredLink>
-                <MenuItem setActive={setActive} active={active} item="Каталог">
+                <MenuItem setActive={setActive} active={active} item="Каталог" isLink>
                     <div className="text-sm grid grid-cols-2 gap-10 p-4">
                         <ProductItem
                             title="Клавиши"

@@ -1,3 +1,5 @@
+'use client'
+
 import { FC } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -6,14 +8,21 @@ import HeaderCart from './cart/HeaderCart';
 import HeaderProfile from './HeaderProfile';
 import Navbar from './navbar/Navbar';
 import { HoveredLink } from '@/components/ui/navbar-menu';
+import { useAdminPanel } from '@/hooks/useAdminPanel';
 
-const Header: FC = () => {    
+const Header: FC = () => {   
+    const { isAdminPanel } = useAdminPanel()
+
     return (
         <header 
             className="bg-transparent absolute opacity-95 w-full h-[94px] px-28 flex items-center justify-between z-10" 
         >
             <Link href="/" className='w-16 h-16 flex items-center justify-center'>
-                <Image priority src="/images/main-logo.svg" width={70} height={70} className='w-16 h-16' alt="KBD logo" />
+                {isAdminPanel ? (
+                    <h2 className='text-3xl text-white font-semibold'>Admin Panel</h2>
+                ): (
+                    <Image priority src="/images/main-logo.svg" width={70} height={70} className='w-16 h-16' alt="CustomWORLD" />
+                )}
             </Link>
 
             <div className="relative w-full flex items-center justify-center">

@@ -9,10 +9,10 @@ import { LiaRubleSignSolid } from "react-icons/lia";
 
 const ProductItem: FC<{ product: IProduct }> = ({ product }) => {
     return (
-        <div className="animate-opacity border border-zinc-700 rounded-xl">
+        <div className="animate-scaleIn border border-zinc-700 rounded-xl">
             <div className="block w-full overflow-hidden bg-white rounded-t-xl">
                 <Link href={`/product/${product.slug}`}>
-                    <Image className="object-contain w-full object-center h-[150px]" priority width={200} height={200} src={product.images[0]} alt={product.name} />
+                    <Image className="object-contain block mx-auto w-full object-center h-[150px]" priority width={200} height={200} src={product.images[0]} alt={product.name} />
                 </Link>
             </div>
             <div className="flex justify-between items-center w-full">
@@ -25,7 +25,7 @@ const ProductItem: FC<{ product: IProduct }> = ({ product }) => {
                         <h3 className="mb-1 font-semibold text-lg">{product.name}</h3>
                     </Link>
                     <Link href={`/category/${product.category.slug}`} className="text-sky-500 font-bold text-xs">{product.category.name}</Link>
-                    <ProductRating product={product} />
+                    <ProductRating product={product} isText />
                 </div>
                 <span className="flex items-center mt-2 justify-center pt-1 border-t border-zinc-700 border- font-extrabold text-lg">{product.price}<LiaRubleSignSolid size={20} /></span>
             </div>

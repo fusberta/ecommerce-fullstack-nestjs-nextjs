@@ -3,6 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const transition = {
   type: "spring",
@@ -18,14 +19,18 @@ export const MenuItem = ({
   active,
   item,
   children,
+  isLink
 }: {
   setActive: (item: string) => void;
   active: string | null;
   item: string;
   children?: React.ReactNode;
+  isLink?: boolean;
 }) => {
+  const router = useRouter()
+
   return (
-    <div onMouseEnter={() => setActive(item)} className="relative">
+    <div onMouseEnter={() => setActive(item)} className="relative" onClick={() => { if (isLink) router.replace('/catalog')}}>
       <motion.p
         transition={{ duration: 0.3 }}
         className="cursor-pointer text-black hover:opacity-[0.9] dark:text-white"
