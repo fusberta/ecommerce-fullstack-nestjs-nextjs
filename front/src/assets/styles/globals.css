@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;800;1000&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -80,8 +78,8 @@
 }
 
 body {
-  @apply text-zinc-100 text-base bg-black min-h-screen;
-  font-family: 'Nunito', sans-serif;
+  @apply text-zinc-100 text-base bg-slate-950 min-h-screen;
+  font-family: var(--font-nto), sans-serif;
 }
 
 .disabled {

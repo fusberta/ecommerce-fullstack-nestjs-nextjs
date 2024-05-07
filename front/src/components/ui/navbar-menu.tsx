@@ -30,9 +30,10 @@ export const MenuItem = ({
   const router = useRouter()
 
   return (
-    <div onMouseEnter={() => setActive(item)} className="relative" onClick={() => { if (isLink) router.replace('/catalog')}}>
+    <div onMouseEnter={() => setActive(item)} className="relative">
       <motion.p
         transition={{ duration: 0.3 }}
+        onClick={() => {if (isLink) router.replace('/catalog')}}
         className="cursor-pointer text-black hover:opacity-[0.9] dark:text-white"
       >
         {item}

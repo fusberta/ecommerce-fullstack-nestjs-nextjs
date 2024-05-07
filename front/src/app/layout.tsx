@@ -2,6 +2,7 @@ import { type PropsWithChildren } from 'react'
 import '@/assets/styles/globals.css';
 import Providers from '@/providers/Providers';
 
+import { Nunito } from 'next/font/google'
 
 import type { Metadata } from 'next'
 import { SITE_NAME } from '@/assets/constants';
@@ -24,16 +25,26 @@ export const metadata: Metadata = {
     }
 }
 
+const nunito = Nunito({
+    subsets: ['latin', 'cyrillic-ext', 'cyrillic'],
+    weight: ['300', '400', '500', '600', '700', '800'],
+    display: "swap",
+    style: "normal",
+    variable: '--font-nto'
+})
+
 export default function RootLayout({ children }: PropsWithChildren<unknown>) {
-    return <html lang='en'>
-        <body>
-            <Providers>
-                <Header />
-                <main>
-                    {children}
-                </main>
-            </Providers>
-            <div id='modal'></div>
-        </body>
-    </html>
+    return (
+        <html lang='en' className={nunito.variable}>
+            <body>
+                <Providers>
+                    <Header />
+                    <main>
+                        {children}
+                    </main>
+                </Providers>
+                <div id='modal'></div>
+            </body>
+        </html>
+    )
 }
