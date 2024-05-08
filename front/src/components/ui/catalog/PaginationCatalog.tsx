@@ -35,7 +35,7 @@ const PaginationCatalog: FC<IPaginationCatalog> = ({ data, title, isPagination =
     )
 
     return (
-        <section className="py-32 snap-start">
+        <section className="">
             <div className="flex justify-between items-center mb-7">
                 {title && <Heading title={title}></Heading>}
                 {isPagination && <CategoriesMenu /> }

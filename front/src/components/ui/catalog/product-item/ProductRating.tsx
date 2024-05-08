@@ -1,6 +1,4 @@
-import ReviewService from "@/services/review.service";
 import { IProduct } from "@/types/product.interface";
-import { useQuery } from "@tanstack/react-query";
 import { FC, useState } from "react";
 import { Rating } from 'react-simple-star-rating'
 

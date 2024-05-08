@@ -1,5 +1,5 @@
 import { EnumProductSort } from "@/types/product.interface";
-import { IFiltersActionsPayload, IFiltersState } from "./filters.types";
+import { IFiltersActionsPayload, IFiltersState } from "./filters.interface";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 const initialState: IFiltersState = {

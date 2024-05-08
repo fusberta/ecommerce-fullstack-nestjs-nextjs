@@ -29,11 +29,11 @@ export const useFilters = () => {
         replace(pathname + `?${newParams.toString()}`)
 
         updateQueryParam({key, value})
-
-        return {
-            updateQueryParams,
-            queryParams,
-            isFilterUpdated
-        }
+    }
+    
+    return {
+        updateQueryParams,
+        queryParams,
+        isFilterUpdated
     }
 }
