@@ -1,8 +1,11 @@
 'use client'
 
 import { Button } from '@/components/ui/button/button'
+import Catalog from '@/components/ui/catalog/Catalog'
+import Pagination from '@/components/ui/catalog/Pagination'
 import PaginationCatalog from '@/components/ui/catalog/PaginationCatalog'
 import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerPortal, DrawerTitle, DrawerTrigger } from '@/components/ui/drawer'
+import Range from '@/components/ui/range/Range'
 import { useFilters } from '@/hooks/useFilters'
 import ProductService from '@/services/product.service'
 import { IPaginationProducts } from '@/types/product.interface'
@@ -15,7 +18,6 @@ interface IProductExplorer {
 }
 
 const ProductExplorer: FC<IProductExplorer> = ({ initialProducts }) => {
-    const [isFilterOpen, setIsFilterOpen] = useState(false)
 
     const { isFilterUpdated, queryParams, updateQueryParams } = useFilters()
 
@@ -32,10 +34,9 @@ const ProductExplorer: FC<IProductExplorer> = ({ initialProducts }) => {
                     <Button
                         variant={'default'}
                         size={'lg'}
-                        onClick={() => setIsFilterOpen(!isFilterOpen)}
                         className='mb-7 font-bold flex items-center'
                     >
-                        <MdFilterAlt size={25} className='-translate-x-2' /> {isFilterOpen ? 'Скрыть' : 'Показать'} фильтры
+                        <MdFilterAlt size={25} className='-translate-x-2' /> Показать фильтры
                     </Button>
                 </DrawerTrigger>
                 <DrawerContent>
@@ -43,7 +44,9 @@ const ProductExplorer: FC<IProductExplorer> = ({ initialProducts }) => {
                         <DrawerHeader>
                             <DrawerTitle>Фильтры</DrawerTitle>
                         </DrawerHeader>
-
+                        <div className="p-4">
+                            <Range max={150} onChangeFrom={ () => console.log('0') } onChangeTo={() => console.log('0')} />
+                        </div>
                         <DrawerFooter>
                             <Button>Подтвердить</Button>
                             <DrawerClose>
@@ -54,9 +57,14 @@ const ProductExplorer: FC<IProductExplorer> = ({ initialProducts }) => {
                 </DrawerContent>
             </Drawer>
             <section>
-                <PaginationCatalog title={
+                <Catalog title={
                     queryParams.searchTerm ? `Поиск по запросу: ${queryParams.searchTerm}` : 'Explorer'
-                } data={data} isPagination />
+                } data={data.products} />
+                <Pagination 
+                    numberPages={data.length % +queryParams.perPage === 0 ? data.length / +queryParams.perPage : Math.floor(data.length / +queryParams.perPage) + 1}
+                    currentPage={queryParams.page}
+                    changePage={page => updateQueryParams('page', page.toString())}
+                />
             </section>
         </div >
     )

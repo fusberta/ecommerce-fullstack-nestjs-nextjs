@@ -5,7 +5,7 @@ import { FC, useState } from "react"
 import ProductItem from "./product-item/ProductItem"
 import { HashLoader } from "react-spinners"
 import Heading from "../Heading"
-import SortDropdown from "./SortDropdown"
+import SortDropdown from "./sort/SortDropdown"
 import { Button } from "../button/button"
 import { useQuery } from "@tanstack/react-query"
 import ProductService from "@/services/product.service"
@@ -39,7 +39,7 @@ const PaginationCatalog: FC<IPaginationCatalog> = ({ data, title, isPagination =
             <div className="flex justify-between items-center mb-7">
                 {title && <Heading title={title}></Heading>}
                 {isPagination && <CategoriesMenu /> }
-                {isPagination && <SortDropdown sortType={sortType} setSortType={setSortType} />}
+                {isPagination && <SortDropdown />}
             </div>
             {
                 response.length ? (
