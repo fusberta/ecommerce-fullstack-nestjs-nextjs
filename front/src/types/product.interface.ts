@@ -30,7 +30,7 @@ export interface IProductFilters {
     searchTerm?: string
     page?: string | number
     perPage: string | number
-    ratings?: string
+    ratings: string
     minPrice?: string
     maxPrice?: string
     categoryId?: string

@@ -1,10 +1,12 @@
 'use client'
 
+import Checkbox from '@/components/ui/Checkbox'
 import { Button } from '@/components/ui/button/button'
 import Catalog from '@/components/ui/catalog/Catalog'
 import Pagination from '@/components/ui/catalog/Pagination'
 import PaginationCatalog from '@/components/ui/catalog/PaginationCatalog'
 import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerPortal, DrawerTitle, DrawerTrigger } from '@/components/ui/drawer'
+import Filters from '@/components/ui/filters/Filters'
 import Range from '@/components/ui/range/Range'
 import { useFilters } from '@/hooks/useFilters'
 import ProductService from '@/services/product.service'
@@ -45,7 +47,7 @@ const ProductExplorer: FC<IProductExplorer> = ({ initialProducts }) => {
                             <DrawerTitle>Фильтры</DrawerTitle>
                         </DrawerHeader>
                         <div className="p-4">
-                            <Range max={150} onChangeFrom={ () => console.log('0') } onChangeTo={() => console.log('0')} />
+                            <Filters />
                         </div>
                         <DrawerFooter>
                             <Button>Подтвердить</Button>
