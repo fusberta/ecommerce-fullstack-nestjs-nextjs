@@ -28,7 +28,8 @@ const PaginationCatalog: FC<IPaginationCatalog> = ({ data, title, isPagination =
             queryFn: () => ProductService.getAll({
                 page,
                 perPage: 8,
-                sort: sortType
+                sort: sortType,
+                ratings: '1,2,3,4,5'
             }),
             initialData: data as IPaginationProducts
         }

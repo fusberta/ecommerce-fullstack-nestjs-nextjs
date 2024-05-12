@@ -27,7 +27,7 @@ const Range: FC<IRangeProps> = ({ max = 0, min, onChangeFrom, onChangeTo, fromIn
     }, [debouncedTo]);
 
     return (
-        <div className='flex items-center text-sm justify-center'>
+        <div className='flex items-center text-sm text-black'>
             <input
                 className="border border-gray-300 rounded-md px-3 py-2 w-24"
                 type='number'
