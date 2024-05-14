@@ -11,17 +11,18 @@ import { TbError404 } from "react-icons/tb";
 interface ICatalogProps {
   data: IProduct[];
   title?: string;
+  isCategories?: boolean
+  isSort?: boolean
 }
 
-const Catalog: FC<ICatalogProps> = ({ data, title }) => {
-  const [sortType, setSortType] = useState<EnumProductSort>(EnumProductSort.NEWEST)
+const Catalog: FC<ICatalogProps> = ({ data, title, isCategories = false, isSort = false }) => {
 
   return (
     <section className="">
       <div className="flex justify-between items-center mb-7">
         {title && <Heading title={title}></Heading>}
-        <CategoriesMenu />
-        <SortDropdown />
+        {isCategories && <CategoriesMenu />}
+        {isSort && <SortDropdown />}
       </div>
       {
         data.length ? (

@@ -3,12 +3,12 @@ import React, { FC } from 'react'
 
 const Build: FC = () => {
     return (
-        <div className='bg-slate-900 flex justify-center items-center flex-col p-10'>
+        <>
             <div className="snap-start h-screen flex flex-col justify-center items-center max-w-5xl text-center">
                 <h2 className='text-4xl font-thin text-amber-500'>Как собрать свою уникальную клавиатуру?</h2>
                 <p className='text-xl font-thin mt-4'>Шаг 1: Выбор основы будущей клавиатуры.</p>
             </div>
-            <div className="flex items-center justify-between snap-start h-screen bg-slate-900 max-[950px]:flex-col max-[950px]:justify-center">
+            <div className="flex items-center justify-between snap-start h-screen bg-slate-950 max-[950px]:flex-col max-[950px]:justify-center">
                 <div className="font-thin text-lg flex flex-col gap-5 max-w-xl max-xl:text-base max-[950px]:text-sm">
                     <p className='text-white'>
                         Первым шагом при сборке кастомной клавиатуры является выбор основы или базы.
@@ -49,7 +49,7 @@ const Build: FC = () => {
                     />
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 

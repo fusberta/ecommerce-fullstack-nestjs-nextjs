@@ -5,7 +5,7 @@ import { useProfile } from '@/hooks/useProfile'
 const Favorites = () => {
     const profile = useProfile()
     return (
-            <main className='px-28'>
+            <main className='px-28 py-32'>
                 <Catalog data={profile?.favorites || []} title='Избранное' />
             </main>
     )

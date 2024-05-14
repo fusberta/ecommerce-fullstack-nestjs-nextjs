@@ -1,12 +1,10 @@
 'use client'
 import { HoveredLink, Menu, MenuItem, ProductItem } from "@/components/ui/navbar-menu"
-import { useProfile } from "@/hooks/useProfile";
 import { cn } from "@/utils/utils";
 import { useState } from "react";
 
 const Navbar = ({ className }: { className?: string }) => {
     const [active, setActive] = useState<string | null>(null);
-    const profile = useProfile()
     return (
         <div className={cn("fixed top-10 rounded-full border-2 border-slate-800 inset-x-0 max-w-md xl:max-w-lg lg:max-w-xl max-[920px]:hidden mx-auto z-[100]", className)}>
             <Menu setActive={setActive}>
@@ -17,25 +15,25 @@ const Navbar = ({ className }: { className?: string }) => {
                     <div className="text-sm grid grid-cols-2 gap-10 p-4">
                         <ProductItem
                             title="Клавиши"
-                            href="/category/keycaps"
+                            href="/explorer"
                             src="/images/keycaps_banner.webp"
                             description="C русскими символами или вовсе без них — выберите свои идеальные."
                         />
                         <ProductItem
                             title="Переключатели"
-                            href="/category/switches"
+                            href="/explorer"
                             src="/images/switches_banner.webp"
                             description="Линейные, кликающие или тактильные — выберите под свои задачи."
                         />
                         <ProductItem
                             title="Базы"
-                            href="/category/cases"
+                            href="/explorer"
                             src="/images/base_banner.webp"
                             description="Полноразмерные, TKL или даже 65% — выберите самую удобную для себя."
                         />
                         <ProductItem
                             title="Готовые клавиатуры"
-                            href="/category/ready-made"
+                            href="/explorer"
                             src="/images/ready-made_banner.webp"
                             description="Varmilo, Akko, Leopold и другие зарекомендовавшие себя бренды."
                         />
