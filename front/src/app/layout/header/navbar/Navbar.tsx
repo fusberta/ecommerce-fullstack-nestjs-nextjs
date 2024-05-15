@@ -43,7 +43,7 @@ const Navbar = ({ className }: { className?: string }) => {
                     <div className="flex flex-col space-y-4 text-sm">
                         <HoveredLink href="">О нас</HoveredLink>
                         <HoveredLink href="">Контакты</HoveredLink>
-                        <HoveredLink href="">Как собрать клавиатуру?</HoveredLink>
+                        <HoveredLink href="/how-to-made">Как собрать клавиатуру?</HoveredLink>
                     </div>
                 </MenuItem>
             </Menu>
