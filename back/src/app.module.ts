@@ -12,6 +12,7 @@ import { OrderModule } from './order/order.module'
 import { PaginationModule } from './pagination/pagination.module'
 import { ServeStaticModule } from '@nestjs/serve-static'
 import { path } from 'app-root-path'
+import { StatisticModule } from './statistic/statistic.module'
 
 @Module({
 	imports: [
@@ -23,6 +24,7 @@ import { path } from 'app-root-path'
 		AuthModule,
 		UserModule,
 		ProductModule,
+		StatisticModule,
 		ReviewModule,
 		CategoryModule,
 		OrderModule,

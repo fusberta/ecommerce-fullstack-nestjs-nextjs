@@ -1,5 +1,4 @@
 import { instance } from '@/api/api.interceptor'
-import { IPayment } from '@/types/payment.interface'
 import { TypeStatisticResponce } from '@/types/statistic.type'
 
 const statistic = '/statistic'

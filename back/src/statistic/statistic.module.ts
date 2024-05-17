@@ -4,7 +4,7 @@ import { StatisticService } from "./statistic.service";
 import { PrismaService } from "src/prisma.service";
 
 @Module({
-    controllers: [StatisticController],
-    providers: [StatisticService, PrismaService],
-  })
-  export class ProductModule {}
+  controllers: [StatisticController],
+  providers: [StatisticService, PrismaService],
+})
+export class StatisticModule { }
