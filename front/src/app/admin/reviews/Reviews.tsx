@@ -1,6 +1,6 @@
 'use client'
 import React, { FC } from 'react'
-import { useAdminProducts } from './useAdminProducts'
+import { useAdminProducts } from './useAdminReviews'
 import Heading from '@/components/ui/Heading'
 import AdminList from '@/components/ui/admin-list/AdminList'
 

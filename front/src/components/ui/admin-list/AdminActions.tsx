@@ -13,7 +13,7 @@ const AdminActions: FC<IAdminActions> = ({ editUrl, viewUrl, removeHandler }) =>
 
     const { push } = useRouter()
     return (
-        <div>
+        <div className='flex gap-2 justify-end w-1/4'>
             {viewUrl && (
                 <Button size={'icon'} onClick={() => push(viewUrl)}>
                     <RiExternalLinkLine />
