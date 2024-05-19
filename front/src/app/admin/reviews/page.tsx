@@ -1,13 +1,13 @@
 import type { Metadata } from 'next'
 
 import { NO_INDEX_PAGE } from '@/assets/constants'
-import Products from './Reviews'
+import Reviews from './Reviews'
 
 export const metadata: Metadata = {
-    title: 'Products - Admin',
+    title: 'Reviews - Admin',
     ...NO_INDEX_PAGE
 }
 
-export default function ProductsPage() {
-    return <Products />
+export default function ReviewsPage() {
+    return <Reviews />
 }

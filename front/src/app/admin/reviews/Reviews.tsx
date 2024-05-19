@@ -1,21 +1,20 @@
 'use client'
 import React, { FC } from 'react'
-import { useAdminProducts } from './useAdminReviews'
+import { useAdminReviews } from './useAdminReviews'
 import Heading from '@/components/ui/Heading'
 import AdminList from '@/components/ui/admin-list/AdminList'
 
-const Products: FC = () => {
-    const { data, isFetching, mutate } = useAdminProducts()
+const Reviews: FC = () => {
+    const { data, isFetching } = useAdminReviews()
     return (
         <div className='px-28 py-32'>
-            <Heading title='Products' className='mb-4'/>
+            <Heading title='Reviews' className='mb-4'/>
             <AdminList
                 isLoading={isFetching}
                 items={data}
-                removeHandler={mutate}
             />
         </div>
     )
 }
 
-export default Products
+export default Reviews

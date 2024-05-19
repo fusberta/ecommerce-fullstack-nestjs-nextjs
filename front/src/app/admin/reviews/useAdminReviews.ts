@@ -1,34 +1,27 @@
-import ProductService from "@/services/product.service"
-import { useMutation, useQuery } from "@tanstack/react-query"
+import { useQuery } from "@tanstack/react-query"
 import { IListItem } from '@/types/admin.interface'
-import { getAdminUrl } from "@/config/url.config"
+import ReviewService from "@/services/review.service"
 
-export const useAdminProducts = () => {
-    const { data, isFetching, refetch } = useQuery({
-        queryKey: ['get admin products'],
-        queryFn: () => ProductService.getAll(),
-        select: data => data.products.map((product): IListItem => {
+export const useAdminReviews = () => {
+    const { data, isFetching } = useQuery({
+        queryKey: ['get admin reviews'],
+        queryFn: () => ReviewService.getAll(),
+        select: ({data}) => data.map((review): IListItem => {
             return {
-                id: product.id,
-                viewUrl: `/product/${product.slug}`,
-                editUrl: getAdminUrl(`/products/edit/${product.id}`),
+                id: review.id,
                 items: [
-                    product.name,
-                    product.category.name,
-                    product.createdAt
+                    Array.from({ length: review.rating })
+                        .map(() => '⭐')
+                        .join(' '),
+                    review.user.name,
+                    review.createdAt,
+                    review.text,
                 ]
             }
         })
     })
 
-    const { mutate } = useMutation({
-        mutationKey: ['delete product'],
-        mutationFn: (id: number) => ProductService.delete(id),
-        onSuccess: () => refetch()
-    })
-
     return {
-        mutate,
         data,
         isFetching
     }

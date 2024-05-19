@@ -2,28 +2,28 @@ import ProductService from "@/services/product.service"
 import { useMutation, useQuery } from "@tanstack/react-query"
 import { IListItem } from '@/types/admin.interface'
 import { getAdminUrl } from "@/config/url.config"
+import CategoryService from "@/services/category.service"
 
-export const useAdminProducts = () => {
+export const useAdminCategories = () => {
     const { data, isFetching, refetch } = useQuery({
-        queryKey: ['get admin products'],
-        queryFn: () => ProductService.getAll(),
-        select: data => data.products.map((product): IListItem => {
+        queryKey: ['get admin categories'],
+        queryFn: () => CategoryService.getAll(),
+        select: ({data}) => data.map((category): IListItem => {
             return {
-                id: product.id,
-                viewUrl: `/product/${product.slug}`,
-                editUrl: getAdminUrl(`/products/edit/${product.id}`),
+                id: category.id,
+                viewUrl: `/category/${category.slug}`,
+                editUrl: getAdminUrl(`/categories/edit/${category.id}`),
                 items: [
-                    product.name,
-                    product.category.name,
-                    product.createdAt
+                    category.name,
+                    category.slug,
                 ]
             }
         })
     })
 
     const { mutate } = useMutation({
-        mutationKey: ['delete product'],
-        mutationFn: (id: number) => ProductService.delete(id),
+        mutationKey: ['delete category'],
+        mutationFn: (id: number) => CategoryService.delete(id),
         onSuccess: () => refetch()
     })
 

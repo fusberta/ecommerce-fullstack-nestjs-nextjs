@@ -5,14 +5,13 @@ import Heading from '@/components/ui/Heading'
 import AdminList from '@/components/ui/admin-list/AdminList'
 
 const Orders: FC = () => {
-    const { data, isFetching, mutate } = useAdminOrders()
+    const { data, isFetching } = useAdminOrders()
     return (
         <div className='px-28 py-32'>
-            <Heading title='Products' className='mb-4'/>
+            <Heading title='Orders' className='mb-4'/>
             <AdminList
                 isLoading={isFetching}
                 items={data}
-                removeHandler={mutate}
             />
         </div>
     )

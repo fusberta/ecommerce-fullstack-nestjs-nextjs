@@ -5,7 +5,7 @@ const reviews = '/reviews'
 
 export const ReviewService = {
     async getAll() {
-        return axiosClassic<IReview[]>({
+        return instance<IReview[]>({
             url: reviews,
             method: 'GET',
         })
