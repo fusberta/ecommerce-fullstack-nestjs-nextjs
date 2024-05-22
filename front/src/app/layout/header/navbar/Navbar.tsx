@@ -8,7 +8,6 @@ const Navbar = ({ className }: { className?: string }) => {
     const [active, setActive] = useState<string | null>(null);
 
     const { isAdminPanel, pathname } = useAdminPanel()
-    console.log(isAdminPanel)
     return (
         <div className={cn("fixed top-10 rounded-full border-2 border-slate-800 inset-x-0 max-w-md xl:max-w-lg lg:max-w-xl max-[920px]:hidden mx-auto z-[100]", className)}>
             <Menu setActive={setActive}>

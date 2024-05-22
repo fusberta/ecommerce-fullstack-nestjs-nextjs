@@ -26,7 +26,7 @@ const HeaderProfile: FC = () => {
             <PopoverContent className="w-48 flex flex-col items-center p-0">
                 <Button variant="outline" size="default" className="w-full">
                     <Link
-                        href={'/orders'}
+                        href={'/my-orders'}
                         className=""
                     >
                         Мои заказы

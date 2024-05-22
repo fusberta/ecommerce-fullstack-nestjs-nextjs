@@ -10,11 +10,32 @@ import { MdOutlineCurrencyRuble } from "react-icons/md";
 import '@/utils/scroll.css'
 import Link from "next/link";
 import { useAuth } from "@/hooks/useAuth";
+import { useMutation } from "@tanstack/react-query";
+import OrderService from "@/services/order.service";
+import { useRouter } from "next/navigation";
+import { useActions } from "@/hooks/useActions";
 
 const HeaderCart: FC = () => {
 
     const { items, total } = useCart();
     const { user } = useAuth()
+    const { push } = useRouter()
+    const { reset } = useActions()
+
+    const { mutate } = useMutation({
+        mutationKey: ['place order'],
+        mutationFn: () => OrderService.place({
+            items: items.map(item => ({
+                price: item.price,
+                productId: item.product.id,
+                quantity: item.quantity
+            }))
+        }),
+        onSuccess: () => {
+            push('/my-orders')
+            reset()
+        }
+    })
 
     return (
         <Popover>
@@ -40,10 +61,8 @@ const HeaderCart: FC = () => {
                             <div className="flex items-center text-lg font-semibold">{total}<MdOutlineCurrencyRuble size={14} /></div>
                         </div>
                         <div className="mt-2 w-full">
-                            <Button variant={"outline"} size={"lg"} className="w-full">
-                                <Link href="/checkout">
+                            <Button variant={"outline"} size={"lg"} className="w-full" onClick={() => mutate()}>
                                     Оформить заказ
-                                </Link>
                             </Button>
                         </div>
                     </>

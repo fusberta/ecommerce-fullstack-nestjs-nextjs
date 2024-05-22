@@ -1,6 +1,5 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit"
 import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE, persistReducer, persistStore } from "redux-persist"
-import storage from "redux-persist/lib/storage"
 import { userSlice } from "./user/user.slice"
 import cartSlice from "./cart/cart.slice"
 import { filtersSlice } from "./filters/filters.slice"
