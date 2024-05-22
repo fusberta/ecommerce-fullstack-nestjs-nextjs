@@ -14,13 +14,13 @@ const AddToCartBtn: FC< { product: IProduct }> = ({ product }) => {
     const { addItem, removeItem } = useActions()
     const { items } = useCart()
 
-    const cartElement = items.find(item => item.products.id === product.id)
+    const cartElement = items.find(item => item.product.id === product.id)
     
     return (
         <div className="w-1/2">
             <button onClick={
                 () => cartElement ? removeItem({ id: cartElement.id }) : addItem({
-                    products: product,
+                    product: product,
                     quantity: 1,
                     price: product.price
                 })}

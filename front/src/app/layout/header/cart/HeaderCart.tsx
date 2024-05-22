@@ -61,7 +61,7 @@ const HeaderCart: FC = () => {
                             <div className="flex items-center text-lg font-semibold">{total}<MdOutlineCurrencyRuble size={14} /></div>
                         </div>
                         <div className="mt-2 w-full">
-                            <Button variant={"outline"} size={"lg"} className="w-full" onClick={() => mutate()}>
+                            <Button variant={"outline"} size={"lg"} className="w-full" onClick={() => mutate()} disabled={items.length === 0}>
                                     Оформить заказ
                             </Button>
                         </div>

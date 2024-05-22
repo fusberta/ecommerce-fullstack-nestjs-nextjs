@@ -8,14 +8,14 @@ const CartItem: FC<{ item: ICartItem }> = ({ item }) => {
     return (
         <div className="flex justify-between items-start gap-2">
             <Image 
-                src={item.products.images[0]}
+                src={item.product.images[0]}
                 width={100}
                 height={100}
-                alt={item.products.name}
+                alt={item.product.name}
             />
             <div className="flex flex-col w-[140px]">
-                <div className="text-sm font-semibold">{item.products.name}</div>
-                <div className="flex items-center text-sm font-semibold mt-2">{item.products.price}<MdOutlineCurrencyRuble size={12}/></div>
+                <div className="text-sm font-semibold">{item.product.name}</div>
+                <div className="flex items-center text-sm font-semibold mt-2">{item.product.price}<MdOutlineCurrencyRuble size={12}/></div>
 
                 <CartActions item={item} />
             </div>

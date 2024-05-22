@@ -13,7 +13,7 @@ export const ProductService = {
         return data
     },
     async getSimilar(id: number | string) {
-        return axiosClassic<IProduct[]>({
+        return instance<IProduct[]>({
             url: `${products}/similar/${id}`,
             method: 'GET'
         })

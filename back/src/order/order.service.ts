@@ -57,7 +57,7 @@ export class OrderService {
                         id: userId
                     }
                 },
-                total: dto.items.length > 0 ? dto.items.reduce((total, item) => total + item.price, 0) : 0
+                total: dto.items.length > 0 ? dto.items.reduce((total, item) => total + item.price * item.quantity, 0) : 0
             }
         })
 
