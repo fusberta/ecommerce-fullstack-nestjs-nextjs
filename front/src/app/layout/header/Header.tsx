@@ -10,6 +10,18 @@ import Navbar from './navbar/Navbar';
 import { HoveredLink } from '@/components/ui/navbar-menu';
 import { useAdminPanel } from '@/hooks/useAdminPanel';
 
+/**
+ * Renders the header component for the application.
+ * 
+ * The header component includes the following elements:
+ * - A logo or admin panel link, depending on whether the user is in the admin panel
+ * - A navigation bar
+ * - A cart icon
+ * - A favorites icon
+ * - A profile icon
+ * 
+ * The header is positioned absolutely at the top of the page and has a transparent background with 95% opacity.
+ */
 const Header: FC = () => {
     const { isAdminPanel } = useAdminPanel()
 

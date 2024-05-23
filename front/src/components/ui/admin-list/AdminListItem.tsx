@@ -2,6 +2,13 @@ import { IAdminListItem } from '@/types/admin.interface'
 import React, { FC } from 'react'
 import AdminActions from './AdminActions'
 
+/**
+ * Renders an individual admin list item with the provided data and actions.
+ *
+ * @param listItem - An object containing the data for the admin list item, including the items to display and URLs for viewing and editing.
+ * @param removeHandler - A function to handle the removal of the admin list item.
+ * @returns A React component that displays the admin list item.
+ */
 const AdminListItem: FC<IAdminListItem> = ({ listItem, removeHandler }) => {
     return (
         <div

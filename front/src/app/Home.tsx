@@ -8,6 +8,17 @@ import { FC, useState } from "react"
 import { fallDown as Sidebar } from 'react-burger-menu'
 import { RiCloseFill, RiMenu5Fill } from "react-icons/ri"
 
+/**
+ * The `Home` component is the main entry point for the application's home page. It renders a sidebar with a menu, a hero section, a wobble section, and an overview section.
+ *
+ * The sidebar is toggled open and closed using a button in the top-left corner of the screen. The sidebar is positioned fixed to the top-left of the screen and takes up 80% of the screen width on small screens and 25% on larger screens.
+ *
+ * The main content area below the sidebar contains the hero, wobble, and overview sections, which are vertically scrollable using the `snap-y` and `snap-mandatory` classes.
+ *
+ * @param products - An object containing the products to be displayed on the home page.
+ * @param length - The total number of products.
+ * @returns The rendered `Home` component.
+ */
 export const Home: FC<IPaginationProducts> = ({ products, length }) => {
     const [showSidebar, setShowSidebar] = useState<boolean>(false);
     const toggleSidebar = () => {

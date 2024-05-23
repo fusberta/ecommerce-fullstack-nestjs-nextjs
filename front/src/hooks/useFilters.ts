@@ -4,6 +4,15 @@ import { useTypedSelector } from "./useTypedSelector"
 import { useEffect } from "react"
 import { IProductFilters } from "@/types/product.interface"
 
+/**
+ * A custom React hook that manages product filters and updates the URL query parameters.
+ * 
+ * @returns {Object} An object containing the following properties:
+ *   - `updateQueryParams`: A function that updates the query parameters in the URL and the global state.
+ *   - `queryParams`: An object containing the current query parameters.
+ *   - `resetQueryParams`: A function that resets the query parameters to the initial state.
+ *   - `isFilterUpdated`: A boolean indicating whether the filters have been updated.
+ */
 export const useFilters = () => {
     const pathname = usePathname()
     const searchParams = useSearchParams()
@@ -28,8 +37,8 @@ export const useFilters = () => {
 
         replace(pathname + `?${newParams.toString()}`)
 
-        updateQueryParam({key, value})
-        
+        updateQueryParam({ key, value })
+
     }
 
     const resetQueryParams = () => {

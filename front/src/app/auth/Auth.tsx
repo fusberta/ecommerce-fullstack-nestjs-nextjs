@@ -23,6 +23,17 @@ import { validEmail } from "./validate-email";
 import { useAuthRedirect } from "@/hooks/useAuthRedirect";
 import { HashLoader } from "react-spinners";
 
+/**
+ * The `Auth` component is the main authentication component for the application. It handles both login and registration functionality.
+ *
+ * The component uses the `useAuth` hook to check if the user is currently loading, and the `useAuthRedirect` hook to handle redirecting the user after successful authentication.
+ *
+ * The component renders a set of tabs, one for login and one for registration. Each tab contains a form with input fields for the necessary information (email, password, username, etc.). The forms are managed using the `useForm` hook from the `react-hook-form` library.
+ *
+ * When the user submits the form, the `onSubmit` function is called, which dispatches the appropriate action (login or register) using the `useActions` hook. After a successful submission, the form state is reset.
+ *
+ * The component also displays a loading indicator while the authentication process is in progress.
+ */
 const Auth: FC = () => {
     const { isLoading } = useAuth();
 

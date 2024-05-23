@@ -6,7 +6,15 @@ import { IoCartOutline, IoCart } from "react-icons/io5";
 import { useAuth } from "@/hooks/useAuth"
 import { cn } from "@/utils/utils";
 
-const AddToCartBtn: FC< { product: IProduct, className?: string }> = ({ product, className }) => {
+/**
+ * A React functional component that renders a button to add or remove a product from the shopping cart.
+ *
+ * @param {Object} props - The component props.
+ * @param {IProduct} props.product - The product to be added or removed from the cart.
+ * @param {string} [props.className] - An optional CSS class name to be applied to the button.
+ * @returns {JSX.Element} - The rendered button component.
+ */
+const AddToCartBtn: FC<{ product: IProduct, className?: string }> = ({ product, className }) => {
     const { user } = useAuth()
 
     if (!user) return null
@@ -15,7 +23,6 @@ const AddToCartBtn: FC< { product: IProduct, className?: string }> = ({ product,
     const { items } = useCart()
 
     const cartElement = items.find(item => item.product.id === product.id)
-    
     return (
         <div className="w-1/2">
             <button onClick={

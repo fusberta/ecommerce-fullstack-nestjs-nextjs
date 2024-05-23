@@ -17,11 +17,18 @@ interface IProductExplorer {
     initialProducts: IPaginationProducts
 }
 
+/**
+ * The `ProductExplorer` component is the main entry point for the product explorer feature. It handles the state management of the product filters, fetches the product data, and renders the product catalog and pagination components.
+ *
+ * The component receives an `initialProducts` prop, which is used as the initial data for the product list. It then uses the `useFilters` hook to manage the state of the product filters, and the `useQuery` hook from React Query to fetch the product data based on the current filter settings.
+ *
+ * The component renders a drawer with the product filters, and a section that displays the product catalog and pagination controls. The product catalog is rendered using the `Catalog` component, and the pagination is rendered using the `Pagination` component.
+ *
+ * The component also handles the reset of the product filters using the `resetQueryParams` function from the `useFilters` hook.
+ */
 const ProductExplorer: FC<IProductExplorer> = ({ initialProducts }) => {
 
     const { isFilterUpdated, queryParams, updateQueryParams, resetQueryParams } = useFilters()
-
-    const router = useRouter()
 
     const { data, isFetching } = useQuery({
         queryKey: ['product explorer', queryParams],
@@ -50,7 +57,7 @@ const ProductExplorer: FC<IProductExplorer> = ({ initialProducts }) => {
                             <Filters />
                         </div>
                         <DrawerFooter>
-                            <Button 
+                            <Button
                                 variant={'destructive'}
                                 onClick={() => resetQueryParams()}
                             >
@@ -66,8 +73,8 @@ const ProductExplorer: FC<IProductExplorer> = ({ initialProducts }) => {
             <section>
                 <Catalog title={
                     queryParams.searchTerm ? `Поиск по запросу: ${queryParams.searchTerm}` : 'Explorer'
-                } data={data.products} isSort/>
-                <Pagination 
+                } data={data.products} isSort />
+                <Pagination
                     numberPages={data.length % +queryParams.perPage === 0 ? data.length / +queryParams.perPage : Math.floor(data.length / +queryParams.perPage) + 1}
                     currentPage={queryParams.page}
                     changePage={page => updateQueryParams('page', page.toString())}

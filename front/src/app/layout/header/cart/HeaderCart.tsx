@@ -15,6 +15,15 @@ import OrderService from "@/services/order.service";
 import { useRouter } from "next/navigation";
 import { useActions } from "@/hooks/useActions";
 
+/**
+ * Renders the header cart component, which displays the user's cart items and allows them to place an order.
+ * 
+ * The component uses the `useCart` and `useAuth` hooks to access the user's cart items and authentication status.
+ * It also uses the `useMutation` hook to handle the order placement process.
+ * 
+ * When the user has items in their cart, the component displays the total cost and a button to place the order.
+ * When the user is not authenticated, the component displays a button to redirect the user to the authentication page.
+ */
 const HeaderCart: FC = () => {
 
     const { items, total } = useCart();
@@ -62,7 +71,7 @@ const HeaderCart: FC = () => {
                         </div>
                         <div className="mt-2 w-full">
                             <Button variant={"outline"} size={"lg"} className="w-full" onClick={() => mutate()} disabled={items.length === 0}>
-                                    Оформить заказ
+                                Оформить заказ
                             </Button>
                         </div>
                     </>

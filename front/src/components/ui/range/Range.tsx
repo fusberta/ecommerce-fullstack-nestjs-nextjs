@@ -10,6 +10,16 @@ interface IRangeProps {
     onChangeTo: (value: string) => void;
 }
 
+/**
+ * A range input component that allows the user to select a range of values.
+ *
+ * @param max - The maximum value of the range.
+ * @param min - The minimum value of the range.
+ * @param onChangeFrom - A callback function that is called when the "from" value changes.
+ * @param onChangeTo - A callback function that is called when the "to" value changes.
+ * @param fromInitial - The initial value for the "from" input.
+ * @param toInitial - The initial value for the "to" input.
+ */
 const Range: FC<IRangeProps> = ({ max = 0, min, onChangeFrom, onChangeTo, fromInitial, toInitial }) => {
 
     const [from, setFrom] = useState(fromInitial || '');

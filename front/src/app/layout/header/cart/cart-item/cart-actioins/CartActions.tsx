@@ -4,6 +4,12 @@ import { FiMinus, FiPlus, FiTrash } from "react-icons/fi";
 import { ICartItem } from '@/types/cart.interface';
 import { useActions } from '@/hooks/useActions';
 
+/**
+ * Renders the actions for a cart item, including buttons to increment/decrement the quantity and remove the item.
+ *
+ * @param item - The cart item object containing the item details.
+ * @returns A React functional component that renders the cart item actions.
+ */
 const CartActions: FC<{ item: ICartItem }> = ({ item }) => {
     const { removeItem, changeQuantity } = useActions();
 
@@ -17,7 +23,7 @@ const CartActions: FC<{ item: ICartItem }> = ({ item }) => {
                     <FiMinus fontSize={12} />
                 </button>
 
-                <input 
+                <input
                     disabled
                     readOnly
                     value={item.quantity}
@@ -28,14 +34,14 @@ const CartActions: FC<{ item: ICartItem }> = ({ item }) => {
                     onClick={() => changeQuantity({ id: item.id, type: 'increment' })}
                 >
                     <FiPlus fontSize={12} />
-                </button>   
+                </button>
 
                 <button
                     onClick={() => removeItem({ id: item.id })}
                     className='ml-3 text-red-500'
                 >
                     <FiTrash fontSize={12} />
-                </button>   
+                </button>
             </div>
         </div>
     )

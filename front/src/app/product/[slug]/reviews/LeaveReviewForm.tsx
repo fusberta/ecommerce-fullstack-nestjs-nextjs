@@ -7,6 +7,13 @@ import React, { FC } from 'react'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { Rating } from 'react-simple-star-rating'
 
+/**
+ * Renders a form for leaving a review for a product.
+ *
+ * @param {object} props - The component props.
+ * @param {number} props.productId - The ID of the product being reviewed.
+ * @returns {JSX.Element} - The rendered form.
+ */
 const LeaveReviewForm: FC<{ productId: number }> = ({ productId }) => {
 
     const {

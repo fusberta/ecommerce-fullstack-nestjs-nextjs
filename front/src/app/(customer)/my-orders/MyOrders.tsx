@@ -8,6 +8,17 @@ import { HashLoader } from 'react-spinners'
 import { CgSmileNone } from "react-icons/cg";
 import { MdCurrencyRuble } from 'react-icons/md'
 
+/**
+ * Renders the MyOrders component, which displays the user's order history.
+ * 
+ * The component fetches the user's orders from the OrderService and displays them in a list.
+ * Each order can be expanded to show the details of the items in the order.
+ * 
+ * The component uses the useQuery hook from react-query to fetch the orders, and the useState hook
+ * to manage the expanded state of each order.
+ * 
+ * @returns The MyOrders component
+ */
 const MyOrders: FC = () => {
     const { data: orders, isFetching } = useQuery({
         queryKey: ['my orders'],
@@ -47,7 +58,7 @@ const MyOrders: FC = () => {
                                     {new Date(order.createdAt).toLocaleTimeString('ru-RU')}
                                 </span>
                                 <span className='flex items-center'>
-                                    {order.total}<MdCurrencyRuble className='mb-0.5'/>
+                                    {order.total}<MdCurrencyRuble className='mb-0.5' />
                                 </span>
                             </div>
                             {expandedOrderId === order.id && (

@@ -7,6 +7,13 @@ import Link from "next/link";
 import FavoriteBtn from "./FavoriteBtn";
 import { LiaRubleSignSolid } from "react-icons/lia";
 
+/**
+ * Renders a product item component for displaying a single product in the catalog.
+ *
+ * @param {Object} props - The component props.
+ * @param {IProduct} props.product - The product data to display.
+ * @returns {React.ReactElement} - The rendered product item component.
+ */
 const ProductItem: FC<{ product: IProduct }> = ({ product }) => {
     return (
         <div className="animate-scaleIn border border-zinc-700 rounded-xl">

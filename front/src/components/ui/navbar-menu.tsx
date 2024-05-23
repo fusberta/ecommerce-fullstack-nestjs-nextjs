@@ -101,7 +101,7 @@ export const ProductItem = ({
         width={140}
         height={70}
         alt={title}
-        className="flex-shrink-0 rounded-md shadow-2xl transition-transform duration-300 transform-gpu group-hover:scale-95"
+        className="flex-shrink-0 w-32 rounded-md shadow-2xl transition-transform duration-300 transform-gpu group-hover:scale-95"
       />
       <div>
         <h4 className="text-xl font-bold mb-1 text-black dark:text-white">

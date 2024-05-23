@@ -7,6 +7,13 @@ interface IProductRating {
     isText?: boolean
 }
 
+/**
+ * Renders a product rating component that displays the average rating of a product based on its reviews.
+ *
+ * @param product - The product object containing the reviews data.
+ * @param isText - An optional boolean flag to display the number of reviews as text.
+ * @returns A React component that renders the product rating.
+ */
 const ProductRating: FC<IProductRating> = ({ product, isText = false }) => {
     const [rating, setRating] = useState<number>(
         Math.round(

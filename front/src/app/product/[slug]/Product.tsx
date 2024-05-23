@@ -18,6 +18,14 @@ interface IProductPage {
     slug?: string
 }
 
+/**
+ * Renders the product page component, displaying the product details, reviews, and similar products.
+ *
+ * @param initialProduct - The initial product data to display.
+ * @param similarProducts - The list of similar products to display.
+ * @param slug - The slug of the current product.
+ * @returns The rendered product page component.
+ */
 const Product: FC<IProductPage> = ({ initialProduct, similarProducts, slug = '' }) => {
     const { data: product } = useQuery({
         queryKey: ['get product', initialProduct.id],

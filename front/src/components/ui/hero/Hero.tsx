@@ -4,6 +4,13 @@ import { LampContainer } from "../lamp";
 import { TextGenerateEffect } from "../text-generate-effect"
 import { motion } from "framer-motion";
 
+/**
+ * Renders the hero section of the application, which includes a centered heading with a text generation effect.
+ *
+ * The hero section is designed to be a full-screen, snap-to-start section that grabs the user's attention.
+ * The heading text is animated to fade in and slide up from the bottom, with a delay and easing effect.
+ * The text is generated using the `TextGenerateEffect` component, which creates a typing effect.
+ */
 const Hero = () => {
 
     const words = "Открой для себя мир механических клавиатур!";

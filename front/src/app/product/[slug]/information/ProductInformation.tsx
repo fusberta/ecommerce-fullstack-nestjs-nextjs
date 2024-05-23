@@ -8,6 +8,13 @@ interface IProductInformation {
     product: IProduct
 }
 
+/**
+ * Renders a product information component that displays the product price, delivery information, and buttons for adding the product to the cart and marking it as a favorite.
+ *
+ * @param {IProductInformation} props - The props object containing the product information.
+ * @param {Product} props.product - The product object containing the product details.
+ * @returns {React.ReactElement} - The rendered product information component.
+ */
 const ProductInformation: FC<IProductInformation> = ({ product }) => {
     return (
         <div className='bg-gray-200 rounded-xl p-6 relative h-max w-96 text-black'>

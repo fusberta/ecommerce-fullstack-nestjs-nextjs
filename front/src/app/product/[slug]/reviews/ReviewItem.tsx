@@ -3,12 +3,18 @@ import Image from 'next/image'
 import React, { FC } from 'react'
 import { Rating } from 'react-simple-star-rating'
 
+/**
+ * Renders a single review item with the reviewer's avatar, name, rating, and review text.
+ *
+ * @param review - The review object containing the user information and review details.
+ * @returns A React component that displays the review item.
+ */
 const ReviewItem: FC<{ review: IReview }> = ({ review }) => {
 
     return (
         <div className='bg-gray-200 rounded-xl p-6 text-black text-sm'>
             <div className="flex items-center mb-2">
-                <Image 
+                <Image
                     width={30}
                     height={30}
                     alt={review.user.name}

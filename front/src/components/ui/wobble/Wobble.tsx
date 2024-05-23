@@ -3,6 +3,10 @@ import Image from "next/image";
 import React from "react";
 import { WobbleCard } from "../wobble-card";
 
+/**
+ * Renders a section with a grid of "Wobble" cards, showcasing various features and benefits.
+ * The section includes a hero card with a delivery image, a card for special offers, a card for warranty information, and a card for support information.
+ */
 export function Wobble() {
     return (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 max-w-7xl mx-auto w-full snap-start px-20 pt-24 pb-5">

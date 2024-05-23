@@ -11,6 +11,14 @@ interface IAdminList {
     removeHandler?: (id: number) => void
 }
 
+/**
+ * Renders a list of admin items, with loading and empty states.
+ *
+ * @param items - An array of admin items to display.
+ * @param isLoading - A boolean indicating whether the data is currently loading.
+ * @param removeHandler - An optional function to handle the removal of an admin item.
+ * @returns A React component that displays the admin list.
+ */
 const AdminList: FC<IAdminList> = ({ items, isLoading, removeHandler }) => {
     return (
         <div>

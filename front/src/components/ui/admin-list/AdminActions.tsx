@@ -9,6 +9,14 @@ interface IAdminActions extends Pick<IListItem, 'editUrl' | 'viewUrl'> {
     removeHandler?: () => void
 }
 
+/**
+ * Renders a set of admin actions, including view, edit, and remove buttons.
+ *
+ * @param editUrl - The URL to navigate to when the edit button is clicked.
+ * @param viewUrl - The URL to navigate to when the view button is clicked.
+ * @param removeHandler - A function to be called when the remove button is clicked.
+ * @returns A React component that renders the admin actions.
+ */
 const AdminActions: FC<IAdminActions> = ({ editUrl, viewUrl, removeHandler }) => {
 
     const { push } = useRouter()

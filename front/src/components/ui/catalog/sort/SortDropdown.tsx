@@ -1,10 +1,13 @@
 import { useFilters } from '@/hooks/useFilters';
 import { EnumProductSort } from '@/types/product.interface'
-import { Dispatch, FC, SetStateAction } from 'react'
+import { FC } from 'react'
 import { SORT_SELECT_DATA } from './sort-select.data';
-import { ISelectItem } from '../../select/select.interface';
 import Select from '../../select/Select';
 
+/**
+ * Renders a dropdown component for sorting products in the catalog.
+ * The selected sort option is stored in the query parameters and updated when the user makes a selection.
+ */
 const SortDropdown: FC = () => {
     const { queryParams, updateQueryParams } = useFilters()
 

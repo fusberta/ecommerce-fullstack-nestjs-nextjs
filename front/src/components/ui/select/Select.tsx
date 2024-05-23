@@ -2,12 +2,21 @@ import { useState } from "react";
 import { ISelect } from "./select.interface";
 import { BsCaretDownFill } from "react-icons/bs";
 
+/**
+ * Renders a select dropdown component with a list of options.
+ *
+ * @param data - An array of options to display in the dropdown.
+ * @param onChange - A callback function that is called when an option is selected.
+ * @param value - The currently selected option.
+ * @param title - An optional title to display above the dropdown.
+ * @template K - The type of the option keys.
+ */
 function Select<K>({ data, onChange, value, title }: ISelect<K>) {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
         <div className="relative inline-block text-black text-sm text-nowrap">
-            <button 
+            <button
                 className="border border-gray-300 bg-white rounded-md px-4 py-2 flex items-center justify-between focus:outline-none"
                 onClick={() => setIsOpen(!isOpen)}
             >
@@ -26,11 +35,10 @@ function Select<K>({ data, onChange, value, title }: ISelect<K>) {
                             }}
                         >
                             <button
-                                className={`block w-full px-4 py-2 animate-opacity duration-150 text-left border border-white rounded-md bg-white ${
-                                    item.key === value?.key
+                                className={`block w-full px-4 py-2 animate-opacity duration-150 text-left border border-white rounded-md bg-white ${item.key === value?.key
                                         ? 'bg-slate-300'
                                         : 'hover:bg-slate-300'
-                                }`}
+                                    }`}
                                 disabled={item.key === value?.key}
                             >
                                 {item.label}

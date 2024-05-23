@@ -7,6 +7,12 @@ interface ISimilarProducts {
     similarProducts: IProduct[]
 }
 
+/**
+ * Renders a component that displays a list of similar products.
+ *
+ * @param similarProducts - An array of product objects that are similar to the current product.
+ * @returns A React component that renders the similar products.
+ */
 const SimilarProducts: FC<ISimilarProducts> = ({ similarProducts }) => {
     return (
         <div className='mt-20'>

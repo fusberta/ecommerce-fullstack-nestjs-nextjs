@@ -6,6 +6,13 @@ interface IProductGallery {
     images: string[]
 }
 
+/**
+ * A React functional component that renders a product gallery with a main image and a set of thumbnail images.
+ *
+ * @param {IProductGallery} props - The props for the component.
+ * @param {string[]} props.images - An array of image URLs to display in the gallery.
+ * @returns {JSX.Element} - The rendered product gallery.
+ */
 const ProductGallery: FC<IProductGallery> = ({ images }) => {
     const [activeIndex, setActiveIndex] = useState<number>(0);
     return (

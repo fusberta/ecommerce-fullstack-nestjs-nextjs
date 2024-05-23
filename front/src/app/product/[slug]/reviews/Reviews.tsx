@@ -13,6 +13,13 @@ interface IReviews {
   productId: number
 }
 
+/**
+ * Renders a section for displaying product reviews.
+ *
+ * @param reviews - An array of product reviews.
+ * @param productId - The ID of the product.
+ * @returns A React component that displays the product reviews.
+ */
 const Reviews: FC<IReviews> = ({ reviews, productId }) => {
   const { user } = useAuth()
 

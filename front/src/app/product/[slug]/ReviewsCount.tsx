@@ -8,6 +8,12 @@ interface IReviewsCount {
     product: IProduct
 }
 
+/**
+ * Renders a component that displays the number of reviews for a product.
+ *
+ * @param product - The product object containing the reviews data.
+ * @returns A React component that displays the number of reviews and a link to the reviews section.
+ */
 const ReviewsCount: FC<IReviewsCount> = ({ product }) => {
     const reviewsCount = product.reviews.length
 

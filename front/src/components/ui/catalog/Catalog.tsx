@@ -1,6 +1,6 @@
 'use client'
 
-import { EnumProductSort, IProduct } from "@/types/product.interface";
+import { IProduct } from "@/types/product.interface";
 import { FC, useState } from "react";
 import ProductItem from "./product-item/ProductItem";
 import Heading from "../Heading";
@@ -15,10 +15,19 @@ interface ICatalogProps {
   isSort?: boolean
 }
 
+/**
+ * Renders a catalog section with a title, categories menu, sort dropdown, and a grid of product items.
+ *
+ * @param data - An array of product data to display in the catalog.
+ * @param title - An optional title to display above the catalog.
+ * @param isCategories - A boolean indicating whether to display the categories menu.
+ * @param isSort - A boolean indicating whether to display the sort dropdown.
+ * @returns A React component that renders the catalog section.
+ */
 const Catalog: FC<ICatalogProps> = ({ data, title, isCategories = false, isSort = false }) => {
 
   return (
-    <section className="">
+    <section>
       <div className="flex justify-between items-center mb-7">
         {title && <Heading title={title}></Heading>}
         {isCategories && <CategoriesMenu />}
