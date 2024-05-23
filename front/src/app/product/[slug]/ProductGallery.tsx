@@ -9,7 +9,7 @@ interface IProductGallery {
 const ProductGallery: FC<IProductGallery> = ({ images }) => {
     const [activeIndex, setActiveIndex] = useState<number>(0);
     return (
-        <div>
+        <>
             <Image
                 src={images[activeIndex]}
                 alt='product'
@@ -25,26 +25,26 @@ const ProductGallery: FC<IProductGallery> = ({ images }) => {
                         key={index}
                         onClick={() => setActiveIndex(index)}
                         className={cn(
-                            'duration-500 hover:shadow-md mr-5 last:mr-0 border-2 transition-all overflow-hidden inline-block rounded',
+                            'duration-300 mr-3 last:mr-0 border-2 transition-all overflow-hidden inline-block rounded-md bg-white',
                             {
-                                'shadow-md border-orange-500': index === activeIndex,
+                                'shadow-md border-orange-400': index === activeIndex,
                                 'border-transparent': index !== activeIndex
                             }
                         )}
                     >
                         <Image
-                            src={images[activeIndex]}
-                            alt='product'
+                            src={image}
+                            alt=''
                             width={100}
                             height={100}
-                            className='overflow-hidden'
+                            className='overflow-hidden object-contain w-[100px] h-[100px]'
                             priority
                             draggable={false}
                         />
                     </button>
                 ))}
             </div>
-        </div>
+        </>
     )
 }
 

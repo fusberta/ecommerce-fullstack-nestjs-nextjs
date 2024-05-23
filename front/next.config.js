@@ -7,7 +7,7 @@ const nextConfig = {
         APP_NAME: process.env.APP_NAME,
     },
     images: {
-        domains: ['loremflickr.com', 'istoreapple.ru', 'static.insales-cdn.com'],
+        domains: ['loremflickr.com', 'istoreapple.ru', 'static.insales-cdn.com', 'picsum.photos'],
     },
     async rewrites() {
         return [

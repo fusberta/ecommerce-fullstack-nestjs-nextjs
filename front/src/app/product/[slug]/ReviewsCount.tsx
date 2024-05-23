@@ -18,11 +18,11 @@ const ReviewsCount: FC<IReviewsCount> = ({ product }) => {
             <ProductRating product={product} />
             <div>
                 <Link
-                    className='opacity-50 font-semibold text-sm cursor-pointer'
+                    className='opacity-50 font-semibold text-xs cursor-pointer'
                     to='reviews'
                     smooth
-                    offset={-100}
-                    duration={1000}
+                    offset={-60}
+                    duration={500}
                 >
                     {reviewsCount} reviews <FiChevronRight className='inline' />
                 </Link>

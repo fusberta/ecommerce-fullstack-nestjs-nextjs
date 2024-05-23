@@ -2,11 +2,11 @@ import { useActions } from "@/hooks/useActions"
 import { useCart } from "@/hooks/useCart"
 import { IProduct } from "@/types/product.interface"
 import { FC } from "react"
-import { TbShoppingBagPlus, TbShoppingBagX } from "react-icons/tb"
 import { IoCartOutline, IoCart } from "react-icons/io5";
 import { useAuth } from "@/hooks/useAuth"
+import { cn } from "@/utils/utils";
 
-const AddToCartBtn: FC< { product: IProduct }> = ({ product }) => {
+const AddToCartBtn: FC< { product: IProduct, className?: string }> = ({ product, className }) => {
     const { user } = useAuth()
 
     if (!user) return null
@@ -24,7 +24,7 @@ const AddToCartBtn: FC< { product: IProduct }> = ({ product }) => {
                     quantity: 1,
                     price: product.price
                 })}
-                className="text-amber-400 text-xl bg-slate-800 px-4 py-2 w-full flex items-center justify-center"
+                className={cn("text-amber-400 text-xl bg-slate-800 px-4 py-2 w-full flex items-center justify-center", className)}
             >
                 {cartElement ? <IoCart /> : <IoCartOutline />}
             </button>
