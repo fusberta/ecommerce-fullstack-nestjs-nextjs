@@ -14,7 +14,8 @@ export const useAdminReviews = () => {
                         .map(() => '⭐')
                         .join(' '),
                     review.user.name,
-                    review.createdAt,
+                    new Date(review.createdAt).toLocaleDateString('ru-RU'),
+                    new Date(review.createdAt).toLocaleTimeString('ru-RU'),
                     review.text,
                 ]
             }

@@ -1,4 +1,3 @@
-import ProductService from "@/services/product.service"
 import { useMutation, useQuery } from "@tanstack/react-query"
 import { IListItem } from '@/types/admin.interface'
 import { getAdminUrl } from "@/config/url.config"

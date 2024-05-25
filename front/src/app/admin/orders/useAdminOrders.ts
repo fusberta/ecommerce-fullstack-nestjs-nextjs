@@ -14,8 +14,9 @@ export const useAdminOrders = () => {
                 items: [
                     `# ${order.id}`,
                     order.status,
-                    order.createdAt,
-                    order.total.toString()
+                    new Date(order.createdAt).toLocaleDateString('ru-RU'),
+                    new Date(order.createdAt).toLocaleTimeString('ru-RU'),
+                    order.total.toString() + ' ₽'
                 ]
             }
         })

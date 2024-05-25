@@ -19,11 +19,14 @@ const AdminListItem: FC<IAdminListItem> = ({ listItem, removeHandler }) => {
                 <div key={index} className='px-2'>{value}</div>
             ))}
 
-            <AdminActions
-                removeHandler={removeHandler}
-                viewUrl={listItem.viewUrl}
-                editUrl={listItem.editUrl}
-            />
+            {(removeHandler || listItem.viewUrl || listItem.editUrl) && (
+                <AdminActions
+                    removeHandler={removeHandler}
+                    viewUrl={listItem.viewUrl}
+                    editUrl={listItem.editUrl}
+                />
+            )}
+
         </div>
     )
 }

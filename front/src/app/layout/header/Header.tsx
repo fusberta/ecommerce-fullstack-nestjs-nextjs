@@ -44,10 +44,14 @@ const Header: FC = () => {
             </div>
 
             <div className="flex items-center space-x-6">
-                <HeaderCart />
-                <HoveredLink href="/favorites">
-                    <AiOutlineHeart size={28} className="text-amber-400" />
-                </HoveredLink>
+                {!isAdminPanel && (
+                    <>
+                        <HeaderCart />
+                        <HoveredLink href="/favorites">
+                            <AiOutlineHeart size={28} className="text-amber-400" />
+                        </HoveredLink>
+                    </>
+                )}
                 <HeaderProfile />
             </div>
         </header>

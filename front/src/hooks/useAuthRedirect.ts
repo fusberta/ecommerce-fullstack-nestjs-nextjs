@@ -15,6 +15,7 @@ export const useAuthRedirect = () => {
     const { replace } = useRouter()
 
     useEffect(() => {
-        if (user) replace("/")
+        if (user?.isAdmin) replace("/admin")
+        else if (user) replace("/")
     }, [user])
 }

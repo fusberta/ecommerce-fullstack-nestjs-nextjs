@@ -11,11 +11,12 @@ export const useAdminProducts = () => {
             return {
                 id: product.id,
                 viewUrl: `/product/${product.slug}`,
-                editUrl: getAdminUrl(`/products/edit/${product.id}`),
+                editUrl: `/admin/products/edit/${product.id}`,
                 items: [
                     product.name,
                     product.category.name,
-                    product.createdAt
+                    new Date(product.createdAt).toLocaleDateString('ru-RU'),
+                    new Date(product.createdAt).toLocaleTimeString('ru-RU')
                 ]
             }
         })

@@ -1,11 +1,14 @@
 'use client'
 import { HoveredLink, Menu, MenuItem, ProductItem } from "@/components/ui/navbar-menu"
 import { useAdminPanel } from "@/hooks/useAdminPanel";
+import { useAuth } from "@/hooks/useAuth";
 import { cn } from "@/utils/utils";
 import { useState } from "react";
 
 const Navbar = ({ className }: { className?: string }) => {
     const [active, setActive] = useState<string | null>(null);
+
+    const { user } = useAuth()
 
     const { isAdminPanel, pathname } = useAdminPanel()
     return (
@@ -31,6 +34,11 @@ const Navbar = ({ className }: { className?: string }) => {
                         <HoveredLink href="/">
                             Главная
                         </HoveredLink>
+                        {!user && (
+                            <HoveredLink href="/auth">
+                                Авторизация
+                            </HoveredLink>
+                        )}
                         <MenuItem setActive={setActive} active={active} item="Каталог" isLink>
                             <div className="text-sm grid grid-cols-2 gap-10 p-4">
                                 <ProductItem

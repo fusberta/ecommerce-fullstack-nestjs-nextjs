@@ -36,7 +36,7 @@ const AdminList: FC<IAdminList> = ({ items, isLoading, removeHandler }) => {
                         />
                     ))
                 ) : (
-                    <div className="">
+                    <div>
                         Elements not found
                     </div>
                 )

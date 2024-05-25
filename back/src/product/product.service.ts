@@ -9,7 +9,6 @@ import {
 } from './return-product.object'
 import { PaginationService } from 'src/pagination/pagination.service'
 import { EnumProductSort, GetAllProductDto } from './dto/get-all-products.dto'
-import { contains } from 'class-validator'
 import { CategoryService } from 'src/category/category.service'
 import { convertToNumber } from 'src/utils/convert-to-number'
 

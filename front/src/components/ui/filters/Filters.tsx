@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 import PriceGroup from './PriceGroup'
 import RatingGroup from './RatingGroup'
 import CategoryGroup from './CategoryGroup'

@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { useActions } from "@/hooks/useActions";
+import { useAdminPanel } from "@/hooks/useAdminPanel";
 import { useProfile } from "@/hooks/useProfile";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,6 +11,7 @@ import { FC } from "react";
 
 const HeaderProfile: FC = () => {
     const profile = useProfile()
+    const { isAdminPanel } = useAdminPanel()
 
     const { logout } = useActions()
 
@@ -27,14 +29,16 @@ const HeaderProfile: FC = () => {
                 />
             </PopoverTrigger>
             <PopoverContent className="w-48 flex flex-col items-center p-1">
-                <Button variant="outline" size="default" className="w-full border-0">
-                    <Link
-                        href={'/my-orders'}
-                        className=""
-                    >
-                        Мои заказы
-                    </Link>
-                </Button>
+                {!isAdminPanel && (
+                    <Button variant="outline" size="default" className="w-full border-0">
+                        <Link
+                            href={'/my-orders'}
+                            className=""
+                        >
+                            Мои заказы
+                        </Link>
+                    </Button>
+                )}
                 <Button
                     variant="outline"
                     size="default"
