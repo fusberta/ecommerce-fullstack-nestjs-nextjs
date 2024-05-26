@@ -16,10 +16,10 @@ import { StatisticModule } from './statistic/statistic.module'
 
 @Module({
 	imports: [
-    ServeStaticModule.forRoot({
-      rootPath:`${path}/uploads`,
-      serveRoot: '/uploads'
-    }),
+		ServeStaticModule.forRoot({
+			rootPath: `${path}/uploads`,
+			serveRoot: '/uploads'
+		}),
 		ConfigModule.forRoot(),
 		AuthModule,
 		UserModule,
@@ -33,4 +33,4 @@ import { StatisticModule } from './statistic/statistic.module'
 	controllers: [AppController],
 	providers: [AppService, PrismaService]
 })
-export class AppModule {}
+export class AppModule { }

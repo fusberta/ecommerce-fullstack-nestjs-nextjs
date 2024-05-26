@@ -15,6 +15,11 @@ const nextConfig = {
         pathname: '**',
       },
       {
+        protocol: 'http',
+        hostname: 'localhost',
+        pathname: '**',
+      },
+      {
         protocol: 'https',
         hostname: 'istoreapple.ru',
         pathname: '**',

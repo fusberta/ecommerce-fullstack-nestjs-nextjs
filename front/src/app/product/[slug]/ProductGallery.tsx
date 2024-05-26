@@ -15,10 +15,13 @@ interface IProductGallery {
  */
 const ProductGallery: FC<IProductGallery> = ({ images }) => {
     const [activeIndex, setActiveIndex] = useState<number>(0);
+    
+    const getFullImageUrl = (path: string) => `${process.env.SERVER_URL}${path}`;
+    console.log(getFullImageUrl(images[activeIndex]))
     return (
         <>
             <Image
-                src={images[activeIndex]}
+                src={getFullImageUrl(images[activeIndex])}
                 alt='product'
                 width={500}
                 height={500}
@@ -40,7 +43,7 @@ const ProductGallery: FC<IProductGallery> = ({ images }) => {
                         )}
                     >
                         <Image
-                            src={image}
+                            src={getFullImageUrl(image)}
                             alt=''
                             width={100}
                             height={100}

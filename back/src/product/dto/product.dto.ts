@@ -1,21 +1,21 @@
 import { Prisma } from "@prisma/client";
-import { ArrayMinSize, IsNumber, IsOptional, IsString } from "class-validator";
+import { ArrayMinSize, IsArray, IsNumber, IsOptional, IsString } from "class-validator";
 
 export class ProductDto implements Prisma.ProductUpdateInput {
     @IsString()
-    name: string
+    name: string;
 
-    @IsNumber()
-    price: number
+    price: number;
 
     @IsOptional()
     @IsString()
-    description?: string
+    description?: string;
 
+    @IsOptional()
+    @IsArray()
     @IsString({ each: true })
     @ArrayMinSize(1)
-    images: string[]
+    images: string[];
 
-    @IsNumber()
-    categoryId: number
+    categoryId: number;
 }

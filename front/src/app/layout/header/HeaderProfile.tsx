@@ -29,11 +29,16 @@ const HeaderProfile: FC = () => {
                 />
             </PopoverTrigger>
             <PopoverContent className="w-48 flex flex-col items-center p-1">
+                <div className="text-sm font-bold text-amber-400 py-1 border-x border-b border-gray-800 w-full rounded-sm text-center">
+                    <Link href={'/profile'}>
+                        {profile.name}
+                    </Link>
+                </div>
+
                 {!isAdminPanel && (
                     <Button variant="outline" size="default" className="w-full border-0">
                         <Link
                             href={'/my-orders'}
-                            className=""
                         >
                             Мои заказы
                         </Link>

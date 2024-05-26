@@ -18,30 +18,13 @@ export class ProductService {
 		private prisma: PrismaService,
 		private paginationService: PaginationService,
 		private categoryService: CategoryService
-	) {}
+	) { }
 
-	async update(id: number, dto: ProductDto) {
-		const { description, images, price, name, categoryId } = dto
-
-		await this.categoryService.byId(categoryId)
-
+	async update(id: number, data: ProductDto) {
 		return this.prisma.product.update({
-			where: {
-				id
-			},
-			data: {
-				description,
-				images,
-				price,
-				name,
-				slug: generateSlug(dto.name),
-				category: {
-					connect: {
-						id: categoryId
-					}
-				}
-			}
-		})
+			where: { id },
+			data,
+		});
 	}
 
 	async create() {
@@ -131,7 +114,7 @@ export class ProductService {
 	}
 
 	async getAll(dto: GetAllProductDto = {}) {
-		
+
 		const { perPage, skip } = this.paginationService.getPagination(dto)
 
 		const filters = this.createFilter(dto)
