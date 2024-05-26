@@ -13,6 +13,7 @@ import AdminList from '@/components/ui/admin-list/AdminList'
  */
 const Products: FC = () => {
     const { data, isFetching, mutate } = useAdminProducts()
+    console.log(data)
     return (
         <div className='px-28 py-32'>
             <Heading title='Products' className='mb-4' />

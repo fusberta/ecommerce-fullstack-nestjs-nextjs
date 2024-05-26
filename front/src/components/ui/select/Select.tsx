@@ -2,15 +2,6 @@ import { useState } from "react";
 import { ISelect } from "./select.interface";
 import { BsCaretDownFill } from "react-icons/bs";
 
-/**
- * Renders a select dropdown component with a list of options.
- *
- * @param data - An array of options to display in the dropdown.
- * @param onChange - A callback function that is called when an option is selected.
- * @param value - The currently selected option.
- * @param title - An optional title to display above the dropdown.
- * @template K - The type of the option keys.
- */
 function Select<K>({ data, onChange, value, title }: ISelect<K>) {
     const [isOpen, setIsOpen] = useState(false);
 
