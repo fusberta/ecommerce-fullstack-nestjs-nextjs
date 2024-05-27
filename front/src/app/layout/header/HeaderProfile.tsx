@@ -15,7 +15,7 @@ const HeaderProfile: FC = () => {
 
     const { logout } = useActions()
 
-    if (!profile?.avatarPath) return null
+    if (!profile) return null
 
     return (
         <Popover>

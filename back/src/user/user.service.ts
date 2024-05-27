@@ -68,6 +68,19 @@ export class UserService {
         })
     }
 
+    async updateAvatar(id: number, avatar: Express.Multer.File ) {
+        const avatarPath = `/uploads/${avatar.filename}`
+
+        return this.prisma.user.update({
+            where: {
+                id
+            },
+            data: {
+                avatarPath
+            }
+        })
+    }
+
     async toggleFavorite(productId: number, id: number) {
         const user = await this.byId(id)
 

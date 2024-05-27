@@ -13,6 +13,6 @@ export const useProfile = () => {
         queryFn: () => UserService.getProfile(),
         enabled: !!user
     })
-
+    
     return data?.data
 }

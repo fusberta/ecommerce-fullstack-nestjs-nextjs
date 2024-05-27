@@ -17,6 +17,18 @@ export const UserService = {
             data
         })
     },
+    async updateAvatar(file: File) {
+        const formData = new FormData()
+        formData.append('avatar', file)
+        return instance<IUser>({
+            url: `${users}/avatar`,
+            method: 'PUT',
+            data: formData,
+            headers: {
+                'Content-Type':'multipart/form-data'
+            }
+        })
+    },
     async toggleFavorite(productId: string | number) {
         return instance<IUser>({
             url: `${users}/favorites/${productId}`,

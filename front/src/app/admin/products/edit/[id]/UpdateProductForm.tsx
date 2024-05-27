@@ -45,7 +45,7 @@ const UpdateProductForm: FC<IUpdateProductForm> = ({ id }) => {
     const { mutate, isSuccess } = useMutation({
         mutationKey: ['update product'],
         mutationFn: (data: IProductUpdate) => ProductService.update(id, data, selectedFiles),
-        onSuccess: () => queryClient.invalidateQueries({ queryKey: ['product', id] })
+        onSuccess: () => setSelectedFiles([])
     })
 
     useEffect(() => {
@@ -62,7 +62,7 @@ const UpdateProductForm: FC<IUpdateProductForm> = ({ id }) => {
     const onSubmit: SubmitHandler<IProductUpdate> = data => {
         mutate(data);
         reset();
-        setSelectedFiles([]);
+        
     };
 
     const handleFilesChange = (event: ChangeEvent<HTMLInputElement>) => {

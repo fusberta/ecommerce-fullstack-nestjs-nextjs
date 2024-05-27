@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common'
+import { Logger, Module } from '@nestjs/common'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
 import { AuthModule } from './auth/auth.module'
@@ -17,7 +17,7 @@ import { StatisticModule } from './statistic/statistic.module'
 @Module({
 	imports: [
 		ServeStaticModule.forRoot({
-			rootPath: `${path}/uploads`,
+			rootPath: `${path}/src/uploads`,
 			serveRoot: '/uploads'
 		}),
 		ConfigModule.forRoot(),
@@ -33,4 +33,4 @@ import { StatisticModule } from './statistic/statistic.module'
 	controllers: [AppController],
 	providers: [AppService, PrismaService]
 })
-export class AppModule { }
+export class AppModule {}

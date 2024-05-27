@@ -17,9 +17,6 @@ import {
 import { GetAllProductDto } from './dto/get-all-products.dto';
 import { ProductDto } from './dto/product.dto';
 import { FileFieldsInterceptor } from '@nestjs/platform-express';
-import { diskStorage } from 'multer';
-import { extname } from 'path';
-import { Product } from '@prisma/client';
 import { UpdateProductWithFilesDto } from './dto/product-with-files.dto';
 
 @Controller('products')

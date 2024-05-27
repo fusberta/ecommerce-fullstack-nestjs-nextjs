@@ -16,8 +16,7 @@ interface IProductGallery {
 const ProductGallery: FC<IProductGallery> = ({ images }) => {
     const [activeIndex, setActiveIndex] = useState<number>(0);
     
-    const getFullImageUrl = (path: string) => `${process.env.SERVER_URL}${path}`;
-    console.log(getFullImageUrl(images[activeIndex]))
+    const getFullImageUrl = (path: string) => `http://localhost:4200${path}`;
     return (
         <>
             <Image
