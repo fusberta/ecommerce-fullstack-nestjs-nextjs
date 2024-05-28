@@ -45,7 +45,7 @@ const UpdateUserForm: FC<IUpdateUserForm> = ({ user }) => {
     };
 
     return (
-        <div className='px-4 py-2'>
+        <div className='px-4 py-2 w-80'>
             <Heading title='Обновление профиля' className='text-xl mb-6'/>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="flex flex-col gap-3 mt-4">

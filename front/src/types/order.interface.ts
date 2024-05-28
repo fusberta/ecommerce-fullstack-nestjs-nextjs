@@ -16,3 +16,8 @@ export interface IOrder {
     status: EnumOrderStatus;
     createdAt: string;
 }
+
+export interface IOrderUpdate {
+    total: number;
+    status: EnumOrderStatus;
+}

@@ -8,6 +8,7 @@ import type { Metadata } from 'next'
 import { SITE_NAME } from '@/assets/constants';
 import { getSiteUrl } from '@/config/url.config';
 import Header from './layout/header/Header';
+import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
     icons: {
@@ -42,6 +43,7 @@ export default function RootLayout({ children }: PropsWithChildren<unknown>) {
                     <main>
                         {children}
                     </main>
+                    <Toaster />
                 </Providers>
                 <div id='modal'></div>
             </body>

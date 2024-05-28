@@ -37,10 +37,11 @@ export const ProductService = {
         })
     },
     async create() {
-        return instance<IProduct>({
+        const product = await instance<IProduct>({
             url: products,
             method: 'POST'
         })
+        return product.data.id;
     },
     async update(id: string | number, data: IProductUpdate, files: File[]) {
         const formData = new FormData();

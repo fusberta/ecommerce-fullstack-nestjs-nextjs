@@ -2,8 +2,8 @@ import { IListItem } from '@/types/admin.interface'
 import { useRouter } from 'next/navigation'
 import React, { FC } from 'react'
 import { Button } from '../button/button'
-import { MdVisibility } from 'react-icons/md'
 import { RiDeleteRow, RiEdit2Line, RiExternalLinkLine } from 'react-icons/ri'
+import { FaPen, FaRegEye, FaTrash } from 'react-icons/fa'
 
 interface IAdminActions extends Pick<IListItem, 'editUrl' | 'viewUrl'> {
     removeHandler?: () => void
@@ -24,17 +24,17 @@ const AdminActions: FC<IAdminActions> = ({ editUrl, viewUrl, removeHandler }) =>
         <div className='flex gap-2 justify-end'>
             {viewUrl && (
                 <Button size={'icon'} onClick={() => push(viewUrl)}>
-                    <RiExternalLinkLine />
+                    <FaRegEye size={20}/>
                 </Button>
             )}
             {editUrl && (
                 <Button size={'icon'} onClick={() => push(editUrl)}>
-                    <RiEdit2Line />
+                    <FaPen />
                 </Button>
             )}
             {removeHandler && (
                 <Button size={'icon'} onClick={removeHandler}>
-                    <RiDeleteRow />
+                    <FaTrash />
                 </Button>
             )}
         </div>

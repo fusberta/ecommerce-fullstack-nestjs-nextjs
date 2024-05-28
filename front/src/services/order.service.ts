@@ -1,6 +1,5 @@
-import { instance } from '@/api/api.interceptor'
-import { ICartItem } from '@/types/cart.interface'
-import { EnumOrderStatus, IOrder } from '@/types/order.interface'
+import { axiosClassic, instance } from '@/api/api.interceptor'
+import { EnumOrderStatus, IOrder, IOrderUpdate } from '@/types/order.interface'
 
 const orders = '/orders'
 
@@ -25,6 +24,21 @@ export const OrderService = {
         return instance<IOrder[]>({
             url: `${orders}/by-user`,
             method: 'GET'
+        })
+    },
+
+    async getById(id: number | string) {
+        return instance<IOrder>({
+            url: `${orders}/${id}`,
+            method: 'GET'
+        })
+    },
+
+    async update(id: string | number, data: IOrderUpdate) {
+        return instance<IOrder>({
+            url: `${orders}/${id}`,
+            method: 'PUT',
+            data
         })
     },
 

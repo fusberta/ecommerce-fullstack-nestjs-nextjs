@@ -57,8 +57,6 @@ const Profile: FC = () => {
         }
     };
 
-    const getFullImageUrl = (path: string) => `http://localhost:4200${path}`;
-
     if (!profile) return null
 
     return (
@@ -75,7 +73,7 @@ const Profile: FC = () => {
                         <Image
                             width={50}
                             height={50}
-                            src={getFullImageUrl(profile?.avatarPath)}
+                            src={profile?.avatarPath}
                             alt="profile avatar"
                             className="rounded-full w-20"
                         />

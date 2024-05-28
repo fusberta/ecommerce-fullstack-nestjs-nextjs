@@ -1,6 +1,5 @@
 import { useMutation, useQuery } from "@tanstack/react-query"
 import { IListItem } from '@/types/admin.interface'
-import { getAdminUrl } from "@/config/url.config"
 import CategoryService from "@/services/category.service"
 
 export const useAdminCategories = () => {
@@ -10,8 +9,8 @@ export const useAdminCategories = () => {
         select: ({data}) => data.map((category): IListItem => {
             return {
                 id: category.id,
-                viewUrl: `/category/${category.slug}`,
-                editUrl: getAdminUrl(`/categories/edit/${category.id}`),
+                viewUrl: `/explorer?page=1&categoryId=${category.id}`,
+                editUrl: `/admin/categories/edit/${category.id}`,
                 items: [
                     category.name,
                     category.slug,

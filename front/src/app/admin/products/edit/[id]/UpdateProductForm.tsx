@@ -60,9 +60,11 @@ const UpdateProductForm: FC<IUpdateProductForm> = ({ id }) => {
     }, [product, reset]);
 
     const onSubmit: SubmitHandler<IProductUpdate> = data => {
+        if (!selectedFiles.length && product) {
+            data.images = product.data.images;
+        }
         mutate(data);
         reset();
-        
     };
 
     const handleFilesChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -88,7 +90,7 @@ const UpdateProductForm: FC<IUpdateProductForm> = ({ id }) => {
     return (
         <div className='px-28 py-32'>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <Heading title='Редактировать' />
+                <Heading title='Редактировать продукт' />
                 <div className="flex flex-col gap-3 mt-4">
                     <div>
                         <Label className='font-extrabold'>Название</Label>

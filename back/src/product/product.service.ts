@@ -17,13 +17,15 @@ export class ProductService {
 	constructor(
 		private prisma: PrismaService,
 		private paginationService: PaginationService,
-		private categoryService: CategoryService
 	) { }
 
 	async update(id: number, data: ProductDto) {
 		return this.prisma.product.update({
 			where: { id },
-			data,
+			data: {
+                ...data,
+                slug: generateSlug(data.name),
+            },
 		});
 	}
 
@@ -33,11 +35,12 @@ export class ProductService {
 				name: '',
 				description: '',
 				price: 0,
-				slug: ''
+				slug: '',
+				categoryId: 6
 			}
 		})
 
-		return product.id
+		return product
 	}
 
 	async delete(id: number) {

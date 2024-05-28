@@ -38,12 +38,12 @@ export class ProductController {
     @Body() productDto: UpdateProductWithFilesDto,
     @UploadedFiles() files: { images?: Express.Multer.File[] }
   ) {
-    const images = files.images.map(file => `/uploads/${file.filename}`);
+    const images = files?.images?.map(file => `/uploads/${file.filename}`);
     const updatedProductData: ProductDto = {
       ...productDto,
-      images,
       price: Number(productDto.price),
       categoryId: Number(productDto.categoryId),
+      ...(images && { images }), // Only if images exist
     };
 
     return this.productService.update(+id, updatedProductData);

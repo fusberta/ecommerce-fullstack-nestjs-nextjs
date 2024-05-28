@@ -12,6 +12,13 @@ export class OrderDto {
     @Type(() => OrderItemDto)
     items: OrderItemDto[]
 }
+export class OrderUpdateDto {
+    @IsEnum(EnumOrderItemStatus)
+    status: EnumOrderItemStatus
+
+    @IsNumber()
+    total: number
+}
 
 export class OrderItemDto {
     @IsNumber()
