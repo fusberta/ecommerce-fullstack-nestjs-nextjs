@@ -24,46 +24,43 @@ const Profile: FC = () => {
 
     if (!user) useAuthRedirect()
 
-    if (!profile) return null
+    const updateAvatarMutation = useMutation({
+        mutationKey: ['updateAvatar'],
+        mutationFn: (file: File) => UserService.updateAvatar(file),
+        onSuccess: () => queryClient.invalidateQueries({ queryKey: ['profile'] })
+    });
 
-    const updateUserMutation = useMutation({
-        mutationKey: ['update avatar'],
+    const removeAvatarMutation = useMutation({
+        mutationKey: ['removePhoto'],
         mutationFn: (data: IUserUpdate) => UserService.updateProfile(data),
-        onSuccess: () => queryClient.invalidateQueries({ queryKey: ['profile'] }),
-    })
+        onSuccess: () => queryClient.invalidateQueries({ queryKey: ['profile'] })
+    });
 
-    const removePhotoMutation = useMutation({
-        mutationKey: ['remove avatar'],
-        mutationFn: () => {
+
+    const handleChangePhoto = (event: ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        if (file && profile) {
+            const data = new FormData();
+            data.append('avatar', file);
+            data.append('email', profile.email);
+            updateAvatarMutation.mutate(file);
+        }
+    };
+
+    const handleRemovePhoto = () => {
+        if (profile) {
             const data: IUserUpdate = {
                 ...profile,
-                avatarPath: '/default_avatar.png',
-            }
-            return UserService.updateProfile(data)
-        },
-        onSuccess: () => queryClient.invalidateQueries({ queryKey: ['profile'] }),
-    })
-
-    const handleChangePhoto = async (event: ChangeEvent<HTMLInputElement>) => {
-        const file = event.target.files?.[0]
-        if (file) {
-            try {
-                await UserService.updateAvatar(file)
-                await updateUserMutation.mutateAsync({ ...profile, avatarPath: URL.createObjectURL(file) })
-            } catch (error) {
-                console.error('Error updating avatar:', error)
-            }
+                avatarPath: '/uploads/default-avatar.png',
+            };
+            removeAvatarMutation.mutate(data);
         }
-    }
+    };
 
-    const handleRemovePhoto = async () => {
-        try {
-            await removePhotoMutation.mutateAsync()
-        } catch (error) {
-            console.error('Error removing photo:', error)
-        }
-    }
-    
+    const getFullImageUrl = (path: string) => `http://localhost:4200${path}`;
+
+    if (!profile) return null
+
     return (
         <div className='px-28 py-32'>
             <Heading title='Профиль' className='mb-4' />
@@ -78,17 +75,25 @@ const Profile: FC = () => {
                         <Image
                             width={50}
                             height={50}
-                            src={profile?.avatarPath}
+                            src={getFullImageUrl(profile?.avatarPath)}
                             alt="profile avatar"
                             className="rounded-full w-20"
                         />
                         <div className="ml-5 flex flex-col">
-                            <input type="file" accept="image/*" onChange={handleChangePhoto} className="hidden" id="avatar-upload" />
-                            <label htmlFor="avatar-upload">
-                                <Button variant="default" className="mb-4">
-                                    Изменить фото
-                                </Button>
-                            </label>
+                            <input
+                                type="file"
+                                accept="image/*"
+                                style={{ display: 'none' }}
+                                id="avatar-input"
+                                onChange={handleChangePhoto}
+                            />
+                            <Button
+                                variant="default"
+                                className="mb-4"
+                                onClick={() => document.getElementById('avatar-input')?.click()}
+                            >
+                                Изменить фото
+                            </Button>
                             <Button variant="destructive" onClick={handleRemovePhoto}>
                                 Удалить фото
                             </Button>
