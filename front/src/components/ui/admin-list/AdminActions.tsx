@@ -2,11 +2,13 @@ import { IListItem } from '@/types/admin.interface'
 import { useRouter } from 'next/navigation'
 import React, { FC } from 'react'
 import { Button } from '../button/button'
-import { RiDeleteRow, RiEdit2Line, RiExternalLinkLine } from 'react-icons/ri'
-import { FaPen, FaRegEye, FaTrash } from 'react-icons/fa'
+import { FaCheck, FaPen, FaRegEye, FaTrash } from 'react-icons/fa'
+import { IoCloseSharp } from 'react-icons/io5'
 
 interface IAdminActions extends Pick<IListItem, 'editUrl' | 'viewUrl'> {
     removeHandler?: () => void
+    confirmHandler?: () => void
+    rejectHandler?: () => void
 }
 
 /**
@@ -17,7 +19,7 @@ interface IAdminActions extends Pick<IListItem, 'editUrl' | 'viewUrl'> {
  * @param removeHandler - A function to be called when the remove button is clicked.
  * @returns A React component that renders the admin actions.
  */
-const AdminActions: FC<IAdminActions> = ({ editUrl, viewUrl, removeHandler }) => {
+const AdminActions: FC<IAdminActions> = ({ editUrl, viewUrl, removeHandler, confirmHandler, rejectHandler }) => {
 
     const { push } = useRouter()
     return (
@@ -35,6 +37,16 @@ const AdminActions: FC<IAdminActions> = ({ editUrl, viewUrl, removeHandler }) =>
             {removeHandler && (
                 <Button size={'icon'} onClick={removeHandler}>
                     <FaTrash />
+                </Button>
+            )}
+            {confirmHandler && (
+                <Button size={'icon'} onClick={confirmHandler}>
+                    <FaCheck />
+                </Button>
+            )}
+            {rejectHandler && (
+                <Button size={'icon'} onClick={rejectHandler}>
+                    <IoCloseSharp />
                 </Button>
             )}
         </div>

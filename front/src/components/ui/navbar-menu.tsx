@@ -33,7 +33,7 @@ export const MenuItem = ({
     <div onMouseEnter={() => setActive(item)} className="relative">
       <motion.p
         transition={{ duration: 0.3 }}
-        onClick={() => {if (isLink) router.replace('/explorer')}}
+        onClick={() => {if (isLink) router.push('/explorer?page=1')}}
         className="cursor-pointer text-black hover:opacity-[0.9] dark:text-white"
       >
         {item}

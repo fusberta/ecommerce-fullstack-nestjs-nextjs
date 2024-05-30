@@ -8,16 +8,20 @@ export class OrderDto {
     status: EnumOrderItemStatus
 
     @IsArray()
-    @ValidateNested({each:true})
+    @ValidateNested({ each: true })
     @Type(() => OrderItemDto)
     items: OrderItemDto[]
 }
+
 export class OrderUpdateDto {
     @IsEnum(EnumOrderItemStatus)
     status: EnumOrderItemStatus
+}
 
-    @IsNumber()
-    total: number
+export enum OrderStatus {
+    NEW = 'NEW',
+    CONFIRMED = 'CONFIRMED',
+    CANCELLED = 'CANCELLED',
 }
 
 export class OrderItemDto {

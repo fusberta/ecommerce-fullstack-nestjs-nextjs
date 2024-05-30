@@ -26,7 +26,7 @@ export const Home: FC<IPaginationProducts> = ({ products, length }) => {
     };
     return (
         <>
-            <Sidebar
+            {/* <Sidebar
                 isOpen={showSidebar}
                 customBurgerIcon={false}
                 onStateChange={(state: { isOpen: boolean }) => setShowSidebar(state.isOpen)}
@@ -38,7 +38,7 @@ export const Home: FC<IPaginationProducts> = ({ products, length }) => {
                         </button>
                     </div>
                 </div>
-            </Sidebar>
+            </Sidebar> */}
             <button className="text-white z-30 fixed top-[35px] left-10" onClick={toggleSidebar}>
                 <RiMenu5Fill size={28} />
             </button>

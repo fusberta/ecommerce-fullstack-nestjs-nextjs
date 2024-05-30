@@ -1,13 +1,12 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from 'src/prisma.service';
 import { returnProductObject } from 'src/product/return-product.object';
-import { OrderDto, OrderUpdateDto } from './order.dto';
-import { PaymentStatusDto } from './payment-status.dto';
-import { Prisma } from '@prisma/client';
+import { OrderDto } from './order.dto';
+import { EnumOrderItemStatus, Prisma } from '@prisma/client'
 
 @Injectable()
 export class OrderService {
-    constructor(private readonly prisma: PrismaService) {}
+    constructor(private readonly prisma: PrismaService) { }
 
     async getAll() {
         return this.prisma.order.findMany({
@@ -47,23 +46,23 @@ export class OrderService {
     }
 
     async byId(id: number) {
-		return this.findOrder({ id }, 'Order not found')
-	}
+        return this.findOrder({ id }, 'Order not found')
+    }
 
     private async findOrder(
-		filter: Prisma.OrderWhereUniqueInput,
-		errorMessage: string
-	) {
-		const order = await this.prisma.order.findUnique({
-			where: filter
-		})
+        filter: Prisma.OrderWhereUniqueInput,
+        errorMessage: string
+    ) {
+        const order = await this.prisma.order.findUnique({
+            where: filter
+        })
 
-		if (!order) {
-			throw new NotFoundException(errorMessage)
-		}
+        if (!order) {
+            throw new NotFoundException(errorMessage)
+        }
 
-		return order
-	}
+        return order
+    }
 
 
     async placeOrder(userId: number, dto: OrderDto) {
@@ -84,15 +83,19 @@ export class OrderService {
 
         return order
     }
+    
 
-    async update(id: number, dto: OrderUpdateDto) {
-		return this.prisma.order.update({
-			where: {
-				id
-			},
-			data: {
-				...dto
-			}
-		})
-	}
+    async updateOrderStatus(id: number, data: { status: EnumOrderItemStatus }) {
+        
+        const order = await this.findOrder({ id }, 'Order not found')
+
+        if (order.status !== EnumOrderItemStatus.NEW) {
+            throw new BadRequestException('Only orders with status NEW can be updated');
+        }
+
+        return this.prisma.order.update({
+            where: { id },
+            data
+        })
+    }
 }

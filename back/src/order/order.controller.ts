@@ -1,8 +1,9 @@
-import { Body, Controller, Get, HttpCode, Param, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, Param, Patch, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
 import { OrderService } from './order.service';
 import { Auth } from 'src/auth/decorators/auth.decorator';
 import { CurrentUser } from 'src/auth/decorators/user.decorator';
-import { OrderDto, OrderUpdateDto } from './order.dto';
+import { OrderDto } from './order.dto';
+import { EnumOrderItemStatus } from '@prisma/client';
 
 @Controller('orders')
 export class OrderController {
@@ -34,14 +35,13 @@ export class OrderController {
 		return this.orderService.placeOrder(userId, dto);
 	}
 
-	@UsePipes(new ValidationPipe())
 	@HttpCode(200)
 	@Auth('admin')
 	@Put(':id')
-	async update(
+	async updateOrderStatus(
 		@Param('id') id: string,
-		@Body() dto: OrderUpdateDto
+		@Body() data: { status: EnumOrderItemStatus} 
 	) {
-		return this.orderService.update(+id, dto)
+		return this.orderService.updateOrderStatus(+id, data);
 	}
 }

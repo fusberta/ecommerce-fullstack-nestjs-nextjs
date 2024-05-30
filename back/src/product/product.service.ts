@@ -36,7 +36,7 @@ export class ProductService {
 				description: '',
 				price: 0,
 				slug: '',
-				categoryId: 6
+				categoryId: 20
 			}
 		})
 

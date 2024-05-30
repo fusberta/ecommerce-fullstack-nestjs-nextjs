@@ -6,12 +6,16 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import Select from '@/components/ui/select/Select'
 import { Textarea } from '@/components/ui/textarea'
+import { ToastAction } from '@/components/ui/toast'
+import { toast } from '@/components/ui/use-toast'
 import CategoryService from '@/services/category.service'
 import ProductService from '@/services/product.service'
 import { IProductUpdate } from '@/types/product.interface'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { useRouter } from 'next/navigation'
 import React, { ChangeEvent, FC, useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { IoReturnUpBack } from 'react-icons/io5'
 
 interface IUpdateProductForm {
     id?: string | number
@@ -27,6 +31,7 @@ const UpdateProductForm: FC<IUpdateProductForm> = ({ id }) => {
         formState: { errors }
     } = useForm<IProductUpdate>({ mode: 'onChange' })
     const queryClient = useQueryClient()
+    const router = useRouter()
 
     if (!id) return null
 
@@ -45,7 +50,10 @@ const UpdateProductForm: FC<IUpdateProductForm> = ({ id }) => {
     const { mutate, isSuccess } = useMutation({
         mutationKey: ['update product'],
         mutationFn: (data: IProductUpdate) => ProductService.update(id, data, selectedFiles),
-        onSuccess: () => setSelectedFiles([])
+        onSuccess: () => {
+            setSelectedFiles([])
+            queryClient.invalidateQueries({ queryKey: ['product', id] })
+        }
     })
 
     useEffect(() => {
@@ -64,6 +72,19 @@ const UpdateProductForm: FC<IUpdateProductForm> = ({ id }) => {
             data.images = product.data.images;
         }
         mutate(data);
+        toast({
+            className: "bg-slate-950",
+            title: "✅ Успех",
+            description: "Продукт успешно обновлен",
+            action: (
+                <ToastAction 
+                    onClick={() => router.back()} 
+                    altText="Вернуться на предыдущую страницу"
+                >
+                    <IoReturnUpBack />
+                </ToastAction>
+            ),
+        })
         reset();
     };
 

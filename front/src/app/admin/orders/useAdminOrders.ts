@@ -1,28 +1,56 @@
-import { useQuery } from "@tanstack/react-query"
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { IListItem } from '@/types/admin.interface'
-import { getAdminUrl } from "@/config/url.config"
 import OrderService from "@/services/order.service"
+import { EnumOrderStatus } from "@/types/order.interface"
+import { useToast } from "@/components/ui/use-toast"
 
 export const useAdminOrders = () => {
+    const queryClient = useQueryClient()
+    const { toast } = useToast()
+
     const { data, isFetching } = useQuery({
         queryKey: ['get admin orders'],
         queryFn: () => OrderService.getAll(),
-        select: ({data}) => data.map((order): IListItem => {
+        select: ({ data }) => data.map((order): IListItem => {
             return {
                 id: order.id,
-                editUrl: `/admin/orders/edit/${order.id}`,
                 items: [
-                    `# ${order.id}`,
                     order.status,
-                    new Date(order.createdAt).toLocaleDateString('ru-RU'),
-                    new Date(order.createdAt).toLocaleTimeString('ru-RU'),
+                    new Date(order.createdAt).toLocaleDateString('ru-RU') + ' '
+                    + new Date(order.createdAt).toLocaleTimeString('ru-RU'),
+                    order.items.map((item) => item.product.name + ' x ' + item.quantity).join(', '),
                     order.total.toString() + ' ₽'
                 ]
             }
         })
     })
 
+    const { mutate: confirmMutation } = useMutation({
+        mutationKey: ['confirm order'],
+        mutationFn: (id: number) => OrderService.updateOrderStatus(id, { status: EnumOrderStatus.CONFIRMED }),
+        onSuccess: () => queryClient.invalidateQueries({ queryKey: ['get admin orders'] }),
+        onError: () =>
+            toast({
+                title: "Ошибка при подтверждении заказа",
+                description: "Подтвердить можно только заказы со статусом 'Новый'",
+            })
+    })
+
+    const { mutate: rejectMutation } = useMutation({
+        mutationKey: ['reject order'],
+        mutationFn: (id: number) => OrderService.updateOrderStatus(id, { status: EnumOrderStatus.CANCELED }),
+        onSuccess: () => queryClient.invalidateQueries({ queryKey: ['get admin orders'] }),
+        onError: () =>
+            toast({
+                className: "bg-slate-950",
+                title: "Ошибка при отклонении заказа",
+                description: "Отклонить можно только заказы со статусом 'Новый'",
+            })
+    })
+
     return {
+        confirmMutation,
+        rejectMutation,
         data,
         isFetching
     }

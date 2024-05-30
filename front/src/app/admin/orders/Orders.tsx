@@ -12,13 +12,15 @@ import AdminList from '@/components/ui/admin-list/AdminList'
  * @returns {JSX.Element} The rendered Orders component.
  */
 const Orders: FC = () => {
-    const { data, isFetching } = useAdminOrders()
+    const { data, isFetching, rejectMutation, confirmMutation } = useAdminOrders()
     return (
         <div className='px-28 py-32'>
             <Heading title='Orders' className='mb-4' />
             <AdminList
                 isLoading={isFetching}
                 items={data}
+                rejectHandler={rejectMutation}
+                confirmHandler={confirmMutation}
             />
         </div>
     )

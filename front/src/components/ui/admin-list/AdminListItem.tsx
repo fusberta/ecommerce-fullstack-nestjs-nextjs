@@ -1,6 +1,12 @@
 import { IAdminListItem } from '@/types/admin.interface'
 import React, { FC } from 'react'
 import AdminActions from './AdminActions'
+import { Button } from '../button/button'
+
+interface ICustomAdminListItem extends IAdminListItem {
+    confirmHandler?: () => void;
+    rejectHandler?: () => void;
+}
 
 /**
  * Renders an individual admin list item with the provided data and actions.
@@ -9,7 +15,8 @@ import AdminActions from './AdminActions'
  * @param removeHandler - A function to handle the removal of the admin list item.
  * @returns A React component that displays the admin list item.
  */
-const AdminListItem: FC<IAdminListItem> = ({ listItem, removeHandler }) => {
+const AdminListItem: FC<ICustomAdminListItem> = ({ listItem, removeHandler, confirmHandler, rejectHandler }) => {
+
     return (
         <div
             className='grid grid-cols-[repeat(auto-fit,_minmax(0,1fr))] gap-2 p-4 border border-slate-400 shadow-md
@@ -19,11 +26,13 @@ const AdminListItem: FC<IAdminListItem> = ({ listItem, removeHandler }) => {
                 <div key={index} className='px-2'>{value}</div>
             ))}
 
-            {(removeHandler || listItem.viewUrl || listItem.editUrl) && (
+            {(removeHandler || listItem.viewUrl || listItem.editUrl || confirmHandler || rejectHandler) && (
                 <AdminActions
                     removeHandler={removeHandler}
                     viewUrl={listItem.viewUrl}
                     editUrl={listItem.editUrl}
+                    confirmHandler={confirmHandler}
+                    rejectHandler={rejectHandler}
                 />
             )}
 

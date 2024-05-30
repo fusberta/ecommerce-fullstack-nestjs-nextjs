@@ -85,7 +85,7 @@ model Order {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  status EnumOrderItemStatus @default(PENDING)
+  status EnumOrderItemStatus @default(NEW)
   items  OrderItem[]
   total Int
 
@@ -94,10 +94,9 @@ model Order {
 }
 
 enum EnumOrderItemStatus {
-  PENDING
-  PAYED
-  SHIPPED
-  DELIVERED
+  NEW
+  CONFIRMED
+  CANCELED
 }
 
 model OrderItem {

@@ -9,6 +9,8 @@ interface IAdminList {
     items?: IListItem[]
     isLoading: boolean
     removeHandler?: (id: number) => void
+    confirmHandler?: (id: number) => void;
+    rejectHandler?: (id: number) => void;
 }
 
 /**
@@ -19,7 +21,7 @@ interface IAdminList {
  * @param removeHandler - An optional function to handle the removal of an admin item.
  * @returns A React component that displays the admin list.
  */
-const AdminList: FC<IAdminList> = ({ items, isLoading, removeHandler }) => {
+const AdminList: FC<IAdminList> = ({ items, isLoading, removeHandler, confirmHandler, rejectHandler }) => {
     return (
         <div>
             {
@@ -32,6 +34,8 @@ const AdminList: FC<IAdminList> = ({ items, isLoading, removeHandler }) => {
                         <AdminListItem
                             key={item.id}
                             listItem={item}
+                            confirmHandler={confirmHandler ? () => confirmHandler(item.id) : undefined}
+                            rejectHandler={rejectHandler ? () => rejectHandler(item.id) : undefined}
                             removeHandler={removeHandler ? () => removeHandler(item.id) : undefined}
                         />
                     ))

@@ -1,5 +1,6 @@
 'use client'
 
+import Search from '@/components/ui/Search'
 import { Button } from '@/components/ui/button/button'
 import Catalog from '@/components/ui/catalog/Catalog'
 import Pagination from '@/components/ui/catalog/Pagination'
@@ -38,12 +39,13 @@ const ProductExplorer: FC<IProductExplorer> = ({ initialProducts }) => {
     })
     return (
         <div className='px-28 py-32'>
+            <Search />
             <Drawer>
                 <DrawerTrigger>
                     <Button
                         variant={'default'}
                         size={'lg'}
-                        className='mb-7 font-bold flex items-center'
+                        className='font-bold flex items-center'
                     >
                         <MdFilterAlt size={25} className='-translate-x-2' /> Показать фильтры
                     </Button>
@@ -70,9 +72,9 @@ const ProductExplorer: FC<IProductExplorer> = ({ initialProducts }) => {
                     </div>
                 </DrawerContent>
             </Drawer>
-            <section>
+            <section className='mt-8'>
                 <Catalog title={
-                    queryParams.searchTerm ? `Поиск по запросу: ${queryParams.searchTerm}` : 'Explorer'
+                    queryParams.searchTerm ? `Поиск по запросу: ${queryParams.searchTerm}` : 'Каталог'
                 } data={data.products} isSort />
                 <Pagination
                     numberPages={data.length % +queryParams.perPage === 0 ? data.length / +queryParams.perPage : Math.floor(data.length / +queryParams.perPage) + 1}

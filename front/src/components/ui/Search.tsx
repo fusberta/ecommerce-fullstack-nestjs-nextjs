@@ -1,31 +1,37 @@
+import { useFilters } from "@/hooks/useFilters";
 import { useRouter } from "next/navigation";
 import { FC, useState } from "react";
 import { MdSearch } from "react-icons/md";
+import { PlaceholdersAndVanishInput } from "./placeholders-and-vanish-input";
 
 const Search: FC = () => {
     const [searchTerm, setSearchTerm] = useState<string>('')
+    const { queryParams, updateQueryParams } = useFilters()
 
-    const { push } = useRouter()
+    const placeholders = [
+        "Введите запрос...",
+        "Akko...",
+        "Varmilo...",
+        "Leopold FC660M...",
+    ];
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchTerm(e.target.value)
+    };
+    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        updateQueryParams('searchTerm', searchTerm)
+    };
 
     return (
-        <div className="">
-            <div 
-                className="border border-solid border-gray-600 grid w-1/2 rounded-md overflow-hidden"
-                style={{gridTemplateColumns: '1fr 0.1fr'}}
-            >
-                <input
-                    className="bg-slate-200 text-sm py-2 px-4 text-white outline-none"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    placeholder="Введите запрос..."
-                />
-                <button
-                    onClick={() => push(`/q?searchTerm=${searchTerm}`)}
-                    className="bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold py-2 px-4 cursor-pointer"
-                >
-                    <MdSearch />
-                </button>
-            </div>
+        <div className="flex flex-col justify-center  items-center px-4">
+            <PlaceholdersAndVanishInput
+                placeholders={placeholders}
+                onChange={handleChange}
+                onSubmit={onSubmit}
+            />
         </div>
     )
 }
+
+export default Search;

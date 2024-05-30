@@ -2,10 +2,9 @@ import { ICartItem } from "./cart.interface";
 import { IUser } from "./user.interface";
 
 export enum EnumOrderStatus {
-    PENDING = 'PENDING',
-    PAYED = 'PAYED',
-    SHIPPED = 'SHIPPED',
-    DELIVERED = 'DELIVERED'
+    NEW = "NEW",
+    CONFIRMED = "CONFIRMED",
+    CANCELED = "CANCELED",
 }
 
 export interface IOrder {
@@ -18,6 +17,5 @@ export interface IOrder {
 }
 
 export interface IOrderUpdate {
-    total: number;
     status: EnumOrderStatus;
 }

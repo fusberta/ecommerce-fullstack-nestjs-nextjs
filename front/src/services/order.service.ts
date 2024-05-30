@@ -1,5 +1,5 @@
-import { axiosClassic, instance } from '@/api/api.interceptor'
-import { EnumOrderStatus, IOrder, IOrderUpdate } from '@/types/order.interface'
+import { instance } from '@/api/api.interceptor'
+import { EnumOrderStatus, IOrder } from '@/types/order.interface'
 
 const orders = '/orders'
 
@@ -16,7 +16,7 @@ export const OrderService = {
     async getAll() {
         return instance<IOrder[]>({
             url: orders,
-            method: 'GET',
+            method: 'GET'
         })
     },
 
@@ -34,11 +34,14 @@ export const OrderService = {
         })
     },
 
-    async update(id: string | number, data: IOrderUpdate) {
+    async updateOrderStatus(id: string | number, data: { status: EnumOrderStatus }) {
+        console.log(id, data)
         return instance<IOrder>({
             url: `${orders}/${id}`,
             method: 'PUT',
-            data
+            data: {
+                status: data.status
+            }
         })
     },
 

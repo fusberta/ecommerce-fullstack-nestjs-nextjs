@@ -37,7 +37,7 @@ instance.interceptors.response.use(config => config, async error => {
             await AuthService.getNewTokens();
             return instance.request(originalRequest)
         } catch (error) {
-            if (errorCatch(error) === 'jwt expired') {}
+            if (errorCatch(error) === 'jwt expired')
                 removeTokensFromStorage()
             
         }
