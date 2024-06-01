@@ -16,7 +16,7 @@ interface IProductGallery {
 const ProductGallery: FC<IProductGallery> = ({ images }) => {
     const [activeIndex, setActiveIndex] = useState<number>(0);
     
-    const getFullImageUrl = (path: string) => `https://nest-backend-rvau.onrender.com${path}`;
+    const getFullImageUrl = (path: string) => `${path}`;
     return (
         <>
             <Image
@@ -24,7 +24,7 @@ const ProductGallery: FC<IProductGallery> = ({ images }) => {
                 alt='product'
                 width={500}
                 height={500}
-                className='rounded-xl overflow-hidden'
+                className='rounded-xl overflow-hidden w-full'
                 priority
                 draggable={false}
             />

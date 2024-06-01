@@ -32,13 +32,19 @@ let ProductService = class ProductService {
         });
     }
     async create() {
+        const category = await this.prisma.category.findFirst({
+            select: { id: true }
+        });
+        if (!category) {
+            throw new Error('No category found');
+        }
         const product = await this.prisma.product.create({
             data: {
                 name: '',
                 description: '',
                 price: 0,
                 slug: '',
-                categoryId: 20
+                categoryId: category.id
             }
         });
         return product;

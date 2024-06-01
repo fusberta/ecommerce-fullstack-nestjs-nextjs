@@ -23,7 +23,37 @@ interface IReviews {
 const Reviews: FC<IReviews> = ({ reviews, productId }) => {
   const { user } = useAuth()
 
-  if (!reviews.length) return null
+  if (!reviews.length) return (
+    <section id='reviews' className='mt-20'>
+      <Dialog>
+        <div className="flex justify-between">
+          <Heading title='Отзывы' className='text-xl font-extrabold' />
+          <div className="mb-9">
+            {user && (
+              <>
+                <DialogTrigger>
+                  <Button
+                    size={'icon'}
+                    variant={'ghost'}
+                  >
+                    <FaPlus />
+                  </Button>
+                </DialogTrigger>
+                <DialogContent>
+                  <LeaveReviewForm productId={productId} />
+                </DialogContent>
+              </>
+            )}
+          </div>
+        </div>
+
+        <div className="py-5 text-center">
+          Оставте первый отзыв на этот товар
+        </div>
+
+      </Dialog>
+    </section>
+  )
   return (
     <section id='reviews' className='mt-20'>
       <Dialog>
