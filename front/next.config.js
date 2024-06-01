@@ -11,7 +11,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'loremflickr.com',
+        hostname: process.env.IMAGE_URL, 
         pathname: '**',
       },
       {
@@ -43,7 +43,7 @@ const nextConfig = {
     return [
       {
         source: '/uploads/:path*',
-        destination: `http://localhost:4200/uploads/:path*`,
+        destination: `${process.env.IMAGE_URL}/uploads/:path*`,
       },
     ]
   }
