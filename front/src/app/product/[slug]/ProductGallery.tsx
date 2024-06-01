@@ -16,10 +16,11 @@ interface IProductGallery {
 const ProductGallery: FC<IProductGallery> = ({ images }) => {
     const [activeIndex, setActiveIndex] = useState<number>(0);
     
+    const getFullImageUrl = (path: string) => `https://nest-backend-rvau.onrender.com${path}`;
     return (
         <>
             <Image
-                src={images[activeIndex]}
+                src={getFullImageUrl(images[activeIndex])}
                 alt='product'
                 width={500}
                 height={500}
@@ -41,7 +42,7 @@ const ProductGallery: FC<IProductGallery> = ({ images }) => {
                         )}
                     >
                         <Image
-                            src={image}
+                            src={getFullImageUrl(image)}
                             alt='miniature'
                             width={100}
                             height={100}
