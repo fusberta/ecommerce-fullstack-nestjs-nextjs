@@ -2,6 +2,7 @@
 import { HoveredLink, Menu, MenuItem, ProductItem } from "@/components/ui/navbar-menu"
 import { useAdminPanel } from "@/hooks/useAdminPanel";
 import { useAuth } from "@/hooks/useAuth";
+import { useCategories } from "@/hooks/useCategories";
 import { cn } from "@/utils/utils";
 import { useState } from "react";
 
@@ -11,6 +12,11 @@ const Navbar = ({ className }: { className?: string }) => {
     const { user } = useAuth()
 
     const { isAdminPanel, pathname } = useAdminPanel()
+
+    const categories = useCategories()
+
+    if (!categories.data) return null
+
     return (
         <div className={cn("fixed top-10 rounded-full border-2 border-slate-800 inset-x-0 max-w-md xl:max-w-lg lg:max-w-xl max-[920px]:hidden mx-auto z-[100]", className)}>
             <Menu setActive={setActive}>
@@ -38,25 +44,25 @@ const Navbar = ({ className }: { className?: string }) => {
                             <div className="text-sm grid grid-cols-2 gap-10 p-4">
                                 <ProductItem
                                     title="Клавиши"
-                                    href="/explorer?page=1&categoryId=21"
+                                    href={`/explorer?page=1&categoryId=${categories.data[0].id}`}
                                     src="/images/keycaps_banner.webp"
                                     description="C русскими символами или вовсе без них — выберите свои идеальные."
                                 />
                                 <ProductItem
                                     title="Переключатели"
-                                    href="/explorer?page=1&categoryId=22"
+                                    href={`/explorer?page=1&categoryId=${categories.data[1].id}`}
                                     src="/images/switches_banner.webp"
                                     description="Линейные, кликающие или тактильные — выберите под свои задачи."
                                 />
                                 <ProductItem
                                     title="Базы"
-                                    href="/explorer?page=1&categoryId=23"
+                                    href={`/explorer?page=1&categoryId=${categories.data[2].id}`}
                                     src="/images/base_banner.webp"
                                     description="Полноразмерные, TKL или даже 65% — выберите самую удобную для себя."
                                 />
                                 <ProductItem
                                     title="Готовые клавиатуры"
-                                    href="/explorer?page=1&categoryId=20"
+                                    href={`/explorer?page=1&categoryId=${categories.data[3].id}`}
                                     src="/images/ready-made_banner.webp"
                                     description="Varmilo, Akko, Leopold и другие зарекомендовавшие себя бренды."
                                 />
