@@ -17,7 +17,7 @@ import { StatisticModule } from './statistic/statistic.module'
 @Module({
 	imports: [
 		ServeStaticModule.forRoot({
-			rootPath: `${path}/uploads`,
+			rootPath: `${path}/src/uploads`,
 			serveRoot: '/uploads'
 		}),
 		ConfigModule.forRoot(),
