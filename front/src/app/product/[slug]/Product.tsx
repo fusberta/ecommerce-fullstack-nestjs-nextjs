@@ -12,6 +12,7 @@ import ProductInformation from './information/ProductInformation'
 import SimilarProducts from './SimilarProducts'
 import Reviews from './reviews/Reviews'
 import ProductDescription from './information/ProductDescription'
+import { HashLoader } from 'react-spinners'
 
 interface IProductPage {
     initialProduct: IProduct
@@ -28,20 +29,32 @@ interface IProductPage {
  * @returns The rendered product page component.
  */
 const Product: FC<IProductPage> = ({ initialProduct, similarProducts, slug = '' }) => {
-    
+    const { data: product, isFetching } = useQuery({
+        queryKey: ['get product', initialProduct.id],
+        queryFn: () => ProductService.getBySlug(slug),
+        initialData: { data: initialProduct } as AxiosResponse<IProduct>,
+        enabled: !!slug
+    })
+
+    if (isFetching) return (
+        <div className="flex items-center justify-center py-14">
+            <HashLoader color="#1f2547" />
+        </div>
+    )
+
     return (
         <div className='px-28 py-32'>
-            <Heading title={initialProduct.name} className='mb-2 text-2xl font-extrabold' />
-            <ReviewsCount product={initialProduct} />
+            <Heading title={product.data.name} className='mb-2 text-2xl font-extrabold' />
+            <ReviewsCount product={product.data} />
             <div className="flex justify-between mt-5">
                 <div className='mr-5'>
-                    <ProductGallery images={initialProduct.images} />
+                    <ProductGallery images={product.data.images} />
                 </div>
-                <ProductInformation product={initialProduct} />
+                <ProductInformation product={product.data} />
             </div>
-            <ProductDescription description={initialProduct.description} />
+            <ProductDescription description={product.data.description} />
             <SimilarProducts similarProducts={similarProducts} />
-            <Reviews productId={initialProduct.id} reviews={initialProduct.reviews} />
+            <Reviews productId={product.data.id} reviews={product.data.reviews} />
         </div>
     )
 }
