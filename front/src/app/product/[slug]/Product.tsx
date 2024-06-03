@@ -28,26 +28,20 @@ interface IProductPage {
  * @returns The rendered product page component.
  */
 const Product: FC<IProductPage> = ({ initialProduct, similarProducts, slug = '' }) => {
-    const { data: product } = useQuery({
-        queryKey: ['get product', initialProduct.id],
-        queryFn: () => ProductService.getBySlug(slug),
-        initialData: { data: initialProduct } as AxiosResponse<IProduct>,
-        enabled: !!slug
-    })
-
+    
     return (
         <div className='px-28 py-32'>
-            <Heading title={product.data.name} className='mb-2 text-2xl font-extrabold' />
-            <ReviewsCount product={product.data} />
+            <Heading title={initialProduct.name} className='mb-2 text-2xl font-extrabold' />
+            <ReviewsCount product={initialProduct} />
             <div className="flex justify-between mt-5">
                 <div className='mr-5'>
-                    <ProductGallery images={product.data.images} />
+                    <ProductGallery images={initialProduct.images} />
                 </div>
-                <ProductInformation product={product.data} />
+                <ProductInformation product={initialProduct} />
             </div>
-            <ProductDescription description={product.data.description} />
+            <ProductDescription description={initialProduct.description} />
             <SimilarProducts similarProducts={similarProducts} />
-            <Reviews productId={product.data.id} reviews={product.data.reviews} />
+            <Reviews productId={initialProduct.id} reviews={initialProduct.reviews} />
         </div>
     )
 }

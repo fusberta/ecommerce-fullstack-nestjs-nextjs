@@ -17,12 +17,6 @@ interface IProductGallery {
 const ProductGallery: FC<IProductGallery> = ({ images }) => {
     const [activeIndex, setActiveIndex] = useState<number>(0);
 
-    if (!images.length) return (
-        <div className="flex items-center justify-center py-14">
-            <HashLoader color="#1f2547" />
-        </div>
-    )
-
     return (
         <>
             <Image
