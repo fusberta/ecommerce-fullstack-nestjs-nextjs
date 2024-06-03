@@ -15,8 +15,8 @@ export const useAdminProducts = () => {
                 items: [
                     product.name,
                     product.category.name,
-                    new Date(product.createdAt).toLocaleDateString('ru-RU'),
-                    new Date(product.createdAt).toLocaleTimeString('ru-RU')
+                    new Date(product.createdAt).toLocaleDateString('ru-RU') + ' '
+                    + new Date(product.createdAt).toLocaleTimeString('ru-RU'),
                 ]
             }
         })

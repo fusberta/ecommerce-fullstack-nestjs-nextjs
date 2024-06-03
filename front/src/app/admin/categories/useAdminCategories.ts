@@ -13,7 +13,7 @@ export const useAdminCategories = () => {
                 editUrl: `/admin/categories/edit/${category.id}`,
                 items: [
                     category.name,
-                    category.slug,
+                    category.slug
                 ]
             }
         })
