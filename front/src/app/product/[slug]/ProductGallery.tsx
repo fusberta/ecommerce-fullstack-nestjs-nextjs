@@ -1,6 +1,7 @@
 import { cn } from '@/utils/utils';
 import Image from 'next/image';
 import { useState, type FC } from 'react'
+import { HashLoader } from 'react-spinners';
 
 interface IProductGallery {
     images: string[]
@@ -15,12 +16,17 @@ interface IProductGallery {
  */
 const ProductGallery: FC<IProductGallery> = ({ images }) => {
     const [activeIndex, setActiveIndex] = useState<number>(0);
-    
-    const getFullImageUrl = (path: string) => `${path}`;
+
+    if (!images.length) return (
+        <div className="flex items-center justify-center py-14">
+            <HashLoader color="#1f2547" />
+        </div>
+    )
+
     return (
         <>
             <Image
-                src={getFullImageUrl(images[activeIndex])}
+                src={images[activeIndex]}
                 alt='product'
                 width={500}
                 height={500}
@@ -42,7 +48,7 @@ const ProductGallery: FC<IProductGallery> = ({ images }) => {
                         )}
                     >
                         <Image
-                            src={getFullImageUrl(image)}
+                            src={image}
                             alt='miniature'
                             width={100}
                             height={100}
