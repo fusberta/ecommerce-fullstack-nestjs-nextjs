@@ -39,7 +39,7 @@ const Product: FC<IProductPage> = ({ initialProduct, similarProducts, slug = '' 
             <Heading title={product.data.name} className='mb-2 text-2xl font-extrabold' />
             <ReviewsCount product={product.data} />
             <div className="flex justify-between mt-5">
-                <div className='w-full mr-5'>
+                <div className='mr-5'>
                     <ProductGallery images={product.data.images} />
                 </div>
                 <ProductInformation product={product.data} />

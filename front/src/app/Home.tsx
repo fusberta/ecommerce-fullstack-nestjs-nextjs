@@ -38,10 +38,10 @@ export const Home: FC<IPaginationProducts> = ({ products, length }) => {
                         </button>
                     </div>
                 </div>
-            </Sidebar> */}
+            </Sidebar>
             <button className="text-white z-30 fixed top-[35px] left-10" onClick={toggleSidebar}>
                 <RiMenu5Fill size={28} />
-            </button>
+            </button> */}
             <div className="overflow-y-scroll snap-y snap-mandatory h-screen bg-slate-950">
                 <Hero />
                 <Wobble />

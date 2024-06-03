@@ -6,13 +6,14 @@ import { content } from './Content';
 import image1 from './img/block1.avif';
 import image2 from './img/block2.avif';
 import image3 from './img/block3.avif';
+import image4 from './img/block4.png';
 
 /**
  * Renders the Overview component, which displays a section with a sticky scroll
  * content and a set of images.
  */
 const Overview: FC = () => {
-    const images = [image1, image2, image3].map(image => image.src);
+    const images = [image1, image2, image3, image4].map(image => image.src);
     return (
         <section className="snap-start">
             <StickyScroll content={content} images={images} />

@@ -50,7 +50,7 @@ const Navbar = ({ className }: { className?: string }) => {
                                 />
                                 <ProductItem
                                     title="Переключатели"
-                                    href={`/explorer?page=1&categoryId=${categories.data[1].id}`}
+                                    href={`/explorer?page=1&categoryId=${categories.data[3].id}`}
                                     src="/images/switches_banner.webp"
                                     description="Линейные, кликающие или тактильные — выберите под свои задачи."
                                 />
@@ -62,7 +62,7 @@ const Navbar = ({ className }: { className?: string }) => {
                                 />
                                 <ProductItem
                                     title="Готовые клавиатуры"
-                                    href={`/explorer?page=1&categoryId=${categories.data[3].id}`}
+                                    href={`/explorer?page=1&categoryId=${categories.data[1].id}`}
                                     src="/images/ready-made_banner.webp"
                                     description="Varmilo, Akko, Leopold и другие зарекомендовавшие себя бренды."
                                 />

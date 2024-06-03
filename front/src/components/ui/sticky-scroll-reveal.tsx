@@ -11,6 +11,7 @@ export const StickyScroll = ({
     content: {
         title: string;
         description: string;
+        href: string;
     }[];
     images: string[];
 }) => {
@@ -42,6 +43,7 @@ export const StickyScroll = ({
         "linear-gradient(to bottom right, var(--cyan-500), var(--emerald-500))",
         "linear-gradient(to bottom right, var(--pink-500), var(--indigo-500))",
         "linear-gradient(to bottom right, var(--orange-500), var(--yellow-500))",
+        "linear-gradient(to bottom right, var(--teal-500), var(--cyan-500))",
     ];
     return (
         <motion.div
@@ -84,7 +86,7 @@ export const StickyScroll = ({
                                 animate={{
                                     opacity: activeCard === index ? 1 : 0.3,
                                 }}
-                                onClick={() => router.replace('/catalog')}
+                                onClick={() => router.push(item.href)}
                                 className="mt-10 px-5 py-2 text-slate-100 bg-slate-800 rounded-full duration-300"
                             >
                                 Перейти в каталог

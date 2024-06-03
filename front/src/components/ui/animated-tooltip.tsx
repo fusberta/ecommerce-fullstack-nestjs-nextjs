@@ -1,5 +1,5 @@
 "use client";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import React, { useState } from "react";
 import {
     motion,
@@ -16,7 +16,7 @@ export const AnimatedTooltip = ({
         id: number;
         name: string;
         href: string;
-        image: string;
+        image: StaticImageData;
     }[];
 }) => {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -42,7 +42,7 @@ export const AnimatedTooltip = ({
             {items.map((item, idx) => (
                 <a href={item.href} key={item.name}>
                     <div
-                        className="-mr-4  relative group"
+                        className="mr-3  relative group"
                         onMouseEnter={() => setHoveredIndex(item.id)}
                         onMouseLeave={() => setHoveredIndex(null)}
                     >
@@ -76,11 +76,11 @@ export const AnimatedTooltip = ({
                         )}
                         <Image
                             onMouseMove={handleMouseMove}
-                            height={100}
-                            width={100}
+                            height={50}
+                            width={50}
                             src={item.image}
                             alt={item.name}
-                            className="object-cover !m-0 !p-0 object-top rounded-full h-14 w-14 border-2 group-hover:scale-105 group-hover:z-30 border-white  relative transition duration-500"
+                            className="object-cover text-white !m-0 !p-0 object-top rounded-full h-11 w-11 border-2 group-hover:scale-105 group-hover:z-30 border-white  relative transition duration-500"
                         />
                     </div >
                 </a>

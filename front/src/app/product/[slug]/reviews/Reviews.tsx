@@ -47,8 +47,8 @@ const Reviews: FC<IReviews> = ({ reviews, productId }) => {
           </div>
         </div>
 
-        <div className="py-5 text-center">
-          Оставте первый отзыв на этот товар
+        <div className="py-5 text-center text-sm">
+          Оставьте первый отзыв на этот товар
         </div>
 
       </Dialog>

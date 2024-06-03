@@ -39,8 +39,8 @@ const ProductExplorer: FC<IProductExplorer> = ({ initialProducts }) => {
     })
     return (
         <div className='px-28 py-32'>
-            <Search />
-            <Drawer>
+            <Search/>
+            <Drawer >
                 <DrawerTrigger>
                     <Button
                         variant={'default'}
