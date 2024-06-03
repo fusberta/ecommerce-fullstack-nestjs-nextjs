@@ -55,9 +55,9 @@ const Reviews: FC<IReviews> = ({ reviews, productId }) => {
     </section>
   )
   return (
-    <section id='reviews' className='mt-20'>
+    <section id='reviews' className='mt-14'>
       <Dialog>
-        <div className="flex justify-between">
+        <div className="flex justify-between mb-5">
           <Heading title='Отзывы' className='text-xl font-extrabold' />
           <div className="mb-9">
             {user && (

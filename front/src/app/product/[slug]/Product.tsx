@@ -11,6 +11,7 @@ import ProductGallery from './ProductGallery'
 import ProductInformation from './information/ProductInformation'
 import SimilarProducts from './SimilarProducts'
 import Reviews from './reviews/Reviews'
+import ProductDescription from './information/ProductDescription'
 
 interface IProductPage {
     initialProduct: IProduct
@@ -44,6 +45,7 @@ const Product: FC<IProductPage> = ({ initialProduct, similarProducts, slug = '' 
                 </div>
                 <ProductInformation product={product.data} />
             </div>
+            <ProductDescription description={product.data.description} />
             <SimilarProducts similarProducts={similarProducts} />
             <Reviews productId={product.data.id} reviews={product.data.reviews} />
         </div>

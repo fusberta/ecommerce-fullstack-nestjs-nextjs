@@ -15,7 +15,7 @@ interface ISimilarProducts {
  */
 const SimilarProducts: FC<ISimilarProducts> = ({ similarProducts }) => {
     return (
-        <div className='mt-20'>
+        <section className='mt-14'>
             <Heading className='mb-7 text-xl font-extrabold' title='Похожие продукты' />
             {similarProducts.length ? (
                 <div className="grid grid-cols-4 gap-10">
@@ -26,7 +26,7 @@ const SimilarProducts: FC<ISimilarProducts> = ({ similarProducts }) => {
             ) : (
                 <div className="text-center py-2 text-sm">Не найдено похожих продуктов</div>
             )}
-        </div>
+        </section>
     )
 }
 

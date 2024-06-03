@@ -9,7 +9,9 @@ async function bootstrap() {
   // await prismaService.enableShutdownHooks(app)
 
   app.setGlobalPrefix('api')
-  app.enableCors()
+  app.enableCors({ 
+    origin: ['https://custom-world.vercel.app', 'http://localhost:3000'] 
+  })
   await app.listen(process.env.PORT || 5000);
 }
 bootstrap();
