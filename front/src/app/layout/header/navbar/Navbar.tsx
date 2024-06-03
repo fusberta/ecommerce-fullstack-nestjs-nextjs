@@ -80,6 +80,12 @@ const Navbar = ({ className }: { className?: string }) => {
                                 Авторизация
                             </HoveredLink>
                         )}
+                        {user?.isAdmin && (
+                            <HoveredLink href="/admin">
+                                Админ панель
+                            </HoveredLink>
+                        )}
+
                     </>
                 )}
             </Menu>
