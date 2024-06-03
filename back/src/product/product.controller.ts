@@ -46,6 +46,7 @@ export class ProductController {
       ...(images && { images }), // Only if images exist
     };
 
+    console.log(updatedProductData);
     return this.productService.update(+id, updatedProductData);
   }
 

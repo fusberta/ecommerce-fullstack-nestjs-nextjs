@@ -35,6 +35,7 @@ let ProductController = class ProductController {
             categoryId: Number(productDto.categoryId),
             ...(images && { images }),
         };
+        console.log(updatedProductData);
         return this.productService.update(+id, updatedProductData);
     }
     async getSimilar(id) {
