@@ -22,6 +22,7 @@ import InputMessage from "@/components/ui/InputMessage";
 import { validEmail } from "./validate-email";
 import { useAuthRedirect } from "@/hooks/useAuthRedirect";
 import { HashLoader } from "react-spinners";
+import { AxiosError } from "axios";
 
 /**
  * The `Auth` component is the main authentication component for the application. It handles both login and registration functionality.
@@ -35,6 +36,7 @@ import { HashLoader } from "react-spinners";
  * The component also displays a loading indicator while the authentication process is in progress.
  */
 const Auth: FC = () => {
+    const [loginError, setLoginError] = useState('');
     const { isLoading } = useAuth();
 
     useAuthRedirect();
@@ -52,9 +54,21 @@ const Auth: FC = () => {
     })
 
     const onSubmit: SubmitHandler<IAuth> = (data) => {
-        type === 'login' ? login(data) : register(data);
-        reset();
-        loginReset();
+        try {
+            if (type === 'login') {
+                login(data);
+            } else {
+                register(data);
+            }
+            reset();
+            loginReset();
+        } catch (error) {
+            if (error instanceof AxiosError && error.response && error.response.data) {
+                setLoginError(error.response.data.message);
+            } else {
+                setLoginError('Произошла ошибка при авторизации');
+            }
+        }
     }
 
     return (
@@ -98,6 +112,7 @@ const Auth: FC = () => {
                                         type="password"
                                         error={loginErrors.password?.message}
                                     />
+                                    {loginError && <div className="text-red-500 mt-4">{loginError}</div>}
                                 </CardContent>
                                 <CardFooter className="flex items-center justify-end">
                                     <Button type="submit" className="font-medium mt-2 pl-7" onClick={() => setType("login")}>

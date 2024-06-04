@@ -32,10 +32,10 @@ const Dashboard: FC = () => {
                     <HashLoader color="#1f2547" />
                 </div>
             ) : data?.length ? (
-                <div className="flex items-center justify-between my-8 flex-wrap animate-opacity">
+                <div className="flex items-center justify-start my-8 flex-wrap animate-opacity">
                     {
                         data?.map((item, index) => (
-                            <div key={item.name} className='bg-slate-800 p-5 rounded-xl text-center w-60 font-bold mb-10'>
+                            <div key={item.name} className='bg-slate-800 p-5 rounded-xl text-center w-60 font-bold mb-10 mr-10'>
                                 <div className='text-sm'>{item.name}</div>
                                 <div className='text-4xl'>
                                     {index === data.length - 1

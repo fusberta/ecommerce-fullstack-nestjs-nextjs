@@ -14,7 +14,7 @@ export const register = createAsyncThunk<IAuthResponse, IAuth>(
             return thunkAPI.rejectWithValue(error);
         }
     }
-) 
+)
 
 export const login = createAsyncThunk<IAuthResponse, IAuth>(
     "auth/login",
@@ -26,7 +26,7 @@ export const login = createAsyncThunk<IAuthResponse, IAuth>(
             return thunkAPI.rejectWithValue(error);
         }
     }
-) 
+)
 
 export const logout = createAsyncThunk(
     "auth/logout",

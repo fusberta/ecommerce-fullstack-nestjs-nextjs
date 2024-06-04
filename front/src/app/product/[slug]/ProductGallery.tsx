@@ -24,7 +24,7 @@ const ProductGallery: FC<IProductGallery> = ({ images }) => {
                 alt='product'
                 width={500}
                 height={500}
-                className='rounded-xl overflow-hidden w-auto max-h-[400px]'
+                className='rounded-xl overflow-hidden w-auto max-h-[400px] animate-scaleIn'
                 priority
                 draggable={false}
             />
@@ -46,7 +46,7 @@ const ProductGallery: FC<IProductGallery> = ({ images }) => {
                             alt='miniature'
                             width={100}
                             height={100}
-                            className='overflow-hidden object-contain w-[100px] h-auto'
+                            className='overflow-hidden object-contain w-[100px] h-auto animate-scaleIn'
                             priority
                             draggable={false}
                         />

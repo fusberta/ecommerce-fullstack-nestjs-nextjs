@@ -24,11 +24,11 @@ const Reviews: FC<IReviews> = ({ reviews, productId }) => {
   const { user } = useAuth()
 
   if (!reviews.length) return (
-    <section id='reviews' className='mt-20'>
+    <section id='reviews' className='mt-14'>
       <Dialog>
         <div className="flex justify-between">
           <Heading title='Отзывы' className='text-xl font-extrabold' />
-          <div className="mb-9">
+          <div className="mb-8">
             {user && (
               <>
                 <DialogTrigger>
@@ -57,9 +57,9 @@ const Reviews: FC<IReviews> = ({ reviews, productId }) => {
   return (
     <section id='reviews' className='mt-14'>
       <Dialog>
-        <div className="flex justify-between mb-5">
+        <div className="flex justify-between">
           <Heading title='Отзывы' className='text-xl font-extrabold' />
-          <div className="mb-9">
+          <div className="mb-8">
             {user && (
               <>
                 <DialogTrigger>

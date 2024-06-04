@@ -54,7 +54,7 @@ const Build: FC = () => {
                     />
                 </div>
             </div>
-            <div className="snap-start h-screen flex flex-col justify-center items-center max-w-5xl text-center">
+            <div className="snap-start h-screen flex flex-col justify-center items-center max-w-5xl max-2xl:max-w-6xl text-center">
                 <div className="flex items-center gap-8 mt-8">
                     <Image
                         src='/images/switches_example.jpg'

@@ -20,6 +20,7 @@ const ProductInformation: FC<IProductInformation> = ({ product }) => {
         <div className='bg-gray-200 rounded-xl p-6 relative h-max w-96 text-black'>
             <div className="text-3xl font-bold text-center">
                 {product.price} ₽
+                <span className='text-sm text-gray-800'>{product.category.slug === 'switches' && ' / 10 шт.'}</span>
             </div>
             <div className="mt-4 text-sm">
                 <span className='opacity-60 mr-1'>Доставка</span>

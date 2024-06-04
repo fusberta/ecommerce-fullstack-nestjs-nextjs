@@ -4,8 +4,8 @@ import React, { FC } from 'react'
 
 const About: FC = () => {
     return (
-        <div className='px-28 py-32 flex justify-between items-center h-screen'>
-            <div className="max-w-xl">
+        <div className='px-28 py-32 flex justify-center items-center h-screen'>
+            <div className="max-w-xl mr-20">
                 <Heading title='О нас' />
                 <p className='mt-8 leading-8'>
                     <b>CustomWorld</b> — бренд из Санкт-Петербурга, специализирующийся на кастомизации и продаже
