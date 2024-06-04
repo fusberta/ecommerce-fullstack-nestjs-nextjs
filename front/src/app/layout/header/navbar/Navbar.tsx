@@ -18,7 +18,7 @@ const Navbar = ({ className }: { className?: string }) => {
     if (!categories.data) return null
 
     return (
-        <div className={cn("fixed top-10 rounded-full border-2 border-slate-800 inset-x-0 max-w-md xl:max-w-lg lg:max-w-xl max-[920px]:hidden mx-auto z-[100]", className)}>
+        <div className={cn("fixed top-10 rounded-full border-2 border-slate-800 inset-x-0 max-w-md xl:max-w-lg lg:max-w-xl max-lg:text-sm whitespace-nowrap mx-auto z-[100]", className)}>
             <Menu setActive={setActive}>
                 {isAdminPanel ? (
                     <>
@@ -41,7 +41,7 @@ const Navbar = ({ className }: { className?: string }) => {
                             Главная
                         </HoveredLink>
                         <MenuItem setActive={setActive} active={active} item="Каталог" isLink>
-                            <div className="text-sm grid grid-cols-2 gap-10 p-4">
+                            <div className="text-sm grid grid-cols-2 gap-10 p-4 whitespace-normal">
                                 <ProductItem
                                     title="Клавиши"
                                     href={`/explorer?page=1&categoryId=${categories.data[0].id}`}

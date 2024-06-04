@@ -15,15 +15,13 @@ import { RiCloseFill, RiMenu5Fill } from "react-icons/ri"
  *
  * The main content area below the sidebar contains the hero, wobble, and overview sections, which are vertically scrollable using the `snap-y` and `snap-mandatory` classes.
  *
- * @param products - An object containing the products to be displayed on the home page.
- * @param length - The total number of products.
  * @returns The rendered `Home` component.
  */
-export const Home: FC<IPaginationProducts> = ({ products, length }) => {
-    const [showSidebar, setShowSidebar] = useState<boolean>(false);
-    const toggleSidebar = () => {
-        setShowSidebar(!showSidebar);
-    };
+export const Home: FC = () => {
+    // const [showSidebar, setShowSidebar] = useState<boolean>(false);
+    // const toggleSidebar = () => {
+    //     setShowSidebar(!showSidebar);
+    // };
     return (
         <>
             {/* <Sidebar

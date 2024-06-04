@@ -37,7 +37,7 @@ const Product: FC<IProductPage> = ({ initialProduct, similarProducts, slug = '' 
     })
 
     if (isFetching) return (
-        <div className="flex items-center justify-center py-14">
+        <div className="flex items-center justify-center py-14 h-screen">
             <HashLoader color="#1f2547" />
         </div>
     )

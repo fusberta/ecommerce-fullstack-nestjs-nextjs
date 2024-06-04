@@ -33,7 +33,11 @@ export const MenuItem = ({
     <div onMouseEnter={() => setActive(item)} className="relative">
       <motion.p
         transition={{ duration: 0.3 }}
-        onClick={() => {if (isLink) router.push('/explorer?page=1')}}
+        onClick={() => {
+          if (isLink) {
+            router.push('/explorer?page=1')
+          }
+        }}
         className="cursor-pointer text-black hover:opacity-[0.9] dark:text-white"
       >
         {item}
@@ -75,7 +79,7 @@ export const Menu = ({
 }) => {
   return (
     <nav
-      onMouseLeave={() => setActive(null)} 
+      onMouseLeave={() => setActive(null)}
       className="relative rounded-full boder border-transparent dark:bg-slate-900 dark:border-white/[0.2] bg-white shadow-input flex justify-center space-x-4 px-8 py-6 "
     >
       {children}
