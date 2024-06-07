@@ -6,6 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import UserService from '@/services/user.service';
 import { IUserUpdate } from '@/types/user.interface';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import axios, { AxiosError } from 'axios';
 import React, { FC, useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
@@ -22,7 +23,7 @@ const UpdateUserForm: FC<IUpdateUserForm> = ({ user }) => {
     } = useForm<IUserUpdate>({ mode: 'onChange' });
     const queryClient = useQueryClient();
 
-    const { mutate, isSuccess } = useMutation({
+    const { mutate, isSuccess, error, isError } = useMutation({
         mutationKey: ['update user'],
         mutationFn: (data: IUserUpdate) => UserService.updateProfile(data),
         onSuccess: () => queryClient.invalidateQueries({ queryKey: ['profile'] })
@@ -43,6 +44,16 @@ const UpdateUserForm: FC<IUpdateUserForm> = ({ user }) => {
         mutate(data);
         reset();
     };
+
+    const getErrorMessage = (error: unknown) => {
+        if (axios.isAxiosError(error)) {
+            const axiosError = error as AxiosError<{ message: string[] }>;
+            return axiosError.response?.data.message || [];
+        }
+        return [];
+    };
+
+    const errorMessages = getErrorMessage(error);
 
     return (
         <div className='px-4 py-2 w-80'>
@@ -78,9 +89,16 @@ const UpdateUserForm: FC<IUpdateUserForm> = ({ user }) => {
                     </div>
 
                     {Object.entries(errors) && (
-                        <ul className='text-red-600 animate-opacity text-sm list-disc pl-4 mt-3'>
+                        <ul className='text-red-600 animate-opacity text-sm list-disc pl-4'>
                             {Object.entries(errors).map(([_, error]) => (
                                 <li key={error.message}>{error?.message}</li>
+                            ))}
+                        </ul>
+                    )}
+                    {isError && errorMessages.length > 0 && (
+                        <ul className='text-red-600 animate-opacity text-sm list-disc pl-4'>
+                            {errorMessages.map((msg, index) => (
+                                <li key={index}>{msg}</li>
                             ))}
                         </ul>
                     )}

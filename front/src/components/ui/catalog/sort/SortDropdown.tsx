@@ -16,7 +16,7 @@ const SortDropdown: FC = () => {
             data={SORT_SELECT_DATA}
             value={SORT_SELECT_DATA.find(value => value.key === queryParams.sort)}
             onChange={value => updateQueryParams('sort', value.key.toString())}
-            title='Sort By'
+            title='Сортировать по'
         />
     )
 }

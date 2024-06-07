@@ -10,7 +10,6 @@ import { useFilters } from '@/hooks/useFilters'
 import ProductService from '@/services/product.service'
 import { IPaginationProducts } from '@/types/product.interface'
 import { useQuery } from '@tanstack/react-query'
-import { useRouter } from 'next/navigation'
 import React, { FC, useState } from 'react'
 import { MdFilterAlt } from 'react-icons/md'
 
@@ -37,6 +36,7 @@ const ProductExplorer: FC<IProductExplorer> = ({ initialProducts }) => {
         initialData: initialProducts,
         enabled: isFilterUpdated
     })
+
     return (
         <div className='px-28 py-32'>
             <Search/>
@@ -72,7 +72,7 @@ const ProductExplorer: FC<IProductExplorer> = ({ initialProducts }) => {
                     </div>
                 </DrawerContent>
             </Drawer>
-            <section className='mt-8'>
+            <section className='mt-5'>
                 <Catalog title={
                     queryParams.searchTerm ? `Поиск по запросу: ${queryParams.searchTerm}` : 'Каталог'
                 } data={data.products} isSort />

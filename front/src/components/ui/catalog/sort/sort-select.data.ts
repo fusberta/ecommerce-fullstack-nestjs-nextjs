@@ -7,18 +7,18 @@ import { ISelectItem } from "../../select/select.interface";
 export const SORT_SELECT_DATA: ISelectItem<EnumProductSort>[] = [
    {
       key: EnumProductSort.HIGH_PRICE,
-      label: 'High Price'
+      label: 'Убыванию цены'
    },
    {
       key: EnumProductSort.LOW_PRICE,
-      label: 'Low Price'
+      label: 'Возрастанию цены'
    },
    {
       key: EnumProductSort.NEWEST,
-      label: 'Newest'
+      label: 'Самым новым'
    },
    {
       key: EnumProductSort.OLDEST,
-      label: 'Oldest'
+      label: 'Самым старым'
    }
 ]

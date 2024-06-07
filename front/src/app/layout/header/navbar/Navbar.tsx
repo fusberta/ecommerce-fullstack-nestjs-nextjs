@@ -44,25 +44,25 @@ const Navbar = ({ className }: { className?: string }) => {
                             <div className="text-sm grid grid-cols-2 gap-10 p-4 whitespace-normal">
                                 <ProductItem
                                     title="Клавиши"
-                                    href={`/explorer?page=1&categoryId=${categories.data[0].id}`}
+                                    href={`/explorer?page=1&categoryId=${categories.data.find(e => e.name === "Keycaps")?.id}`}
                                     src="/images/keycaps_banner.webp"
                                     description="C русскими символами или вовсе без них — выберите свои идеальные."
                                 />
                                 <ProductItem
                                     title="Переключатели"
-                                    href={`/explorer?page=1&categoryId=${categories.data[3].id}`}
+                                    href={`/explorer?page=1&categoryId=${categories.data.find(e => e.name === "Switches")?.id}`}
                                     src="/images/switches_banner.webp"
                                     description="Линейные, кликающие или тактильные — выберите под свои задачи."
                                 />
                                 <ProductItem
                                     title="Базы"
-                                    href={`/explorer?page=1&categoryId=${categories.data[2].id}`}
+                                    href={`/explorer?page=1&categoryId=${categories.data.find(e => e.name === "Bases")?.id}`}
                                     src="/images/base_banner.webp"
                                     description="Полноразмерные, TKL или даже 65% — выберите самую удобную для себя."
                                 />
                                 <ProductItem
                                     title="Готовые клавиатуры"
-                                    href={`/explorer?page=1&categoryId=${categories.data[1].id}`}
+                                    href={`/explorer?page=1&categoryId=${categories.data.find(e => e.name === "Ready Made")?.id}`}
                                     src="/images/ready-made_banner.webp"
                                     description="Varmilo, Akko, Leopold и другие зарекомендовавшие себя бренды."
                                 />

@@ -17,7 +17,7 @@ export const useFilters = () => {
     const pathname = usePathname()
     const searchParams = useSearchParams()
     const { updateQueryParam } = useActions()
-    const { replace } = useRouter()
+    const { replace, refresh } = useRouter()
 
     const { queryParams, isFilterUpdated } = useTypedSelector(state => state.filters)
 
@@ -43,8 +43,8 @@ export const useFilters = () => {
 
     const resetQueryParams = () => {
         if (pathname) {
-            const newParams = new URLSearchParams()
-            replace(pathname)
+            replace(`${pathname}?page=1`)
+            refresh()
         }
     }
 

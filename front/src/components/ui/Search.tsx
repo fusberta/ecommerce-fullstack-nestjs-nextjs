@@ -24,7 +24,7 @@ const Search: FC = () => {
     };
 
     return (
-        <div className="flex flex-col justify-center items-center px-4 mb-6">
+        <div className="flex flex-col justify-center items-center px-4 mb-4">
             <PlaceholdersAndVanishInput
                 placeholders={placeholders}
                 onChange={handleChange}

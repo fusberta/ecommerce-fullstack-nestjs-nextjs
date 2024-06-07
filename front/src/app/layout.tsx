@@ -45,7 +45,6 @@ export default function RootLayout({ children }: PropsWithChildren<unknown>) {
                     </main>
                     <Toaster />
                 </Providers>
-                <div id='modal'></div>
             </body>
         </html>
     )
