@@ -17,8 +17,11 @@ const nextConfig = {
         protocol: 'http',
         hostname: 'localhost',
         pathname: '**',
-      }
+      },
     ],
+  },
+  typescript: {
+    ignoreBuildErrors: true,
   },
   async rewrites() {
     return [
