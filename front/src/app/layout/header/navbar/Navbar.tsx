@@ -4,6 +4,7 @@ import { useAdminPanel } from "@/hooks/useAdminPanel";
 import { useAuth } from "@/hooks/useAuth";
 import { useCategories } from "@/hooks/useCategories";
 import { cn } from "@/utils/utils";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const Navbar = ({ className }: { className?: string }) => {

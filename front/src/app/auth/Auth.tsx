@@ -22,7 +22,6 @@ import InputMessage from "@/components/ui/InputMessage";
 import { validEmail } from "./validate-email";
 import { useAuthRedirect } from "@/hooks/useAuthRedirect";
 import { HashLoader } from "react-spinners";
-import { AxiosError } from "axios";
 
 /**
  * The `Auth` component is the main authentication component for the application. It handles both login and registration functionality.

@@ -7,6 +7,7 @@ import Heading from "../Heading";
 import { CategoriesMenu } from "../Categories-menu";
 import SortDropdown from "./sort/SortDropdown";
 import { TbError404 } from "react-icons/tb";
+import { useCategories } from "@/hooks/useCategories";
 
 interface ICatalogProps {
   data: IProduct[];
@@ -25,7 +26,6 @@ interface ICatalogProps {
  * @returns A React component that renders the catalog section.
  */
 const Catalog: FC<ICatalogProps> = ({ data, title, isCategories = false, isSort = false }) => {
-
   return (
     <section>
       <div className="flex justify-between items-center mb-7">

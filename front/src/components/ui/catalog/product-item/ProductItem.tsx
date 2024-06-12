@@ -6,6 +6,8 @@ import ProductRating from "./ProductRating";
 import Link from "next/link";
 import FavoriteBtn from "./FavoriteBtn";
 import { LiaRubleSignSolid } from "react-icons/lia";
+import { useFilters } from "@/hooks/useFilters";
+import { Button } from "../../button/button";
 
 /**
  * Renders a product item component for displaying a single product in the catalog.
@@ -15,6 +17,9 @@ import { LiaRubleSignSolid } from "react-icons/lia";
  * @returns {React.ReactElement} - The rendered product item component.
  */
 const ProductItem: FC<{ product: IProduct }> = ({ product }) => {
+
+    const { updateQueryParams } = useFilters()
+    
     return (
         <div className="animate-scaleIn border border-zinc-700 rounded-xl">
             <div className="block w-full overflow-hidden bg-white rounded-t-xl">
@@ -31,7 +36,13 @@ const ProductItem: FC<{ product: IProduct }> = ({ product }) => {
                     <Link href={`/product/${product.slug}`}>
                         <h3 className="mb-1 font-semibold text-lg">{product.name}</h3>
                     </Link>
-                    <Link href={`/category/${product.category.slug}`} className="text-sky-500 font-bold text-xs">{product.category.name}</Link>
+                    <Button 
+                        variant={"link"} 
+                        onClick={() => updateQueryParams('categoryId', product.category.id.toString())} 
+                        className="text-sky-500 font-bold text-xs px-0"
+                    >
+                        {product.category.name}
+                    </Button>
                     <ProductRating product={product} isText />
                 </div>
                 <span className="flex items-center mt-2 justify-center pt-1 border-t border-zinc-700 border- font-extrabold text-lg">{product.price}<LiaRubleSignSolid size={20} /></span>
