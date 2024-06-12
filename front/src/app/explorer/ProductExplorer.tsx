@@ -4,14 +4,15 @@ import Search from '@/components/ui/Search'
 import { Button } from '@/components/ui/button/button'
 import Catalog from '@/components/ui/catalog/Catalog'
 import Pagination from '@/components/ui/catalog/Pagination'
-import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerPortal, DrawerTitle, DrawerTrigger } from '@/components/ui/drawer'
+import { Drawer, DrawerClose, DrawerContent, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from '@/components/ui/drawer'
 import Filters from '@/components/ui/filters/Filters'
 import { useFilters } from '@/hooks/useFilters'
 import ProductService from '@/services/product.service'
 import { IPaginationProducts } from '@/types/product.interface'
 import { useQuery } from '@tanstack/react-query'
-import React, { FC, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import { MdFilterAlt } from 'react-icons/md'
+import { HashLoader } from 'react-spinners'
 
 interface IProductExplorer {
     initialProducts: IPaginationProducts
@@ -30,16 +31,28 @@ const ProductExplorer: FC<IProductExplorer> = ({ initialProducts }) => {
 
     const { isFilterUpdated, queryParams, updateQueryParams, resetQueryParams } = useFilters()
 
-    const { data, isFetching } = useQuery({
+    const { data, isFetching, refetch } = useQuery({
         queryKey: ['product explorer', queryParams],
         queryFn: () => ProductService.getAll(queryParams),
         initialData: initialProducts,
-        enabled: isFilterUpdated
+        enabled: isFilterUpdated,
     })
+
+    useEffect(() => {
+        if (isFilterUpdated) {
+            refetch();
+        }
+    }, [queryParams, isFilterUpdated, refetch]);
+
+    if (isFetching) {
+        <div className="flex items-center justify-center py-14 h-screen">
+            <HashLoader color="#1f2547" />
+        </div>
+    }
 
     return (
         <div className='px-28 py-32'>
-            <Search/>
+            <Search />
             <Drawer >
                 <DrawerTrigger>
                     <Button
@@ -82,7 +95,7 @@ const ProductExplorer: FC<IProductExplorer> = ({ initialProducts }) => {
                     changePage={page => updateQueryParams('page', page.toString())}
                 />
             </section>
-        </div >
+        </div>
     )
 }
 

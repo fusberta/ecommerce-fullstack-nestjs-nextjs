@@ -1,8 +1,8 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { useActions } from "./useActions"
 import { useTypedSelector } from "./useTypedSelector"
-import { useEffect } from "react"
-import { IProductFilters } from "@/types/product.interface"
+import { useEffect, useState } from "react"
+import { EnumProductSort, IProductFilters } from "@/types/product.interface"
 
 /**
  * A custom React hook that manages product filters and updates the URL query parameters.
@@ -16,16 +16,21 @@ import { IProductFilters } from "@/types/product.interface"
 export const useFilters = () => {
     const pathname = usePathname()
     const searchParams = useSearchParams()
-    const { updateQueryParam } = useActions()
-    const { replace, refresh } = useRouter()
+    const { updateQueryParam, resetFilters } = useActions()
+    const { replace } = useRouter()
 
     const { queryParams, isFilterUpdated } = useTypedSelector(state => state.filters)
+    const [localQueryParams, setLocalQueryParams] = useState<IProductFilters>(queryParams);
 
     useEffect(() => {
         searchParams?.forEach((value, key) => {
-            updateQueryParam({ key: key as keyof IProductFilters, value })
-        })
-    }, [])
+            updateQueryParam({ key: key as keyof IProductFilters, value });
+        });
+    }, [searchParams, updateQueryParam]);
+
+    useEffect(() => {
+        setLocalQueryParams(queryParams);
+    }, [queryParams]);
 
     const updateQueryParams = (key: keyof IProductFilters, value: string) => {
         const newParams = new URLSearchParams(searchParams?.toString())
@@ -37,20 +42,33 @@ export const useFilters = () => {
 
         replace(pathname + `?${newParams.toString()}`)
 
-        updateQueryParam({ key, value })
+        setLocalQueryParams(prev => ({
+            ...prev,
+            [key]: value
+        }));
 
+        updateQueryParam({ key, value })
     }
 
     const resetQueryParams = () => {
         if (pathname) {
             replace(`${pathname}?page=1`)
-            refresh()
+
+            setLocalQueryParams({
+                sort: EnumProductSort.NEWEST,
+                searchTerm: '',
+                page: 1,
+                perPage: 8,
+                ratings: ''
+            });
+
+            resetFilters()
         }
     }
 
     return {
         updateQueryParams,
-        queryParams,
+        queryParams: localQueryParams,
         resetQueryParams,
         isFilterUpdated
     }

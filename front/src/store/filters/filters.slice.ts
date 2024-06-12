@@ -2,7 +2,7 @@ import { EnumProductSort } from "@/types/product.interface";
 import { IFiltersActionsPayload, IFiltersState } from "./filters.interface";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-const initialState: IFiltersState = {
+export const initialState: IFiltersState = {
     isFilterUpdated: false,
     queryParams: {
         sort: EnumProductSort.NEWEST,
@@ -24,6 +24,10 @@ export const filtersSlice = createSlice({
         },
         resetFilterUpdate: (state) => {
             state.isFilterUpdated = false
+        },
+        resetFilters: (state) => {
+            state.isFilterUpdated = false;
+            return initialState;
         }
     }
 })
