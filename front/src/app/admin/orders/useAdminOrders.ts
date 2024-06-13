@@ -8,7 +8,7 @@ export const useAdminOrders = () => {
     const queryClient = useQueryClient()
     const { toast } = useToast()
 
-    const { data, isFetching } = useQuery({
+    const { data, isFetching, isError, error } = useQuery({
         queryKey: ['get admin orders'],
         queryFn: () => OrderService.getAll(),
         select: ({ data }) => {
@@ -51,6 +51,10 @@ export const useAdminOrders = () => {
                 description: "Отклонить можно только заказы со статусом 'Новый'",
             })
     })
+
+    if (isError) {
+        console.error('Error fetching orders:', error);
+    }
 
     return {
         confirmMutation,
