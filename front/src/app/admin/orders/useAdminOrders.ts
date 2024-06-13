@@ -11,18 +11,22 @@ export const useAdminOrders = () => {
     const { data, isFetching } = useQuery({
         queryKey: ['get admin orders'],
         queryFn: () => OrderService.getAll(),
-        select: ({ data }) => data.map((order): IListItem => {
-            return {
-                id: order.id,
-                items: [
-                    order.status,
-                    new Date(order.createdAt).toLocaleDateString('ru-RU') + ' '
-                    + new Date(order.createdAt).toLocaleTimeString('ru-RU'),
-                    order.items.map((item) => item.product.name + ' x ' + item.quantity).join(', '),
-                    order.total.toString() + ' ₽'
-                ]
-            }
-        })
+        select: ({ data }) => {
+            const orders = data.map((order): IListItem => {
+                return {
+                    id: order.id,
+                    items: [
+                        order.status,
+                        new Date(order.createdAt).toLocaleDateString('ru-RU') + ' '
+                        + new Date(order.createdAt).toLocaleTimeString('ru-RU'),
+                        order.items.map((item) => item.product.name + ' x ' + item.quantity).join(', '),
+                        order.total.toString() + ' ₽'
+                    ]
+                }
+            })
+            console.log('useAdminOrders:', orders);
+            return orders;
+        }
     })
 
     const { mutate: confirmMutation } = useMutation({
