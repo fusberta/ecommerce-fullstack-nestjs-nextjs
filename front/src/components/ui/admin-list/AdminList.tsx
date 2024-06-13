@@ -22,7 +22,6 @@ interface IAdminList {
  * @returns A React component that displays the admin list.
  */
 const AdminList: FC<IAdminList> = ({ items, isLoading, removeHandler, confirmHandler, rejectHandler }) => {
-    console.log('AdminList items:', items);
     return (
         <div>
             {

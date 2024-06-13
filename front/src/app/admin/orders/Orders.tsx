@@ -13,7 +13,6 @@ import AdminList from '@/components/ui/admin-list/AdminList'
  */
 const Orders: FC = () => {
     const { data, isFetching, rejectMutation, confirmMutation } = useAdminOrders()
-    console.log('Orders data:', data);
     return (
         <div className='px-28 py-32'>
             <Heading title='Orders' className='mb-4' />
