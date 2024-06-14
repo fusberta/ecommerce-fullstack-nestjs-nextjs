@@ -3,7 +3,8 @@
 import Hero from "@/components/ui/hero/Hero"
 import Overview from "@/components/ui/overview/Overview"
 import { Wobble } from "@/components/ui/wobble/Wobble"
-import { IPaginationProducts, IProducts } from "@/types/product.interface"
+import UserService from "@/services/user.service"
+import { useQuery } from "@tanstack/react-query"
 import { FC, useState } from "react"
 import { fallDown as Sidebar } from 'react-burger-menu'
 import { RiCloseFill, RiMenu5Fill } from "react-icons/ri"
@@ -22,6 +23,10 @@ export const Home: FC = () => {
     // const toggleSidebar = () => {
     //     setShowSidebar(!showSidebar);
     // };
+    const { data } = useQuery({
+        queryKey: ['logVisit'],
+        queryFn: () => UserService.logVisit(),
+    });
     return (
         <>
             {/* <Sidebar

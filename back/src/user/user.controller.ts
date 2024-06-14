@@ -9,13 +9,16 @@ import {
 	UsePipes,
 	ValidationPipe,
 	UseInterceptors,
-	UploadedFile
+	UploadedFile,
+	Post,
+	Req
 } from '@nestjs/common'
 import { UserService } from './user.service'
 import { Auth } from 'src/auth/decorators/auth.decorator'
 import { CurrentUser } from 'src/auth/decorators/user.decorator'
 import { UserDto } from './user.dto'
 import { FileInterceptor } from '@nestjs/platform-express'
+import { Request } from 'express'
 
 @Controller('users')
 export class UserController {
@@ -25,6 +28,18 @@ export class UserController {
 	@Auth()
 	async getProfile(@CurrentUser('id') id: number) {
 		return this.userService.byId(id)
+	}
+
+	@Post('visit')
+	async logVisit(@Req() request: Request) {
+		const ip = this.getIpAddress(request);
+		this.userService.logVisit(ip);
+		return { message: 'Visit logged' };
+	}
+	private getIpAddress(request: Request): string {
+		const xForwardedFor = request.headers['x-forwarded-for'];
+		const ip = Array.isArray(xForwardedFor) ? xForwardedFor[0] : xForwardedFor || request.socket.remoteAddress;
+		return ip as string;
 	}
 
 	@UsePipes(new ValidationPipe())

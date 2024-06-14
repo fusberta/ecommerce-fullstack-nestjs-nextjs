@@ -7,40 +7,44 @@ import { hash } from 'argon2'
 
 @Injectable()
 export class UserService {
-	constructor(private prisma: PrismaService) {}
+    constructor(private prisma: PrismaService) { }
 
-	async byId(id: number, selectObject: Prisma.UserSelect = {}) {
-		const user = this.prisma.user.findUnique({
-			where: {
-				id
-			},
-			select: {
-				...returnUserObject,
-				favorites: {
-					select: {
-						id: true,
-						name: true,
-						price: true,
-						images: true,
-						slug: true,
+    async byId(id: number, selectObject: Prisma.UserSelect = {}) {
+        const user = this.prisma.user.findUnique({
+            where: {
+                id
+            },
+            select: {
+                ...returnUserObject,
+                favorites: {
+                    select: {
+                        id: true,
+                        name: true,
+                        price: true,
+                        images: true,
+                        slug: true,
                         category: {
                             select: {
                                 slug: true
                             }
                         },
                         reviews: true
-					}
-				},
+                    }
+                },
                 ...selectObject
-			}
-		})
+            }
+        })
 
         if (!user) {
             throw new NotFoundException('User not found')
         }
 
         return user
-	}
+    }
+
+    async logVisit(ip: string) {
+        console.log(`New visit from IP: ${ip}`);
+    }
 
     async updateProfile(id: number, dto: UserDto) {
         const isSameUser = await this.prisma.user.findUnique({
@@ -68,7 +72,7 @@ export class UserService {
         })
     }
 
-    async updateAvatar(id: number, avatar: Express.Multer.File ) {
+    async updateAvatar(id: number, avatar: Express.Multer.File) {
         const avatarPath = `/uploads/${avatar.filename}`
 
         return this.prisma.user.update({

@@ -34,6 +34,12 @@ export const UserService = {
             url: `${users}/favorites/${productId}`,
             method: 'PATCH'
         })
+    },
+    async logVisit() {
+        return instance({
+            url: `users/visit`,
+            method: 'POST'
+        })
     }
 }
 
