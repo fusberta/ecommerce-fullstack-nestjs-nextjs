@@ -18,6 +18,11 @@ const nextConfig = {
         hostname: 'localhost',
         pathname: '**',
       },
+      {
+        protocol: 'https',
+        hostname: 'pouch.jumpshare.com',
+        pathname: '**',
+      },
     ],
   },
   typescript: {
