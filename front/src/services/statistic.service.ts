@@ -10,6 +10,12 @@ export const StatisticService = {
             method: 'GET'
         })
     },
+    async logFileSystem() {
+        return instance({
+            url: `${statistic}/log-file-system`,
+            method: 'GET',
+        })
+    }
 }
 
 export default StatisticService

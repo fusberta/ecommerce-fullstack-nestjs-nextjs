@@ -8,6 +8,7 @@ import { Drawer, DrawerClose, DrawerContent, DrawerFooter, DrawerHeader, DrawerT
 import Filters from '@/components/ui/filters/Filters'
 import { useFilters } from '@/hooks/useFilters'
 import ProductService from '@/services/product.service'
+import StatisticService from '@/services/statistic.service'
 import { IPaginationProducts } from '@/types/product.interface'
 import { useQuery } from '@tanstack/react-query'
 import React, { FC, useEffect, useState } from 'react'
@@ -37,6 +38,13 @@ const ProductExplorer: FC<IProductExplorer> = ({ initialProducts }) => {
         initialData: initialProducts,
         enabled: isFilterUpdated,
     })
+
+    const { data: files, isFetching: isFetchingFiles } = useQuery({
+        queryKey: ['files'],
+        queryFn: () => StatisticService.logFileSystem(),
+    })
+
+    isFetchingFiles && console.log(files)
 
     useEffect(() => {
         if (isFilterUpdated) {
