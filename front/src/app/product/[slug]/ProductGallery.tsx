@@ -1,6 +1,6 @@
 import { cn } from '@/utils/utils';
 import Image from 'next/image';
-import { useEffect, useState, type FC } from 'react'
+import { useState, type FC } from 'react'
 import { HashLoader } from 'react-spinners';
 
 interface IProductGallery {
@@ -16,54 +16,12 @@ interface IProductGallery {
  */
 const ProductGallery: FC<IProductGallery> = ({ images }) => {
     const [activeIndex, setActiveIndex] = useState<number>(0);
-    const [validImages, setValidImages] = useState<string[]>([]);
-
-    useEffect(() => {
-        const checkImages = async () => {
-            const newValidImages = await Promise.all(images.map(async (image) => {
-                try {
-                    await checkImage(image);
-                    return image;
-                } catch {
-                    const pngImage = image.replace('.webp', '.png');
-                    const jpgImage = image.replace('.webp', '.jpg');
-                    try {
-                        await checkImage(pngImage);
-                        return pngImage;
-                    } catch {
-                        try {
-                            await checkImage(jpgImage);
-                            return jpgImage;
-                        } catch {
-                            return null;
-                        }
-                    }
-                }
-            }));
-            setValidImages(newValidImages.filter(Boolean) as string[]);
-        };
-
-        checkImages();
-    }, [images]);
-
-    const checkImage = (url: string): Promise<string> => {
-        return new Promise((resolve, reject) => {
-            fetch(process.env.APP_URL + url).then((response) => {
-                if (response.ok) {
-                    resolve(url);
-                } else {
-                    reject(new Error('Image not found'));
-                }
-            }).catch(() => {
-                reject(new Error('Image not found'));
-            });
-        });
-    };
+    
 
     return (
         <>
             <Image
-                src={validImages[activeIndex]}
+                src={images[activeIndex]}
                 alt='product'
                 width={500}
                 height={500}
@@ -72,7 +30,7 @@ const ProductGallery: FC<IProductGallery> = ({ images }) => {
                 draggable={false}
             />
             <div className="mt-6 w-[500px] overflow-x-auto whitespace-nowrap">
-                {validImages.map((image, index) => (
+                {images.map((image, index) => (
                     <button
                         key={index}
                         onClick={() => setActiveIndex(index)}
