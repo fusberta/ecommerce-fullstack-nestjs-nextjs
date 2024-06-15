@@ -24,7 +24,7 @@ const ProductGallery: FC<IProductGallery> = ({ images }) => {
                 alt='product'
                 width={500}
                 height={500}
-                className='rounded-xl overflow-hidden w-auto max-h-[400px] animate-scaleIn'
+                className='rounded-xl overflow-hidden min-w-[500px] max-w-[600px] max-h-[400px] animate-scaleIn'
                 priority
                 draggable={false}
             />
