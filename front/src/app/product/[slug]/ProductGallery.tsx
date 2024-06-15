@@ -26,11 +26,17 @@ const ProductGallery: FC<IProductGallery> = ({ images }) => {
                     return image;
                 } catch {
                     const pngImage = image.replace('.webp', '.png');
+                    const jpgImage = image.replace('.webp', '.jpg');
                     try {
                         await checkImage(pngImage);
                         return pngImage;
                     } catch {
-                        return null;
+                        try {
+                            await checkImage(jpgImage);
+                            return jpgImage;
+                        } catch {
+                            return null;
+                        }
                     }
                 }
             }));
