@@ -48,7 +48,7 @@ const ProductGallery: FC<IProductGallery> = ({ images }) => {
 
     const checkImage = (url: string): Promise<string> => {
         return new Promise((resolve, reject) => {
-            fetch(url).then((response) => {
+            fetch(process.env.APP_URL + url).then((response) => {
                 if (response.ok) {
                     resolve(url);
                 } else {
