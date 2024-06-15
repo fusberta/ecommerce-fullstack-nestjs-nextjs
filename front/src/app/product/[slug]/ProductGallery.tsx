@@ -16,7 +16,6 @@ interface IProductGallery {
  */
 const ProductGallery: FC<IProductGallery> = ({ images }) => {
     const [activeIndex, setActiveIndex] = useState<number>(0);
-    
 
     return (
         <>

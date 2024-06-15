@@ -11,6 +11,8 @@ import { PaginationService } from 'src/pagination/pagination.service'
 import { EnumProductSort, GetAllProductDto } from './dto/get-all-products.dto'
 import { CategoryService } from 'src/category/category.service'
 import { convertToNumber } from 'src/utils/convert-to-number'
+import * as fs from 'fs';
+import * as path from 'path';
 
 @Injectable()
 export class ProductService {
@@ -137,8 +139,24 @@ export class ProductService {
 			take: perPage,
 			select: returnProductObject
 		})
+
+		const updatedProducts = products.map(product => {
+			const updatedImages = product.images.map(imagePath => {
+				const webpPath = path.join(__dirname, '..', 'uploads', imagePath);
+				const pngPath = webpPath.replace('.webp', '.png');
+				if (fs.existsSync(webpPath)) {
+					return imagePath; 
+				} else if (fs.existsSync(pngPath)) {
+					return imagePath.replace('.webp', '.png');
+				} else {
+					return imagePath.replace('.webp', '.jpg');
+				}
+			});
+	
+			return { ...product, images: updatedImages };
+		});
 		return {
-			products,
+			products: updatedProducts,
 			length: await this.prisma.product.count({
 				where: filters
 			})
