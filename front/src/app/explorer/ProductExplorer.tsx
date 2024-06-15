@@ -38,12 +38,7 @@ const ProductExplorer: FC<IProductExplorer> = ({ initialProducts }) => {
         initialData: initialProducts,
         enabled: isFilterUpdated,
     })
-
-    const { data: files, isFetching: isFetchingFiles } = useQuery({
-        queryKey: ['files'],
-        queryFn: () => StatisticService.logFileSystem(),
-    })
-
+    
     useEffect(() => {
         if (isFilterUpdated) {
             refetch();
