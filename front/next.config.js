@@ -20,7 +20,7 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'pouch.jumpshare.com',
+        hostname: 'ibb.co',
         pathname: '**',
       },
     ],
