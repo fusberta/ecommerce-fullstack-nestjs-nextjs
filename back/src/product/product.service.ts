@@ -156,7 +156,7 @@ export class ProductService {
 			return { ...product, images: updatedImages };
 		});
 		return {
-			products: updatedProducts,
+			products,
 			length: await this.prisma.product.count({
 				where: filters
 			})
