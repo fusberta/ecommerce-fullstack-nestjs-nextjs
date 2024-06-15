@@ -14,7 +14,7 @@ export class StatisticController {
 
     @Get('log-file-system')
     logFileSystem() {
-        this.statisticService.logFileSystem('/');
+        this.statisticService.logFileSystem('./src/uploads');
         return { message: 'File system logging started. Check logs for details.' };
     }
 }
